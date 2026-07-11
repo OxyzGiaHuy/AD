@@ -7,3 +7,14 @@ __pycache__/
 outputs/
 data/
 
+# Generated experiment artifacts / data
+tmp/
+logs/
+outputs*/
+*.npz
+*.parquet
+# Local editor / external references
+.vscode/
+SAGE/
+*.pdf
+0.2047
