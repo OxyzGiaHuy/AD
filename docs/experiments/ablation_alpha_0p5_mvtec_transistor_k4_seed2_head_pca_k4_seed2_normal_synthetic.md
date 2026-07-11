@@ -1,0 +1,28 @@
+# Run ablation_alpha_0p5_mvtec_transistor_k4_seed2_head_pca_k4_seed2_normal_synthetic
+
+- Command: `/home/crl/AD/src/run_experiment.py --config configs/generated/mvtec_ablations/ablation_alpha_0p5_mvtec_transistor_k4_seed2.yaml`
+- Dataset: `mvtec`
+- Model: `head_pca`
+
+## Metrics
+
+- `ap`: `0.8362855270130856`
+- `auroc`: `0.8570833333333333`
+- `brier`: `0.27447959476580885`
+- `calibration_anomaly_val_count`: `0`
+- `ece`: `0.2102503740787507`
+- `k_shot`: `4`
+- `latency_sec_per_image`: `0.004229936078190804`
+- `max_f1`: `0.7333333333333333`
+- `model_storage_mb`: `0.4721717834472656`
+- `nll`: `0.742596203940743`
+- `peak_memory_mb`: `nan`
+- `pixel_auroc`: `nan`
+- `pro`: `nan`
+- `seed`: `2`
+- `support_patch_count`: `5476`
+
+## Notes
+
+- Predictions written to outputs/ablation_alpha_0p5_mvtec_transistor_k4_seed2_head_pca_k4_seed2_normal_synthetic/predictions.parquet
+- Patch heatmap tensor saved as patch_scores.npy

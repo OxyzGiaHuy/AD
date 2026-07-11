@@ -1,0 +1,43 @@
+experiment:
+  name: smoke_mvtec_bottle_mlp_identity
+  output_dir: outputs
+  docs_dir: docs
+  device: cpu
+  mixed_precision: false
+
+dataset:
+  name: mvtec
+  root: data/mvtec
+  classes: [bottle]
+  k_shots: [1]
+  seeds: [0]
+  image_size: 64
+
+backbone:
+  name: identity_patch
+  frozen: true
+  cache_dir: outputs/feature_cache
+  batch_size: 8
+
+model:
+  variant: head_pca
+  head_type: mlp
+  alpha: 0.5
+  pca_components: 4
+  head_hidden_dim: 32
+  train_steps: 25
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  batch_size: 512
+  synthetic_anomaly_ratio: 1.0
+
+calibration:
+  modes: [normal_synthetic]
+  method: platt
+  bins: 10
+
+robustness:
+  attacks:
+    - name: fgsm
+      epsilons: ["1/255"]
+  corruptions: [gaussian_noise]

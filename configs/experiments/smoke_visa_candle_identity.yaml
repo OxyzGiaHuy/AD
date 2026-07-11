@@ -1,0 +1,37 @@
+experiment:
+  name: smoke_visa_candle_identity
+  output_dir: outputs
+  docs_dir: docs
+  device: cpu
+  mixed_precision: false
+
+dataset:
+  name: visa
+  root: data/visa
+  classes: [candle]
+  k_shots: [1]
+  seeds: [0]
+  image_size: 64
+
+backbone:
+  name: identity_patch
+  frozen: true
+  cache_dir: outputs/feature_cache
+
+model:
+  variant: head_pca
+  alpha: 0.5
+  pca_components: 4
+  head_hidden_dim: 32
+  synthetic_anomaly_ratio: 1.0
+
+calibration:
+  modes: [normal_synthetic]
+  method: platt
+  bins: 10
+
+robustness:
+  attacks:
+    - name: fgsm
+      epsilons: ["1/255"]
+  corruptions: [gaussian_noise]

@@ -1,0 +1,14 @@
+\section{Introduction}
+Industrial anomaly detection (AD) is commonly deployed in regimes where anomalous examples are rare, diverse, and expensive to annotate. Recent few-shot methods address this by using frozen visual foundation models such as DINOv2 and a small set of normal support images. Memory-bank methods such as AnomalyDINO obtain strong nearest-neighbor anomaly ranking, while subspace methods such as SubspaceAD reduce inference storage by replacing large banks with PCA-style normal subspaces.
+
+This progress leaves a reliability gap. A raw anomaly score can rank images well while remaining poorly calibrated: an operator-facing probability should mean more than an arbitrary distance or residual. This is especially important under corruptions, class shift, and dataset shift, where post-hoc calibrators may over-adapt or become overconfident.
+
+We therefore separate two roles that are often mixed: \emph{ranking} and \emph{reliability}. Our pipeline keeps frozen DINOv2 PCA/subspace residuals as the anomaly ranking, but adds a conformal reliability view derived from few-shot normal support. The key empirical finding is that a leave-one-image-out (LOIO) conformal p-value view substantially improves calibration under full VisA corruptions while preserving the same ranking.
+
+Our contributions are:
+\begin{itemize}[leftmargin=*]
+    \item A decoupled low-storage DINOv2 subspace AD reliability pipeline that preserves PCA residual ranking and adds conformal probability-like reliability views.
+    \item A full VisA corruption benchmark showing that LOIO conformal reliability reduces ECE compared with Vector Platt and Shift-Aware Platt across all tested $k$ and corruption cells.
+    \item A protocol-locked routing analysis showing that fixed LOIO conformal reliability improves class-held-out and cross-dataset representative splits without relying on test-label expert selection.
+    \item A selective reliability analysis with entropy, conformal confidence, raw-score confidence, and effective-sample-size signals for flagging high-risk samples.
+\end{itemize}

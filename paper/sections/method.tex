@@ -1,0 +1,15 @@
+\section{Method}
+Given $k$ normal support images, we extract frozen DINOv2 patch features and fit a normal subspace. For a test image, patch residuals to this subspace define the raw anomaly ranking score. Let $s(x)$ be the image-level residual score, obtained from high-residual patches. This score is used for AUROC/AP and is not replaced by calibration probabilities.
+
+\paragraph{LOIO conformal reliability.}
+For each support image, we fit the normal subspace on the remaining support images and compute held-out residual scores, giving a calibration set of normal nonconformity values. Test residuals are converted into conformal p-values. We use
+\begin{equation}
+    p_{\mathrm{anom}}(x) = 1 - p_{\mathrm{LOIO}}(x)
+\end{equation}
+as a probability-like reliability view. This is not a supervised anomaly probability; it is a statistically interpretable reliability signal derived from normal support.
+
+\paragraph{Baselines and routing.}
+We compare LOIO conformal reliability with Vector Platt, Shift-Aware Platt, Weighted Platt, and weighted conformal views. In representative routing protocols, we evaluate fixed LOIO, validation-ECE selection, and no-label shift/effective-sample-size rules.
+
+\paragraph{Selective reliability.}
+We compute risk scores including entropy, conformal confidence, raw-score confidence, and effective sample size. Selective evaluation retains a coverage fraction of lowest-risk samples and reports ECE/Brier/NLL on the retained set.

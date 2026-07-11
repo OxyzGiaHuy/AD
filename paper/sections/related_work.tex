@@ -1,0 +1,12 @@
+\section{Related Work}
+\paragraph{Few-shot industrial anomaly detection.}
+PatchCore and related memory-bank methods compare test patch features against stored normal references. AnomalyDINO extends this direction with frozen DINOv2 representations for few-shot industrial AD. These methods are strong ranking baselines but retain nontrivial reference storage and do not primarily target reliability calibration.
+
+\paragraph{Subspace anomaly detection.}
+SubspaceAD shows that frozen DINOv2 patch features can be modeled by PCA/subspace residuals, reducing the need for a large memory bank. Our ranking component follows this philosophy; our contribution is not the residual itself, but the reliability layer around it.
+
+\paragraph{Calibration and robustness.}
+Prior analyses have shown that raw anomaly scores may be poorly calibrated and that adversarial perturbations can cause major AUROC collapse. Platt scaling and ECE are therefore useful but insufficient: a scalar calibrator can still fail under shift. We compare against Vector Platt and Shift-Aware Platt, and focus on reliability under corruption and transfer rather than adversarial robustness.
+
+\paragraph{Conformal prediction and gated experts.}
+Conformal anomaly detection converts nonconformity scores into p-values and can support false-alarm style diagnostics. Separately, gated expert models such as SAGE motivate input-adaptive routing between safe shared paths and specialized experts. We do not claim either conformal prediction or gated experts as new in isolation. Our claim is the integration of LOIO conformal reliability views into a low-storage DINOv2 subspace few-shot AD benchmark.

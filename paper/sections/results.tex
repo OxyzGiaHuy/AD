@@ -1,0 +1,44 @@
+\section{Results}
+\input{tables/tab_visa_full_conformal}
+
+Table~\ref{tab:visa-full-conformal} shows the full VisA conformal reliability result. LOIO conformal achieves an overall ECE of 0.0766. The result is strongest at $k=4$ (ECE 0.0391), while $k=8$ remains improved but shows higher ECE (0.1140). The $k=8$ caveat is caused by normal samples receiving higher conformal anomaly probability; anomaly confidence also increases, so ranking/AP improve slightly but calibration becomes less conservative.
+
+\input{tables/tab_visa_ece_by_corruption}
+
+Table~\ref{tab:visa-ece-corruption} compares ECE under each corruption. LOIO conformal improves over Vector Platt and Shift-Aware Platt in every tested cell. Weighted conformal is mixed: it is competitive at $k=8$ for blur, brightness/contrast, and JPEG, but is poor at $k=4$ and under Gaussian noise. We therefore keep weighted conformal as an ablation rather than the main reliability layer.
+
+\begin{figure}[t]
+    \centering
+    \begin{subfigure}{0.32\linewidth}
+        \includegraphics[width=\linewidth]{../outputs/figures/visa_full_loio_reliability_all.png}
+        \caption{All}
+    \end{subfigure}
+    \begin{subfigure}{0.32\linewidth}
+        \includegraphics[width=\linewidth]{../outputs/figures/visa_full_loio_reliability_k4.png}
+        \caption{$k=4$}
+    \end{subfigure}
+    \begin{subfigure}{0.32\linewidth}
+        \includegraphics[width=\linewidth]{../outputs/figures/visa_full_loio_reliability_k8.png}
+        \caption{$k=8$}
+    \end{subfigure}
+    \caption{Reliability diagrams for LOIO conformal reliability on full VisA corruptions.}
+    \label{fig:reliability}
+\end{figure}
+
+\begin{figure}[t]
+    \centering
+    \begin{subfigure}{0.48\linewidth}
+        \includegraphics[width=\linewidth]{../outputs/figures/visa_full_ece_by_corruption_k4.png}
+        \caption{$k=4$}
+    \end{subfigure}
+    \begin{subfigure}{0.48\linewidth}
+        \includegraphics[width=\linewidth]{../outputs/figures/visa_full_ece_by_corruption_k8.png}
+        \caption{$k=8$}
+    \end{subfigure}
+    \caption{ECE under full VisA corruptions. LOIO conformal is the most stable main reliability view; weighted conformal is useful only in selected $k=8$ structured corruptions.}
+    \label{fig:ece-corruption}
+\end{figure}
+
+\input{tables/tab_protocol_routing}
+
+Table~\ref{tab:protocol-routing} summarizes protocol-locked representative routing. Fixed LOIO conformal improves ECE without validation-label expert selection, supporting the claim that the conformal view itself carries useful reliability information.

@@ -1,0 +1,37 @@
+experiment:
+  name: headpca_visa_candle
+  output_dir: outputs
+  docs_dir: docs
+  device: cuda
+  mixed_precision: true
+
+dataset:
+  name: visa
+  root: data/visa
+  classes: [candle]
+  k_shots: [1]
+  seeds: [0]
+  image_size: 518
+
+backbone:
+  name: dinov2_vits14
+  frozen: true
+  cache_dir: outputs/feature_cache
+
+model:
+  variant: head_pca
+  alpha: 0.5
+  pca_components: 64
+  head_hidden_dim: 256
+  synthetic_anomaly_ratio: 1.0
+
+calibration:
+  modes: [normal_synthetic]
+  method: platt
+  bins: 15
+
+robustness:
+  attacks:
+    - name: fgsm
+      epsilons: ["8/255"]
+  corruptions: [gaussian_noise, blur, brightness_contrast, jpeg]

@@ -1,0 +1,28 @@
+# Run patchcore_visa_pcb4_k8_seed3_patchcore_k8_seed3_normal_synthetic
+
+- Command: `/home/crl/AD/src/run_experiment.py --config configs/generated/visa_full/patchcore_visa_pcb4_k8_seed3.yaml`
+- Dataset: `visa`
+- Model: `patchcore`
+
+## Metrics
+
+- `ap`: `0.8204924243111033`
+- `auroc`: `0.8706930693069307`
+- `brier`: `0.4805619115600722`
+- `calibration_anomaly_val_count`: `0`
+- `ece`: `0.47581442574326377`
+- `k_shot`: `8`
+- `latency_sec_per_image`: `0.06397199951371743`
+- `max_f1`: `0.8412017167381974`
+- `model_storage_mb`: `6.0`
+- `nll`: `2.0332221149712724`
+- `peak_memory_mb`: `nan`
+- `pixel_auroc`: `nan`
+- `pro`: `nan`
+- `seed`: `3`
+- `support_patch_count`: `10952`
+
+## Notes
+
+- Predictions written to outputs/patchcore_visa_pcb4_k8_seed3_patchcore_k8_seed3_normal_synthetic/predictions.parquet
+- Patch heatmap tensor saved as patch_scores.npy

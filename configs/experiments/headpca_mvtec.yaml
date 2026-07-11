@@ -1,0 +1,38 @@
+experiment:
+  name: headpca_mvtec_fewshot
+  output_dir: outputs
+  docs_dir: docs
+  device: cuda
+  mixed_precision: true
+
+dataset:
+  name: mvtec
+  root: data/mvtec
+  classes: all
+  k_shots: [1, 2, 4, 8]
+  seeds: [0, 1, 2, 3, 4]
+  image_size: 518
+
+backbone:
+  name: dinov2_vits14
+  frozen: true
+  cache_dir: outputs/feature_cache
+
+model:
+  variant: head_pca
+  alpha: 0.5
+  pca_components: 64
+  head_hidden_dim: 256
+  synthetic_anomaly_ratio: 1.0
+
+calibration:
+  modes: [normal_synthetic, normal_plus_anomaly_val]
+  method: platt
+  bins: 15
+
+robustness:
+  attacks:
+    - name: fgsm
+      epsilons: ["2/255", "4/255", "8/255"]
+  corruptions: [gaussian_noise, blur, brightness_contrast, jpeg]
+

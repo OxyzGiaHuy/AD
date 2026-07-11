@@ -1,0 +1,2 @@
+configs/generated/smoke_grid/calib_subspace_head_mvtec_bottle_k1_seed0.yaml
+configs/generated/smoke_grid/patchcore_mvtec_bottle_k1_seed0.yaml

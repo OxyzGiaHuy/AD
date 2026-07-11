@@ -1,0 +1,28 @@
+# Run ablation_alpha_1p0_mvtec_toothbrush_k4_seed3_head_pca_k4_seed3_normal_synthetic
+
+- Command: `/home/crl/AD/src/run_experiment.py --config configs/generated/mvtec_ablations/ablation_alpha_1p0_mvtec_toothbrush_k4_seed3.yaml`
+- Dataset: `mvtec`
+- Model: `head_pca`
+
+## Metrics
+
+- `ap`: `0.9900482659103349`
+- `auroc`: `0.9722222222222222`
+- `brier`: `0.20370558246006626`
+- `calibration_anomaly_val_count`: `0`
+- `ece`: `0.009802287533169696`
+- `k_shot`: `4`
+- `latency_sec_per_image`: `0.005528419544654233`
+- `max_f1`: `0.9491525423728814`
+- `model_storage_mb`: `0.4721717834472656`
+- `nll`: `0.5973293025308976`
+- `peak_memory_mb`: `nan`
+- `pixel_auroc`: `nan`
+- `pro`: `nan`
+- `seed`: `3`
+- `support_patch_count`: `5476`
+
+## Notes
+
+- Predictions written to outputs/ablation_alpha_1p0_mvtec_toothbrush_k4_seed3_head_pca_k4_seed3_normal_synthetic/predictions.parquet
+- Patch heatmap tensor saved as patch_scores.npy

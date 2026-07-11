@@ -1,0 +1,2 @@
+\section{Limitations}
+The method is not an AUROC SOTA claim on MVTec and is not adversarially robust. Ranking remains inherited from PCA/subspace residuals, and official SubspaceAD remains a strong accuracy baseline. LOIO conformal reliability also has assumptions: support normal images must be representative enough for the p-values to be meaningful. Under $k=8$, normal samples become less conservative in probability space, increasing ECE despite slightly better ranking. Finally, full MVTec conformal routing remains a valuable next step.

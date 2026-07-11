@@ -1,0 +1,4 @@
+\section{Experiments}
+We evaluate on MVTec AD and VisA. The main full-scale conformal experiment uses VisA with 12 classes, $k\in\{4,8\}$, five seeds, and four corruptions: Gaussian noise, blur, brightness/contrast shift, and JPEG compression. This yields 480 cases and 56,000 image-level rows after capping evaluation to at most 120 images per case.
+
+Metrics are split by role. AUROC and AP are computed from the raw PCA/subspace residual ranking. Reliability metrics, including ECE, Brier score, and NLL, are computed from the probability-like reliability view. This avoids inflating ranking claims by changing the score used for AUROC.
