@@ -13,6 +13,26 @@ logs/
 outputs*/
 *.npz
 *.parquet
+
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.log
+*.lot
+*.nav
+*.out
+*.run.xml
+*.snm
+*.synctex.gz
+*.toc
+*.vrb
+*.xdv
+
 # Local editor / external references
 .vscode/
 SAGE/

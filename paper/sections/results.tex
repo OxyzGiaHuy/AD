@@ -12,32 +12,17 @@ Table~\ref{tab:visa-ece-corruption} compares ECE under each corruption. LOIO con
 
 \begin{figure}[t]
     \centering
-    \begin{subfigure}{0.32\linewidth}
-        \includegraphics[width=\linewidth]{figures/visa_full_loio_reliability_all.png}
-        \caption{All}
-    \end{subfigure}
-    \begin{subfigure}{0.32\linewidth}
-        \includegraphics[width=\linewidth]{figures/visa_full_loio_reliability_k4.png}
-        \caption{$k=4$}
-    \end{subfigure}
-    \begin{subfigure}{0.32\linewidth}
-        \includegraphics[width=\linewidth]{figures/visa_full_loio_reliability_k8.png}
-        \caption{$k=8$}
-    \end{subfigure}
+    \subfloat[All]{\includegraphics[width=0.32\linewidth]{figures/visa_full_loio_reliability_all.png}}
+    \subfloat[$k=4$]{\includegraphics[width=0.32\linewidth]{figures/visa_full_loio_reliability_k4.png}}
+    \subfloat[$k=8$]{\includegraphics[width=0.32\linewidth]{figures/visa_full_loio_reliability_k8.png}}
     \caption{Reliability diagrams for LOIO conformal reliability on full VisA corruptions.}
     \label{fig:reliability}
 \end{figure}
 
 \begin{figure}[t]
     \centering
-    \begin{subfigure}{0.48\linewidth}
-        \includegraphics[width=\linewidth]{figures/visa_full_ece_by_corruption_k4.png}
-        \caption{$k=4$}
-    \end{subfigure}
-    \begin{subfigure}{0.48\linewidth}
-        \includegraphics[width=\linewidth]{figures/visa_full_ece_by_corruption_k8.png}
-        \caption{$k=8$}
-    \end{subfigure}
+    \subfloat[$k=4$]{\includegraphics[width=0.48\linewidth]{figures/visa_full_ece_by_corruption_k4.png}}
+    \subfloat[$k=8$]{\includegraphics[width=0.48\linewidth]{figures/visa_full_ece_by_corruption_k8.png}}
     \caption{ECE under full VisA corruptions. LOIO conformal is the most stable main reliability view; weighted conformal is useful only in selected $k=8$ structured corruptions.}
     \label{fig:ece-corruption}
 \end{figure}
