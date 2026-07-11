@@ -1,18 +1,20 @@
 \begin{table}[t]
 \centering
-\caption{Additional diagnostic evidence. Pixel ranking is strong, while adversarial robustness remains a limitation.}
+\caption{Additional diagnostic evidence. Pixel ranking is competitive, while FGSM remains a fragility diagnostic rather than a robustness claim.}
 \label{tab:pixel-diagnostics}
 \resizebox{\linewidth}{!}{%
-\begin{tabular}{llrrr}
+\begin{tabular}{lllr}
 \toprule
-Setting & Method/View & k & Metric 1 & Metric 2 \\
+Setting & Method/View & k & Value \\
 \midrule
-MVTec pixel & CalibSubspaceHead & 1 & Pixel AUROC 0.944 & AU-PRO 0.820 \\
-MVTec pixel & CalibSubspaceHead & 8 & Pixel AUROC 0.960 & AU-PRO 0.876 \\
-MVTec pixel & PatchCore/AnomalyDINO & 1 & Pixel AUROC 0.940 & -- \\
-MVTec pixel & PatchCore/AnomalyDINO & 8 & Pixel AUROC 0.952 & -- \\
-FGSM diagnostic & PCA-residual surrogate & -- & Severe collapse & Objective-sensitive \\
-Selective risk & Entropy/conformal signals & -- & Useful diagnostic & Not main ranking metric \\
+MVTec pixel AUROC & CRR / CalibSubspace & 1 & \textbf{0.944} \\
+MVTec pixel AUROC & PatchCore/AnomalyDINO & 1 & 0.940 \\
+MVTec AU-PRO & CRR / CalibSubspace & 1 & 0.820 \\
+MVTec pixel AUROC & CRR / CalibSubspace & 8 & \textbf{0.960} \\
+MVTec pixel AUROC & PatchCore/AnomalyDINO & 8 & 0.952 \\
+MVTec AU-PRO & CRR / CalibSubspace & 8 & 0.876 \\
+FGSM diagnostic & PCA-residual surrogate & all & severe collapse \\
+Selective risk & entropy/conformal signals & all & diagnostic only \\
 \bottomrule
 \end{tabular}%
 }

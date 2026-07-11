@@ -1,25 +1,29 @@
-\begin{table}[t]
+\begin{table*}[t]
 \centering
-\caption{Clean image-level performance and storage. The low-storage subspace detector is competitive, while MVTec accuracy is not claimed as state of the art.}
+\caption{Clean image-level performance and storage. Best accuracy within each dataset/$k$ block is bold; CRR-style subspace models emphasize low storage rather than universal AUROC dominance.}
 \label{tab:clean-efficiency}
-\resizebox{\linewidth}{!}{%
-\begin{tabular}{llrrrr}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lllrrrr}
 \toprule
-Dataset & Method & k & AUROC & AP & Storage MB \\
+Dataset & Method & k & AUROC $\uparrow$ & AP $\uparrow$ & ECE $\downarrow$ & Storage MB $\downarrow$ \\
 \midrule
-MVTec & CalibSubspaceHead & 1 & 0.904 & 0.951 & 0.472 \\
-MVTec & CalibSubspaceHead & 4 & 0.937 & 0.967 & 0.472 \\
-MVTec & CalibSubspaceHead & 8 & 0.945 & 0.972 & 0.472 \\
-MVTec & PatchCore/AnomalyDINO & 1 & 0.914 & -- & 2.005 \\
-MVTec & PatchCore/AnomalyDINO & 8 & 0.948 & -- & 6.000 \\
+MVTec & PatchCore/AnomalyDINO & 1 & \textbf{0.914} & \textbf{0.952} & 0.277 & 2.005 \\
+MVTec & CRR / CalibSubspace & 1 & 0.904 & 0.951 & \textbf{0.274} & \textbf{0.472} \\
+MVTec & PatchCore/AnomalyDINO & 4 & \textbf{0.942} & \textbf{0.967} & 0.693 & 6.000 \\
+MVTec & CRR / CalibSubspace & 4 & 0.937 & 0.967 & \textbf{0.214} & \textbf{0.472} \\
+MVTec & PatchCore/AnomalyDINO & 8 & \textbf{0.948} & 0.970 & 0.693 & 6.000 \\
+MVTec & CRR / CalibSubspace & 8 & 0.945 & \textbf{0.972} & \textbf{0.154} & \textbf{0.472} \\
 \midrule
-VisA & CalibSubspaceHead PCA64 & 1 & 0.823 & -- & 0.472 \\
-VisA & CalibSubspaceHead PCA64 & 4 & 0.870 & -- & 0.472 \\
-VisA & CalibSubspaceHead PCA64 & 8 & 0.880 & -- & 0.472 \\
-VisA & CalibSubspaceHead PCA128 & 1 & 0.834 & -- & 0.566 \\
-VisA & CalibSubspaceHead PCA128 & 4 & 0.885 & -- & 0.566 \\
-VisA & CalibSubspaceHead PCA128 & 8 & 0.897 & -- & 0.566 \\
+VisA & PatchCore/AnomalyDINO & 1 & 0.804 & 0.809 & 0.434 & 2.005 \\
+VisA & CRR / PCA64 & 1 & 0.823 & 0.834 & \textbf{0.429} & \textbf{0.472} \\
+VisA & CRR / PCA128 & 1 & \textbf{0.834} & \textbf{0.842} & 0.430 & 0.566 \\
+VisA & PatchCore/AnomalyDINO & 4 & 0.862 & 0.861 & 0.543 & 6.000 \\
+VisA & CRR / PCA64 & 4 & 0.870 & 0.883 & 0.284 & \textbf{0.472} \\
+VisA & CRR / PCA128 & 4 & \textbf{0.885} & \textbf{0.895} & \textbf{0.278} & 0.566 \\
+VisA & PatchCore/AnomalyDINO & 8 & 0.873 & 0.870 & 0.533 & 6.000 \\
+VisA & CRR / PCA64 & 8 & 0.880 & 0.891 & 0.205 & \textbf{0.472} \\
+VisA & CRR / PCA128 & 8 & \textbf{0.897} & \textbf{0.905} & \textbf{0.170} & 0.566 \\
 \bottomrule
 \end{tabular}%
 }
-\end{table}
+\end{table*}
