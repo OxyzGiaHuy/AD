@@ -1,22 +1,39 @@
 \section{Method}
+\subsection{Problem Setup}
+For each category $c$, we observe a support set $\mathcal{S}_c=\{x_i\}_{i=1}^{k}$ containing only normal images. The test set contains normal and anomalous images, but anomaly labels are used only for evaluation, not for fitting the main detector or calibrator. The goal is to produce: (i) a raw anomaly ranking score $s(x)$, (ii) a probability-like reliability score $\hat{p}(y=1\mid x)$ or conformal anomaly confidence, and (iii) optional pixel-level maps.
+
 \subsection{Frozen Patch Features and Subspace Ranking}
-Given $k$ normal support images for a category, we extract frozen DINOv2 ViT-S/14 patch features. Let $z_{ij}\in\mathbb{R}^{d}$ denote patch $j$ from support or test image $i$. A PCA/subspace model is fit on normal support patches. For a test patch $z$, the residual nonconformity score is
+We extract patch features with a frozen DINOv2 ViT-S/14 backbone. Let $z_{ij}\in\mathbb{R}^{d}$ denote patch $j$ from image $i$. A PCA/subspace model is fit on support patches. With support mean $\mu$ and retained principal directions $U\in\mathbb{R}^{d\times m}$, the patch residual is
 \begin{equation}
-    r(z)=\left\|z - UU^{\top}(z-\mu)-\mu\right\|_2,
+    r(z)=\left\|(z-\mu)-UU^{\top}(z-\mu)\right\|_2 .
 \end{equation}
-where $U$ contains the retained principal directions and $\mu$ is the support mean. Image-level raw anomaly ranking uses a high-residual aggregation, denoted $s(x)$. AUROC and AP are always computed from this raw PCA/subspace score unless otherwise stated.
+Patch residuals form an anomaly map. The image-level ranking score is a high-residual aggregation,
+\begin{equation}
+    s(x)=\operatorname{Agg}_{j}\, r(z_j),
+\end{equation}
+where $\operatorname{Agg}$ is implemented as a maximum or top-tail statistic. Importantly, this raw score is the quantity used for AUROC and AP. Calibration routes do not change the ranking score.
 
-\subsection{Decoupled Probability Calibration}
-The baseline calibrated detector uses a vector Platt scaler that maps multiple score descriptors to an anomaly probability. The feature vector includes the image-level PCA residual, a small synthetic-anomaly head score when available, and a disagreement term between normalized residual and head scores. This decouples ranking from probability estimation: changing the calibrator does not change the anomaly ranking.
-
-We also evaluate Shift-Aware Platt and weighted Platt. Shift-Aware Platt augments calibration with shift descriptors, such as residual statistics and corruption/domain descriptors. Weighted Platt uses density-ratio style weights estimated from support/test feature shifts. These variants are useful under some structured shifts but can over-adapt, motivating a safer reliability-routing view.
+\subsection{Vector and Shift-Aware Calibration}
+The first reliability family is post-hoc logistic calibration. A scalar Platt scaler maps $s(x)$ to a probability, while Vector Platt uses a richer descriptor
+\begin{equation}
+    \phi(x)=\left[s_{\mathrm{pca}}(x),\; s_{\mathrm{head}}(x),\; |\tilde{s}_{\mathrm{pca}}(x)-\tilde{s}_{\mathrm{head}}(x)|\right],
+\end{equation}
+where $s_{\mathrm{head}}$ is a lightweight synthetic-anomaly head score when available and tildes denote normalized scores. The calibrated probability is
+\begin{equation}
+    \hat{p}_{\theta}(x)=\sigma(w^{\top}\phi(x)+b).
+\end{equation}
+Shift-Aware Platt augments $\phi(x)$ with shift descriptors such as residual mean, residual concentration, and support/test domain statistics. Weighted Platt further reweights samples by density-ratio-style estimates. These variants are useful for structured shifts but can over-adapt, motivating a conservative conformal route.
 
 \subsection{LOIO Conformal Reliability}
-For $k\geq2$, we construct normal calibration residuals with leave-one-image-out (LOIO) support splits. For support image $i$, we fit the normal subspace using the other $k-1$ support images and compute held-out residual scores for image $i$. The collected held-out residuals form a normal nonconformity set $\mathcal{R}_{\mathrm{cal}}$. For a test image $x$ with residual score $s(x)$, its conformal p-value is
+For $k\ge2$, CRR constructs normal calibration residuals by leave-one-image-out support splitting. For each support image $x_i$, a subspace is fit on $\mathcal{S}_c\setminus\{x_i\}$ and the held-out image receives a residual score $s_{-i}(x_i)$. The resulting set
 \begin{equation}
-    p_{\mathrm{LOIO}}(x)=\frac{1 + \sum_{r\in\mathcal{R}_{\mathrm{cal}}}\mathbf{1}\{r \ge s(x)\}}{1+|\mathcal{R}_{\mathrm{cal}}|}.
+    \mathcal{R}_{\mathrm{LOIO}}=\{s_{-i}(x_i):x_i\in\mathcal{S}_c\}
 \end{equation}
-We use $p_{\mathrm{conf}}(x)=1-p_{\mathrm{LOIO}}(x)$ as a probability-like anomaly reliability view. It is not a supervised posterior probability; it is a support-derived reliability signal indicating how extreme the test residual is relative to held-out normal residuals.
+serves as normal nonconformity evidence. For a test image $x$, the conformal p-value is
+\begin{equation}
+    p_{\mathrm{LOIO}}(x)=\frac{1+\sum_{r\in\mathcal{R}_{\mathrm{LOIO}}}\mathbf{1}\{r\ge s(x)\}}{1+|\mathcal{R}_{\mathrm{LOIO}}|}.
+\end{equation}
+We report $p_{\mathrm{conf}}(x)=1-p_{\mathrm{LOIO}}(x)$ as a probability-like anomaly reliability view. It should be interpreted as relative extremeness against held-out support normals, not as a fully supervised posterior probability. Weighted conformal replaces the uniform count by density-ratio weights and reports effective sample size; empirically, it is less stable than LOIO on the main benchmark.
 
 \subsection{Reliability Routing and Selective Diagnostics}
-We evaluate several routes: Vector Platt, Shift-Aware Platt, weighted Platt, LOIO conformal, weighted conformal, and simple mixtures or gates. The final main route is fixed LOIO conformal because it improves calibration without using test labels for expert selection. We additionally compute entropy, expert disagreement, conformal confidence, and effective sample size as selective-risk signals. These are used to flag high-risk decisions rather than to claim improved anomaly ranking.
+CRR evaluates multiple reliability routes: Vector Platt, Shift-Aware Platt, weighted Platt, LOIO conformal, weighted conformal, and simple rule-based gates. The main route is fixed LOIO conformal because it does not require validation-label expert selection and is stable in the full VisA corruption benchmark. Gated variants are used diagnostically to test whether shift-aware experts can improve reliability without harming safe baselines. We additionally compute entropy, expert disagreement, conformal confidence, and effective sample size as selective-risk signals for flagging uncertain decisions.
