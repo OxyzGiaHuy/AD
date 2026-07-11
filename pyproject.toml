@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fewshot-robust-calibrated-ad"
+version = "0.1.0"
+description = "Few-shot robust calibrated anomaly detection with frozen DINOv2 features."
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-p no:launch_testing -p no:launch_ros"
+
