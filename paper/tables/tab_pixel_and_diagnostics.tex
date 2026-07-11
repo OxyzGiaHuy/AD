@@ -1,0 +1,19 @@
+\begin{table}[t]
+\centering
+\caption{Additional diagnostic evidence. Pixel ranking is strong, while adversarial robustness remains a limitation.}
+\label{tab:pixel-diagnostics}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{llrrr}
+\toprule
+Setting & Method/View & k & Metric 1 & Metric 2 \\
+\midrule
+MVTec pixel & CalibSubspaceHead & 1 & Pixel AUROC 0.944 & AU-PRO 0.820 \\
+MVTec pixel & CalibSubspaceHead & 8 & Pixel AUROC 0.960 & AU-PRO 0.876 \\
+MVTec pixel & PatchCore/AnomalyDINO & 1 & Pixel AUROC 0.940 & -- \\
+MVTec pixel & PatchCore/AnomalyDINO & 8 & Pixel AUROC 0.952 & -- \\
+FGSM diagnostic & PCA-residual surrogate & -- & Severe collapse & Objective-sensitive \\
+Selective risk & Entropy/conformal signals & -- & Useful diagnostic & Not main ranking metric \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}

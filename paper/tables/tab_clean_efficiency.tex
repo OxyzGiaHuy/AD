@@ -1,0 +1,25 @@
+\begin{table}[t]
+\centering
+\caption{Clean image-level results and storage evidence. Our method is competitive and low-storage, but we do not claim MVTec AUROC SOTA.}
+\label{tab:clean-efficiency}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{llrrrr}
+\toprule
+Dataset & Method & k & AUROC & AP & Storage MB \\
+\midrule
+MVTec & CalibSubspaceHead & 1 & 0.904 & 0.951 & 0.472 \\
+MVTec & CalibSubspaceHead & 4 & 0.937 & 0.967 & 0.472 \\
+MVTec & CalibSubspaceHead & 8 & 0.945 & 0.972 & 0.472 \\
+MVTec & PatchCore/AnomalyDINO & 1 & 0.914 & -- & 2.005 \\
+MVTec & PatchCore/AnomalyDINO & 8 & 0.948 & -- & 6.000 \\
+\midrule
+VisA & CalibSubspaceHead PCA64 & 1 & 0.823 & -- & 0.472 \\
+VisA & CalibSubspaceHead PCA64 & 4 & 0.870 & -- & 0.472 \\
+VisA & CalibSubspaceHead PCA64 & 8 & 0.880 & -- & 0.472 \\
+VisA & CalibSubspaceHead PCA128 & 1 & 0.834 & -- & 0.566 \\
+VisA & CalibSubspaceHead PCA128 & 4 & 0.885 & -- & 0.566 \\
+VisA & CalibSubspaceHead PCA128 & 8 & 0.897 & -- & 0.566 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}

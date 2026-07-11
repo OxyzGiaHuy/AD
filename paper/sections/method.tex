@@ -1,15 +1,22 @@
 \section{Method}
-Given $k$ normal support images, we extract frozen DINOv2 patch features and fit a normal subspace. For a test image, patch residuals to this subspace define the raw anomaly ranking score. Let $s(x)$ be the image-level residual score, obtained from high-residual patches. This score is used for AUROC/AP and is not replaced by calibration probabilities.
-
-\paragraph{LOIO conformal reliability.}
-For each support image, we fit the normal subspace on the remaining support images and compute held-out residual scores, giving a calibration set of normal nonconformity values. Test residuals are converted into conformal p-values. We use
+\subsection{Frozen Patch Features and Subspace Ranking}
+Given $k$ normal support images for a category, we extract frozen DINOv2 ViT-S/14 patch features. Let $z_{ij}\in\mathbb{R}^{d}$ denote patch $j$ from support or test image $i$. A PCA/subspace model is fit on normal support patches. For a test patch $z$, the residual nonconformity score is
 \begin{equation}
-    p_{\mathrm{anom}}(x) = 1 - p_{\mathrm{LOIO}}(x)
+    r(z)=\left\|z - UU^{\top}(z-\mu)-\mu\right\|_2,
 \end{equation}
-as a probability-like reliability view. This is not a supervised anomaly probability; it is a statistically interpretable reliability signal derived from normal support.
+where $U$ contains the retained principal directions and $\mu$ is the support mean. Image-level raw anomaly ranking uses a high-residual aggregation, denoted $s(x)$. AUROC and AP are always computed from this raw PCA/subspace score unless otherwise stated.
 
-\paragraph{Baselines and routing.}
-We compare LOIO conformal reliability with Vector Platt, Shift-Aware Platt, Weighted Platt, and weighted conformal views. In representative routing protocols, we evaluate fixed LOIO, validation-ECE selection, and no-label shift/effective-sample-size rules.
+\subsection{Decoupled Probability Calibration}
+The baseline calibrated detector uses a vector Platt scaler that maps multiple score descriptors to an anomaly probability. The feature vector includes the image-level PCA residual, a small synthetic-anomaly head score when available, and a disagreement term between normalized residual and head scores. This decouples ranking from probability estimation: changing the calibrator does not change the anomaly ranking.
 
-\paragraph{Selective reliability.}
-We compute risk scores including entropy, conformal confidence, raw-score confidence, and effective sample size. Selective evaluation retains a coverage fraction of lowest-risk samples and reports ECE/Brier/NLL on the retained set.
+We also evaluate Shift-Aware Platt and weighted Platt. Shift-Aware Platt augments calibration with shift descriptors, such as residual statistics and corruption/domain descriptors. Weighted Platt uses density-ratio style weights estimated from support/test feature shifts. These variants are useful under some structured shifts but can over-adapt, motivating a safer reliability-routing view.
+
+\subsection{LOIO Conformal Reliability}
+For $k\geq2$, we construct normal calibration residuals with leave-one-image-out (LOIO) support splits. For support image $i$, we fit the normal subspace using the other $k-1$ support images and compute held-out residual scores for image $i$. The collected held-out residuals form a normal nonconformity set $\mathcal{R}_{\mathrm{cal}}$. For a test image $x$ with residual score $s(x)$, its conformal p-value is
+\begin{equation}
+    p_{\mathrm{LOIO}}(x)=\frac{1 + \sum_{r\in\mathcal{R}_{\mathrm{cal}}}\mathbf{1}\{r \ge s(x)\}}{1+|\mathcal{R}_{\mathrm{cal}}|}.
+\end{equation}
+We use $p_{\mathrm{conf}}(x)=1-p_{\mathrm{LOIO}}(x)$ as a probability-like anomaly reliability view. It is not a supervised posterior probability; it is a support-derived reliability signal indicating how extreme the test residual is relative to held-out normal residuals.
+
+\subsection{Reliability Routing and Selective Diagnostics}
+We evaluate several routes: Vector Platt, Shift-Aware Platt, weighted Platt, LOIO conformal, weighted conformal, and simple mixtures or gates. The final main route is fixed LOIO conformal because it improves calibration without using test labels for expert selection. We additionally compute entropy, expert disagreement, conformal confidence, and effective sample size as selective-risk signals. These are used to flag high-risk decisions rather than to claim improved anomaly ranking.
