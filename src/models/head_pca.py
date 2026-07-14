@@ -11,6 +11,30 @@ def _sigmoid(x: np.ndarray) -> np.ndarray:
     return 1.0 / (1.0 + np.exp(-np.clip(x, -40, 40)))
 
 
+def make_synthetic_feature_batch(normal_features: np.ndarray, seed: int = 0, ratio: float = 1.0) -> np.ndarray:
+    """Synthetic-anomaly feature batch shared by every label-free calibrator.
+
+    Replaces 25% of the patches of a sampled support image with resampled
+    support patches plus Gaussian noise and a sign shift. Keeping this at
+    module level lets scalar calibration baselines train on exactly the same
+    synthetic protocol as the vector calibrators.
+    """
+    rng = np.random.default_rng(seed)
+    x = normal_features.reshape(-1, normal_features.shape[-1]).astype(np.float32)
+    n_images, n_patches, dim = normal_features.shape
+    n_synth = max(1, int(n_images * ratio))
+    synth = np.empty((n_synth, n_patches, dim), dtype=np.float32)
+    for i in range(n_synth):
+        source = normal_features[rng.integers(0, n_images)].copy()
+        n_bad = max(1, n_patches // 4)
+        idx = rng.choice(n_patches, size=n_bad, replace=False)
+        sampled = x[rng.integers(0, len(x), size=n_bad)]
+        noise = rng.normal(0.0, 0.75, size=sampled.shape).astype(np.float32)
+        source[idx] = sampled + noise + 0.25 * np.sign(sampled).astype(np.float32)
+        synth[i] = source
+    return synth
+
+
 @dataclass
 class LinearHead:
     weight: np.ndarray
@@ -248,20 +272,7 @@ class CalibSubspaceHead:
         return np.concatenate([base, disagreement.astype(np.float32)], axis=1).astype(np.float32)
 
     def _make_synthetic_feature_batch(self, normal_features: np.ndarray, seed: int = 0, ratio: float = 1.0) -> np.ndarray:
-        rng = np.random.default_rng(seed)
-        x = normal_features.reshape(-1, normal_features.shape[-1]).astype(np.float32)
-        n_images, n_patches, dim = normal_features.shape
-        n_synth = max(1, int(n_images * ratio))
-        synth = np.empty((n_synth, n_patches, dim), dtype=np.float32)
-        for i in range(n_synth):
-            source = normal_features[rng.integers(0, n_images)].copy()
-            n_bad = max(1, n_patches // 4)
-            idx = rng.choice(n_patches, size=n_bad, replace=False)
-            sampled = x[rng.integers(0, len(x), size=n_bad)]
-            noise = rng.normal(0.0, 0.75, size=sampled.shape).astype(np.float32)
-            source[idx] = sampled + noise + 0.25 * np.sign(sampled).astype(np.float32)
-            synth[i] = source
-        return synth
+        return make_synthetic_feature_batch(normal_features, seed=seed, ratio=ratio)
 
     def synthetic_calibration_features(self, normal_features: np.ndarray, seed: int = 0, ratio: float = 1.0) -> np.ndarray:
         return self.calibration_features(self._make_synthetic_feature_batch(normal_features, seed=seed, ratio=ratio))

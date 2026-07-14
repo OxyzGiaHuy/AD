@@ -1,3 +1,13 @@
+# 2026-07-11: Q1 claim/protocol audit và SC3R pilot
+
+- Phát hiện local PatchCoreNN và AnomalyDINO dùng cùng scoring implementation. Paper đã đổi nhãn bảng local thành Controlled DINOv2 NN; official method chỉ được dùng sau reproduction/protocol alignment.
+- Matched LOIO k=4 không thắng legacy LOIO về trade-off vận hành: FAR clean tăng 0.1695 -> 0.2458, trong khi power chỉ tăng 0.8944 -> 0.9056. Giữ như negative protocol audit.
+- Prevalence stress cho thấy ECE không deployment-universal. Full VisA LOIO ECE đổi 0.4039 -> 0.1493 khi anomaly prevalence tăng 1% -> 50%; weighted conformal đổi 0.2655 -> 0.2102, và thứ hạng hai method đảo chiều.
+- Support-normalized raw-residual pooling tăng representative MVTec ranking lên khoảng AUROC 0.88, nhưng source-pool trực tiếp vi phạm FAR ở alpha thấp.
+- Source-class-validated threshold, không dùng target anomaly label, đạt matched-condition k4 mean FAR/power 0.044/0.120 tại alpha 0.05 và 0.076/0.307 tại alpha 0.10. Gaussian/JPEG còn vi phạm theo cell; đây chưa phải universal/no-harm claim.
+- Thêm stratified-random corruption subsampling và hierarchical class/seed bootstrap. Kết quả cũ lấy max_images theo thứ tự file phải được rerun trước main table.
+- Audit đầy đủ: docs/q1_claim_and_protocol_audit_2026_07_11.md.
+
 # Research Log
 
 Use this file for paper notes, useful observations, and decisions that affect
@@ -334,3 +344,177 @@ Implemented SAGE-inspired anchored gated calibration. Vector Platt is used as a 
 - Draft references full VisA reliability figures from `outputs/figures/`.
 - Wrote `docs/paper_draft_status.md` to summarize draft status and next paper tasks.
 - `pdflatex` was not available in PATH, so no local PDF compile was attempted.
+
+
+## 2026-07-11: VisA False-Alarm Control From LOIO Conformal P-Values
+
+Implemented `scripts/evaluate_conformal_false_alarm.py` and ran it on `sw_cad_image_views_visa_full_k4k8_s0s4_combined.csv` (56,000 images). Outputs:
+
+- `outputs/paper_tables/visa_full_conformal_false_alarm_summary.csv`
+- `outputs/paper_tables/visa_full_conformal_false_alarm_summary.md`
+- `outputs/paper_tables/visa_full_conformal_false_alarm_pvalue_histogram.csv`
+
+Key finding: LOIO conformal p-values are conservative under VisA corruptions. Small alpha values (`0.01`, `0.05`, `0.10`) produce no alarms because few-shot LOIO p-values are discrete. At attainable thresholds, the tradeoff is useful:
+
+- k=4, alpha=0.25: false-alarm `0.152`, anomaly detection `0.599`, precision `0.806`.
+- k=8, alpha=0.25: false-alarm `0.219`, anomaly detection `0.715`, precision `0.776`.
+- k=8, alpha=0.50: false-alarm `0.483`, anomaly detection `0.909`, precision `0.666`.
+
+Paper implication: do not claim exact conformal false-alarm guarantee under corruption shift. Claim a conservative, interpretable false-alarm diagnostic and threshold tradeoff.
+
+## 2026-07-11: MVTec Representative Conformal False-Alarm Check
+
+Started and completed the P1 MVTec representative conformal-view export after the full VisA false-alarm analysis:
+
+- Export grid: MVTec representative classes `bottle/cable/hazelnut`, k `{4,8}`, seeds `{0,1,2,3,4}`, corruptions `{gaussian_noise, blur, brightness_contrast, jpeg}`.
+- Output: `outputs/paper_tables/sw_cad_image_views_mvtec_full_k4k8_s0s4.csv`.
+- Size: `11,920` image rows. The filename contains `full`, but the run is representative because no explicit 15-class list was passed.
+- False-alarm outputs:
+  - `outputs/paper_tables/mvtec_representative_conformal_false_alarm_summary.csv`
+  - `outputs/paper_tables/mvtec_representative_conformal_false_alarm_summary.md`
+  - `outputs/paper_tables/mvtec_representative_conformal_false_alarm_pvalue_histogram.csv`
+
+Main LOIO finding:
+
+- Mean normal p-value `0.5076`, mean anomaly p-value `0.1892`, separation `0.3185`.
+- Global alpha `0.20`: false-alarm `0.1057`, anomaly detection `0.4558`, precision `0.8680`.
+- Global alpha `0.25`: false-alarm `0.3337`, anomaly detection `0.9261`, precision `0.8089`.
+- Global alpha `0.50`: false-alarm `0.5307`, anomaly detection `0.9539`, precision `0.7327`.
+
+Weighted conformal is much more conservative:
+
+- Global alpha `0.25`: false-alarm `0.0023`, anomaly detection `0.0025`.
+- Global alpha `0.50`: false-alarm `0.0464`, anomaly detection `0.1010`, precision `0.7685`.
+
+Paper implication:
+
+- MVTec representative supports the use of LOIO conformal p-values as an interpretable reliability/operating-point view, not as a strict false-alarm guarantee under corruption shift.
+- Weighted conformal should be framed as a conservative diagnostic/safe mode, not the main detector.
+- To make a stronger false-alarm-control claim, next work should add randomized/smoothed few-shot p-values or normal-only threshold selection with an attainable alpha table.
+
+
+## 2026-07-11 (evening): SC3R Stratified Gate Decision, Attainable-Alpha Analysis, Float32 P-Value Fix
+
+### SC3R stratified evaluation and pre-registered gate
+
+Evaluated the completed stratified SC3R export (`sc3r_views_mvtec_repr_stratified.csv`: bottle/cable/hazelnut, k=4, seeds 0-2, corruptions clean/blur/brightness_contrast/gaussian_noise/jpeg, label-stratified random sampling):
+
+- New: `scripts/export_support_loio_residuals.py` exports per-support LOIO residuals so a true `target_only` conformal anchor can be evaluated on the same rows.
+- Extended `scripts/evaluate_source_validated_threshold.py` with `--support-residuals` and an `evaluate_target_only` method (`target_only` rows replicated per source mode for paired bootstrap).
+- Outputs: `source_validated_threshold_sc3r_mvtec_repr_stratified_{detailed,summary}.csv`, `sc3r_mvtec_repr_stratified_hierarchical_ci.csv`.
+
+Gate verdict (pre-registered criteria, matched_condition source mode): CONDITIONAL PASS.
+
+1. Nonzero power at alpha 0.05/0.10: PASS (mean power 0.159 / 0.341; target_only is structurally 0 below its attainable floor 1/(k+1)=0.2).
+2. Mean FAR <= alpha+0.02: PASS for matched_condition at all alphas (0.067/0.098/0.204). clean_source FAILS at alpha 0.10 (0.156) due to gaussian_noise/jpeg.
+3. No-harm >= 80% vs target_only: PASS (93%/82%/84% at alpha 0.05/0.10/0.20).
+4. No target anomaly labels: PASS by construction (thresholds selected on held-out source-class normals only).
+5. Hierarchical class-seed CI: power gain CI excludes zero for clean at alpha 0.10 ([0.165, 0.777] clean_source; matched similar central mass); structured-corruption CIs have positive means but lower bounds touching zero with only 3 classes.
+
+Scoped claim decision: promote SC3R as a contribution with the claim restricted to (a) matched_condition source validation, (b) the sub-floor alpha regime (alpha < 1/(k+1)), (c) clean/structured corruptions; gaussian_noise/jpeg FAR violations reported as a limitation. At alpha=0.20 (at/above the floor) target_only is stronger — SC3R's value is precisely extending the operating range below the few-shot attainable-alpha floor. Full 15-class SC3R export queued to firm up criterion 5.
+
+### Attainable-alpha analysis (new)
+
+New `scripts/analyze_attainable_alpha.py` + `tests/test_attainable_alpha.py`. With n=k calibration scores the smallest attainable p-value is 1/(k+1); nominal alphas below that floor cannot alarm. This converts the earlier "LOIO is conservative at small alpha" observation into an exact structural explanation. Outputs: `attainable_alpha_{visa_full,mvtec_representative}_{summary,detailed}.csv` + md.
+
+### Float32 p-value comparison bug (protocol fix, changes prior numbers)
+
+Stored `image_p_loio` values are float32, so 1/5 is stored as 0.20000000298 and the exact rule `p <= 0.20` silently drops all floor alarms at k=4. All previously reported k=4 alpha=0.20 false-alarm/detection numbers were spuriously 0/0. Fixed with a 1e-6 tolerance in `evaluate_conformal_false_alarm.py` and `analyze_attainable_alpha.py`, and re-ran:
+
+- VisA full k=4 alpha=0.20 (corrected): FAR 0.142-0.157, detection 0.585-0.610, precision ~0.81 by corruption.
+- k=8 alpha=0.20 uses the 1/9 grid point: FAR ~0.11, detection ~0.53-0.55.
+- Earlier alpha=0.25/0.50 rows were unaffected (not at grid points).
+
+### Infrastructure
+
+- `run_tests.sh` requires `PYTHON_BIN=/home/crl/miniconda3/envs/ad/bin/python` (system python lacks pandas); suite now 49 tests.
+- Patched `third_party/AnomalyDINO/run_anomalydino.py` to guard `create_sample_plots` behind `save_examples` + FileNotFoundError catch; launched official MVTec runs shots {1,4,8}, 3 seeds, `--no-save_examples --faiss_on_cpu`.
+- Launched true 15-class MVTec conformal export `--run-tag mvtec_full15_k4k8_s0s2` (k {4,8}, seeds 0-2). Note: `export_sw_cad_image_views.py` silently falls back to REPRESENTATIVE classes when `--classes` is omitted — always pass the explicit list.
+
+## 2026-07-12: Full-Scale Results — SC3R Full Pass, MVTec Full15 Conformal, Official AnomalyDINO, Paper V2
+
+All queued jobs completed overnight.
+
+### MVTec full 15-class conformal benchmark (P1 complete)
+
+- Export: `sw_cad_image_views_mvtec_full15_k4k8_s0s2.csv` (15 classes, k {4,8}, seeds 0-2, 4 corruptions, 37,464 rows).
+- LOIO conformal ECE: overall `0.0684` (k4 `0.0600`, k8 `0.0769`), image AUROC `0.912`.
+- LOIO beats Vector Platt AND Shift-Aware Platt in 8/8 k-corruption cells (e.g. k4 gaussian: `0.033` vs `0.233`/`0.270`). P1 acceptance criterion (>=80% cells) passed at 100%.
+- Weighted conformal much worse (ECE `0.31-0.45`).
+- False-alarm at alpha=0.20 (first attainable, k=4): MVTec is ANTI-conservative under corruption (FAR `0.31-0.46`), unlike VisA (conservative `0.14-0.16`). Key protocol asymmetry now stated in the paper; motivates SC3R.
+- Artifacts: `mvtec_full15_conformal_{extended_summary,vs_baselines_k_corruption,reliability_bins,selective_reliability}.csv`, `mvtec_full15_conformal_main_table.md`, `mvtec_full15_conformal_false_alarm_*`, `attainable_alpha_mvtec_full15_*`.
+
+### SC3R full 15-class stratified gate: FULL PASS (matched_condition)
+
+- `source_validated_threshold_sc3r_mvtec_full15_stratified_{detailed,summary}.csv` (675 cells), `sc3r_mvtec_full15_stratified_hierarchical_ci.csv`.
+- Mean FAR tracks nominal almost exactly: `0.050/0.105/0.216` at alpha `0.05/0.10/0.20` (all within alpha+0.02); per-condition FAR `0.048-0.051` at alpha 0.05.
+- Power `0.216/0.416` at alpha `0.05/0.10` where target-only is structurally silent; precision > 0.90.
+- No-harm vs target_only: `89%/82%/89%`.
+- Hierarchical CI: power-gain CIs exclude zero for EVERY corruption at alpha 0.05 and 0.10 (clean 0.10: [0.30,0.64]; jpeg 0.05: [0.02,0.28]). The 3-class gaussian/jpeg FAR violations disappeared with 14 source classes.
+- At alpha=0.20 target_only over-alarms under corruption (FAR up to 0.46) while SC3R stays near nominal — SC3R now framed as consistent FAR tracking at all levels, not only sub-floor unlocking.
+- Residual per-condition exceedances (report as limitation): jpeg alpha 0.10 FAR `0.121`; gaussian/jpeg alpha 0.20 FAR `0.226/0.235`.
+- DECISION: SC3R promoted to main contribution with k=4/seeds 0-2 scope stated.
+
+### Official AnomalyDINO MVTec complete
+
+- k1/k4/k8, seeds 0-2, patched plotting bug, `--no-save_examples --faiss_on_cpu`.
+- Mean image AUROC: k1 `0.9652±0.0040`, k4 `0.9756±0.0008`, k8 `0.9803±0.0009`; AP `0.9815/0.9844/0.9901`.
+- Summary: `outputs/paper_tables/official_anomalydino_mvtec_summary.csv`. Added to `tab_clean_efficiency` as separate official rows.
+
+### Paper V2 status
+
+- All sections updated: abstract/intro/method (attainable-alpha + SC3R subsections)/experiments (protocols, official baseline)/results (MVTec full15 conformal, attainable-alpha, false-alarm, SC3R full15, prevalence warning)/limitations/conclusion.
+- New tables: `tab_attainable_alpha.tex`, `tab_false_alarm_control.tex`, `tab_sc3r_source_validated.tex` (generated by `scripts/build_paper_v2_tables.py --mvtec-full-tag mvtec_full15 --sc3r-detailed source_validated_threshold_sc3r_mvtec_full15_stratified_detailed.csv`).
+- 4 conformal-AD prior references added (Hennhoefer x3, Fisch 2021); related work repositioned.
+- PDF compiles cleanly with `tectonic` (installed into ad env via conda-forge): `paper/main.pdf`. No undefined citations, no overfull boxes, claim lint clean.
+- Tests: `50 passed`.
+
+## 2026-07-12: Advisor Feedback Response Round
+
+Processed `feedback.pdf` (advisor review of paper V1). Full item-by-item response in `docs/response_to_advisor_feedback_2026_07_12.md`. New artifacts:
+
+- `scripts/analyze_pvalue_uniformity.py` + `tests/test_pvalue_uniformity.py`: exact discrete-grid KS uniformity test with Monte Carlo null. Result: uniformity rejected in all 16 dataset/k/corruption cells; VisA k=4 conservative, VisA k=8 + MVTec anti-conservative under corruption (worst: MVTec k4 gaussian F(0.2)=0.46). Confirms clean-support/corrupted-test mechanism; explains k=8 vs k=4 ECE puzzle; motivates SC3R matched-condition.
+- `scripts/analyze_calibrator_significance.py`: paired Wilcoxon over class x seed x corruption cells + equal-mass adaptive ECE. LOIO vs vector_platt p<=5e-9 everywhere; vs shift-aware NOT significant at VisA k=8 (p=0.20) - honest caveat in paper. Adaptive ECE higher than equal-width (MVTec k4 .120->.160) but ordering vs Platt unchanged.
+- Paper edits: exchangeability caveat + jackknife+/cross-conformal/Bates/Laxhammar/Tibshirani/Ovadia citations; calibrator training protocol subsection (synthetic-anomaly label source, no real labels); s_head definition; Agg disclosure (max vs top-1%); naming convention subsection; storage breakdown incl. shared backbone ~84MB; compute cost; Table I caption explains degenerate constant-probability ECE of controlled NN (0.277/0.693 = prevalence complements; 6.000MB = 4096-patch cap) and k=1 view note; contributions merged 5->4; abstract weighted-conformal clarification; uniformity+significance results subsection; risk-coverage sentence (MVTec abstain 20% -> ECE .068->.030); official AnomalyDINO rows (0.965/0.976/0.980); related work few-shot AD refs.
+- Remaining before NCAA submission (see response doc): temperature/isotonic/histogram calibrators under same protocol, Agg ablation, Q-Q + risk-coverage figures + vector figure re-export, Springer format conversion.
+- Tests: 53 passed. Paper compiles clean via tectonic.
+
+## 2026-07-14: NCAA Submission Round — Standard Calibrators, SC3R k=8, Agg/PCA Ablations, Springer LaTeX
+
+All four remaining pre-submission items from the 2026-07-12 assessment are complete; the paper now lives in `latex/` (Springer sn-jnl for Neural Computing and Applications) and compiles clean via tectonic (25 pp, 0 errors, 0 unresolved refs).
+
+### Standard scalar calibrators (advisor item 2.6.i — was the last major content gap)
+
+- New `src/calibration/scalar.py`: TemperatureScaler (sigmoid((s-c)/T), c = midpoint of calibration class means, only T learned), IsotonicCalibrator (sklearn), HistogramBinningCalibrator (equal-frequency), plus scalar Platt anchor. `make_synthetic_feature_batch` extracted to module level in `head_pca.py` so all calibrators share the exact synthetic protocol.
+- New `scripts/evaluate_scalar_calibrator_baselines.py`: fits all four per (dataset, class, k, seed) cell on the k support normals + k synthetic anomalies, scores with the same PCA/top-1% pipeline, then applies the mapping to the `raw_score` column of the existing conformal views CSVs — no backbone re-run. Reuse is EXACT, verified end-to-end (`verify_ok max_abs_diff=0.00e+00` on VisA cells; MVTec verify was skipped in the first sweep because full15 views have no clean condition — the patched script now verifies on any corruption).
+- Results (per-cell ECE): LOIO beats every scalar calibrator on both benchmarks and both k — Wilcoxon p <= 2.5e-4 in all 16 comparisons, p <= 4.8e-8 in 14. Closest: isotonic at k=8 (MVTec delta -0.023, LOIO better 55%; VisA -0.035, 62%). MVTec k=4 anchors: LOIO 0.120±0.054 vs isotonic 0.222±0.088, temperature 0.240±0.104, histogram 0.229±0.099.
+- `analyze_calibrator_significance.py` extended with `--extra-cells`; regenerated `calibrator_significance_{mvtec_full15,visa_full}.csv` including the new methods. New table `latex/tables/tab_scalar_calibrators.tex` (via `scripts/build_ncaa_tables.py`).
+
+### SC3R k=8 full 15-class stratified replication
+
+- Export: `sc3r_views_mvtec_full15_k8_stratified.csv` (23,415 rows) + support stats + `sc3r_support_loio_residuals_mvtec_full15_k8.csv` (enables target_only anchor).
+- Matched-condition results: mean FAR 0.052/0.121/0.230 at alpha 0.05/0.10/0.20; power 0.547/0.693/0.854 (clean/blur/brightness 0.75–0.83); precision > 0.91; no-harm 80.4%/74.2%/81.3% (definition reverse-engineered and confirmed against k=4's 89/82/89: per-cell FAR_SC3R <= max(alpha, FAR_anchor) + 0.02).
+- Hierarchical CI (`sc3r_mvtec_full15_k8_stratified_hierarchical_ci.csv`): power-gain CI excludes zero for EVERY corruption at both sub-floor alphas (weakest gaussian 0.05: [0.05, 0.29]). At alpha=0.20 the anchor over-alarms under gaussian/jpeg (FAR 0.39/0.38) while SC3R stays 0.23–0.26.
+- Honest verdict in paper: gate passes in full at k=4; at k=8 passes at alpha=0.05, misses the alpha+0.02 budget marginally at 0.10 (0.121) with no-harm 74%, exceedances concentrated in gaussian/jpeg (same as k=4). Table `tab_sc3r_k8.tex`.
+
+### Ablations closing advisor items
+
+- PCA128 vs PCA64 (`scripts/analyze_pca_components_ci.py`, `pca128_vs_pca64_visa_hierarchical_ci.csv`): paired class–seed hierarchical bootstrap, delta AUROC +0.011/+0.015/+0.016/+0.014 at k=1/2/4/8, all 95% CIs exclude zero.
+- Agg ablation (`scripts/evaluate_agg_ablation.py`, `agg_ablation_{detailed,summary}.csv`): max vs top-{0.5,1,2,5}% on representative classes; spread 0.01–0.02 AUROC; top-2% best on MVTec, top-0.5% on VisA; paper choices within 0.01–0.02 of optimum. Table `tab_agg_ablation.tex`.
+
+### Paper (latex/, Springer sn-jnl)
+
+- Full V2 content ported and updated: 8 sections, 12 tables, 33-entry references.bib (+Zadrozny & Elkan 2001/2002), author block placeholder (TODO before submission).
+- Four vector figures generated from CSVs (`scripts/plot_paper_v2_figures.py`, Okabe-Ito palette, print-size fonts): fig_uniformity_cdf (discrete Q-Q), fig_risk_coverage, fig_reliability, fig_ece_by_corruption. Placeholder figures deleted.
+- sn-jnl gotcha: \resizebox around tabular breaks inside sn-jnl's table env ("Missing \endgroup inserted") — replaced with \footnotesize everywhere.
+- Compile: `cd latex && tectonic main.tex` — 0 errors, 0 overfull, 0 unresolved refs, 25 pages.
+
+### Tests
+
+- Suite now 60 passed (added `tests/test_scalar_calibrators.py`, 7 tests).
+
+### Remaining before submission
+
+- Real author/affiliation block in `latex/main.tex`.
+- WinCLIP baseline and cross-dataset SC3R source archives remain scoped in limitations (advisor accepted positioning).
+- Advisor review of the k=8 SC3R boundary framing.

@@ -9,6 +9,7 @@ from src.conformal import (
     conformal_p_values,
     effective_sample_size,
     loio_calibration,
+    matched_loio_image_p_values,
     weighted_conformal_p_values,
 )
 
@@ -29,6 +30,21 @@ def test_loio_calibration_shapes_for_few_shot() -> None:
     assert cal.patch_covariates.shape[0] == 24
     assert cal.image_scores.shape == (3,)
     assert cal.mode == "loio_conformal"
+
+
+def test_matched_loio_uses_fold_specific_test_scores() -> None:
+    rng = np.random.default_rng(13)
+    support = rng.normal(size=(4, 8, 5)).astype(np.float32)
+    test = np.stack([
+        rng.normal(size=(8, 5)),
+        rng.normal(loc=8.0, size=(8, 5)),
+    ]).astype(np.float32)
+    result = matched_loio_image_p_values(support, test, pca_components=2)
+    assert result.test_scores_by_fold.shape == (4, 2)
+    assert result.calibration_scores.shape == (4,)
+    assert result.attainable_alpha == 0.2
+    assert np.all((result.p_values >= 0.2) & (result.p_values <= 1.0))
+    assert result.p_values[1] <= result.p_values[0]
 
 
 def test_k1_spatial_split_does_not_reuse_all_patches() -> None:

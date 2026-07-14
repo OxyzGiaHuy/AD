@@ -1,0 +1,18 @@
+\begin{table}[t]
+\centering
+\caption{Novelty positioning. The paper claims reliability routing around a low-storage subspace detector, not novelty of each ingredient in isolation.}
+\label{tab:prior-positioning}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{p{0.24\linewidth}p{0.38\linewidth}p{0.32\linewidth}}
+\toprule
+Work family & Already covers & Our safe claim boundary \\
+\midrule
+AnomalyDINO & DINOv2 few-shot patch/memory-bank AD & Not DINOv2 few-shot novelty \\
+SubspaceAD & DINOv2 PCA/subspace residual ranking & Not PCA residual novelty \\
+Calibration/robustness studies & ECE, Platt scaling, FGSM fragility & Not first calibration/FGSM benchmark \\
+Conformal AD & P-values from nonconformity scores & Not first conformal AD \\
+SAGE-style routing & Gated shared/specialized experts & Routing inspiration only \\
+\bottomrule
+\end{tabular}
+\end{table}

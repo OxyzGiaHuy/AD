@@ -80,6 +80,51 @@ class ConformalCalibration:
     mode: str
 
 
+@dataclass
+class MatchedLOIOResult:
+    """Fold-matched LOIO image p-values from fold-specific PCA models."""
+
+    p_values: np.ndarray
+    calibration_scores: np.ndarray
+    test_scores_by_fold: np.ndarray
+    attainable_alpha: float
+
+
+def matched_loio_image_p_values(
+    support_features: np.ndarray,
+    test_features: np.ndarray,
+    pca_components: int,
+    rho: float = 0.01,
+) -> MatchedLOIOResult:
+    """Compare each held-out support score to test scores from the same fold."""
+    support = np.asarray(support_features, dtype=np.float32)
+    test = np.asarray(test_features, dtype=np.float32)
+    n_images = support.shape[0]
+    if n_images < 2:
+        raise ValueError("Fold-matched LOIO requires at least two support images")
+
+    calibration_scores: list[float] = []
+    test_scores: list[np.ndarray] = []
+    for index in range(n_images):
+        train = np.delete(support, index, axis=0)
+        pca = PCASubspace.fit(train, pca_components)
+        held_patch = pca.residual_scores(support[index : index + 1])
+        test_patch = pca.residual_scores(test)
+        calibration_scores.append(float(top_fraction_score(held_patch, rho=rho)[0]))
+        test_scores.append(top_fraction_score(test_patch, rho=rho))
+
+    calibration = np.asarray(calibration_scores, dtype=np.float64)
+    fold_scores = np.stack(test_scores, axis=0).astype(np.float64)
+    exceedances = (calibration[:, None] >= fold_scores).sum(axis=0)
+    p_values = ((1.0 + exceedances) / (n_images + 1.0)).astype(np.float32)
+    return MatchedLOIOResult(
+        p_values=p_values,
+        calibration_scores=calibration.astype(np.float32),
+        test_scores_by_fold=fold_scores.astype(np.float32),
+        attainable_alpha=1.0 / (n_images + 1.0),
+    )
+
+
 def _compressed_covariates(pca: PCASubspace, features: np.ndarray) -> np.ndarray:
     x = features.reshape(-1, features.shape[-1]).astype(np.float32)
     return ((x - pca.mean) @ pca.components.T).astype(np.float32)

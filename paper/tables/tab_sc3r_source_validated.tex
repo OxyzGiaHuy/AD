@@ -1,0 +1,34 @@
+\begin{table}[t]
+\centering
+\caption{Source-validated thresholding (SC3R, matched-condition source mode) versus the target-only LOIO anchor on all 15 label-stratified MVTec classes ($k{=}4$, seeds 0--2). Below the target-only attainable-alpha floor $1/(k{+}1){=}0.2$, the anchor cannot raise alarms; source pooling unlocks these operating points with controlled false alarms. Bold marks cells satisfying $\mathrm{FAR}\le\alpha{+}0.02$ with nonzero power.}
+\label{tab:sc3r-source-validated}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{llrrrrrr}
+\toprule
+ & & \multicolumn{3}{c}{SC3R (source-validated)} & \multicolumn{3}{c}{Target-only anchor} \\
+\cmidrule(lr){3-5}\cmidrule(lr){6-8}
+corruption & $\alpha$ & FAR & power & prec. & FAR & power & prec. \\
+\midrule
+clean & 0.05 & \textbf{0.050} & \textbf{0.267} & 0.928 & 0.000 & 0.000 & -- \\
+ & 0.10 & \textbf{0.100} & \textbf{0.470} & 0.957 & 0.000 & 0.000 & -- \\
+ & 0.20 & \textbf{0.209} & \textbf{0.768} & 0.914 & 0.267 & 0.863 & 0.898 \\
+\addlinespace[2pt]
+blur & 0.05 & \textbf{0.048} & \textbf{0.242} & 0.915 & 0.000 & 0.000 & -- \\
+ & 0.10 & \textbf{0.099} & \textbf{0.468} & 0.950 & 0.000 & 0.000 & -- \\
+ & 0.20 & \textbf{0.207} & \textbf{0.760} & 0.904 & 0.269 & 0.860 & 0.895 \\
+\addlinespace[2pt]
+bright/contr. & 0.05 & \textbf{0.050} & \textbf{0.254} & 0.914 & 0.000 & 0.000 & -- \\
+ & 0.10 & \textbf{0.101} & \textbf{0.467} & 0.954 & 0.000 & 0.000 & -- \\
+ & 0.20 & \textbf{0.205} & \textbf{0.769} & 0.905 & 0.268 & 0.863 & 0.898 \\
+\addlinespace[2pt]
+Gauss. noise & 0.05 & \textbf{0.048} & \textbf{0.184} & 0.934 & 0.000 & 0.000 & -- \\
+ & 0.10 & \textbf{0.105} & \textbf{0.295} & 0.929 & 0.000 & 0.000 & -- \\
+ & 0.20 & 0.226 & 0.495 & 0.914 & 0.460 & 0.860 & 0.844 \\
+\addlinespace[2pt]
+JPEG & 0.05 & \textbf{0.051} & \textbf{0.134} & 0.911 & 0.000 & 0.000 & -- \\
+ & 0.10 & 0.121 & 0.381 & 0.936 & 0.000 & 0.000 & -- \\
+ & 0.20 & 0.235 & 0.633 & 0.917 & 0.434 & 0.867 & 0.854 \\
+\bottomrule
+\end{tabular}
+\end{table}

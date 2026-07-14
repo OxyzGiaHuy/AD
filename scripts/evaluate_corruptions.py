@@ -33,6 +33,23 @@ CORRUPTION_FUNCS = {
 }
 
 
+def stratified_sample_records(records, max_images: int | None, seed: int):
+    records = list(records)
+    if not max_images or max_images >= len(records):
+        return records
+    rng = np.random.default_rng(seed)
+    normals = [rec for rec in records if rec.label == 0]
+    anomalies = [rec for rec in records if rec.label == 1]
+    normal_count = min(len(normals), max(1, max_images // 2))
+    anomaly_count = min(len(anomalies), max_images - normal_count)
+    if normal_count + anomaly_count < max_images:
+        normal_count = min(len(normals), max_images - anomaly_count)
+    normal_idx = rng.choice(len(normals), size=normal_count, replace=False) if normal_count else []
+    anomaly_idx = rng.choice(len(anomalies), size=anomaly_count, replace=False) if anomaly_count else []
+    selected = [normals[int(i)] for i in normal_idx] + [anomalies[int(i)] for i in anomaly_idx]
+    return sorted(selected, key=lambda rec: str(rec.path))
+
+
 def load_feature_cache_if_present(
     records,
     cache_dir: str | Path,
@@ -56,15 +73,11 @@ def load_feature_cache_if_present(
 
 
 def corrupt_records(records, corruption: str, out_dir: Path, seed: int, max_images: int | None = None):
+    selected = stratified_sample_records(records, max_images, seed)
+    if corruption == "clean":
+        return selected
     ensure_dir(out_dir)
     func = CORRUPTION_FUNCS[corruption]
-    if max_images:
-        normals = [rec for rec in records if rec.label == 0]
-        anomalies = [rec for rec in records if rec.label == 1]
-        half = max(1, max_images // 2)
-        selected = normals[:half] + anomalies[: max_images - half]
-    else:
-        selected = records
     corrupted = []
     for idx, rec in enumerate(selected):
         image = Image.open(rec.path).convert("RGB")

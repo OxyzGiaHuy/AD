@@ -16,7 +16,7 @@ from scripts.evaluate_sw_cad import sample_rows
 from scripts.generate_benchmark_grid import MVTEC_CLASSES, VISA_CLASSES
 from src.backbones.dinov2 import build_backbone
 from src.config import load_config
-from src.conformal import DensityRatioLogistic, benjamini_hochberg_mask, conformal_p_values, effective_sample_size, loio_calibration, pca_patch_covariates, top_fraction_score, weighted_conformal_p_values
+from src.conformal import DensityRatioLogistic, benjamini_hochberg_mask, conformal_p_values, effective_sample_size, loio_calibration, matched_loio_image_p_values, pca_patch_covariates, top_fraction_score, weighted_conformal_p_values
 from src.data.datasets import load_records
 from src.data.sampling import evaluation_records, few_shot_support
 from src.models.pca import PCASubspace
@@ -82,7 +82,9 @@ def eval_case(base_config: dict, dataset: str, cls: str, k: int, seed: int, corr
     image_scores = top_fraction_score(patch_scores, rho=rho)
     cal = loio_calibration(support_features, pca_components, rho=rho)
     patch_p_loio = conformal_p_values(cal.patch_scores, patch_scores.reshape(-1)).reshape(patch_scores.shape)
-    image_p_loio = conformal_p_values(cal.image_scores, image_scores)
+    image_p_loio_legacy = conformal_p_values(cal.image_scores, image_scores)
+    matched = matched_loio_image_p_values(support_features, corrupt_features, pca_components, rho=rho)
+    image_p_loio = matched.p_values
     test_cov, test_image_cov = pca_patch_covariates(pca, corrupt_features)
     clf = DensityRatioLogistic.fit(sample_rows(cal.patch_covariates, 20_000, seed), sample_rows(test_cov, 20_000, seed + 17), steps=300)
     patch_w = np.clip(clf.density_ratio(cal.patch_covariates), 0.05, 20.0)
@@ -113,6 +115,9 @@ def eval_case(base_config: dict, dataset: str, cls: str, k: int, seed: int, corr
             "label": int(labels[i]),
             "raw_score": float(image_scores[i]),
             "image_p_loio": float(image_p_loio[i]),
+            "image_p_loio_legacy": float(image_p_loio_legacy[i]),
+            "loio_protocol": "fold_matched",
+            "attainable_alpha": float(matched.attainable_alpha),
             "image_p_weighted": float(image_p_weighted[i]),
             "conformal_prob_loio": float(1.0 - image_p_loio[i]),
             "conformal_prob_weighted": float(1.0 - image_p_weighted[i]),

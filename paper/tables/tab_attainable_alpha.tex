@@ -1,0 +1,31 @@
+\begin{table}[t]
+\centering
+\caption{Attainable-alpha structure of few-shot LOIO conformal p-values. With $k$ support scores the smallest attainable p-value is $1/(k{+}1)$, so nominal levels below this floor structurally raise no alarms; empirical false-alarm rates (FAR, mean over classes/seeds/corruptions) then sit at the nearest attainable grid point rather than at the nominal level.}
+\label{tab:attainable-alpha}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{llrrrrr}
+\toprule
+dataset & $k$ & nominal $\alpha$ & floor & attainable & FAR & detection \\
+\midrule
+VisA (full) & 4 & 0.01 & 0.200 & 0.000 & 0.000 & 0.000 \\
+ & 4 & 0.05 & 0.200 & 0.000 & 0.000 & 0.000 \\
+ & 4 & 0.10 & 0.200 & 0.000 & 0.000 & 0.000 \\
+ & 4 & 0.20 & 0.200 & 0.200 & 0.152 & 0.599 \\
+ & 8 & 0.01 & 0.111 & 0.000 & 0.000 & 0.000 \\
+ & 8 & 0.05 & 0.111 & 0.000 & 0.000 & 0.000 \\
+ & 8 & 0.10 & 0.111 & 0.000 & 0.000 & 0.000 \\
+ & 8 & 0.20 & 0.111 & 0.111 & 0.111 & 0.537 \\
+\addlinespace[2pt]
+MVTec (full) & 4 & 0.01 & 0.200 & 0.000 & 0.000 & 0.000 \\
+ & 4 & 0.05 & 0.200 & 0.000 & 0.000 & 0.000 \\
+ & 4 & 0.10 & 0.200 & 0.000 & 0.000 & 0.000 \\
+ & 4 & 0.20 & 0.200 & 0.200 & 0.411 & 0.887 \\
+ & 8 & 0.01 & 0.111 & 0.000 & 0.000 & 0.000 \\
+ & 8 & 0.05 & 0.111 & 0.000 & 0.000 & 0.000 \\
+ & 8 & 0.10 & 0.111 & 0.000 & 0.000 & 0.000 \\
+ & 8 & 0.20 & 0.111 & 0.111 & 0.304 & 0.907 \\
+\addlinespace[2pt]
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,3 +1,9 @@
+# 2026-07-11 Addendum: từ CRR-ECE sang operational reliability
+
+Audit mới cho thấy CRR không nên được bảo vệ chủ yếu bằng ECE của 1 - conformal p-value. Stress test prevalence làm ECE và thứ hạng calibrator thay đổi mạnh; matched LOIO cũng tăng FAR nhiều hơn power. Claim chắc hơn là low-storage decoupled detector cung cấp ranking ổn định, còn reliability layer phải được đánh giá bằng attainable alpha, normal FAR, anomaly power và risk-coverage.
+
+Hướng mới SC3R dùng support-normalized residual, cross-category normal archive và source-class-validated threshold. Pilot matched-condition MVTec k4 mở được alpha 0.05/0.10 với mean FAR 0.044/0.076 và power 0.120/0.307, trong khi target-only p-value không thể biểu diễn alpha dưới 1/(k+1)=0.2. Đây là candidate novelty, chưa phải claim chốt vì Gaussian/JPEG chưa đạt no-harm theo từng cell và sampling representative cũ cần stratified rerun.
+
 # Tổng Hợp Claim Hiện Tại Sau Toàn Bộ Experiment
 
 Tài liệu này là bản tổng hợp mới nhất sau các vòng benchmark MVTec, VisA, transfer, calibration, robustness, PCA128, official SubspaceAD check, và Shift-Aware Calibration dưới corruption shift. Mục tiêu là giải thích bằng tiếng Việt, theo flow dễ hiểu, rằng hiện tại paper nên claim gì, dựa trên evidence nào, và không nên claim gì.
@@ -416,3 +422,19 @@ Representative evidence:
 - Selective reliability with conformal views reduces ECE at 80% coverage by about `40.9%` overall, `49.7%` on VisA, and `64.6%` on MVTec in the representative benchmark.
 
 This makes SW-CAD/conformal views more than a diagnostic supplement: they are now a candidate main reliability contribution. The remaining paper risk is scale: full VisA/MVTec confirmation is needed before using this as the dominant Q1 claim.
+
+## 2026-07-11 Addendum: False-Alarm Claim Strength
+
+The newest P1/P2 results clarify the role of conformal p-values. Full VisA supports CRR as a strong calibration contribution. MVTec representative supports CRR as an interpretable reliability/operating-point layer, but not yet as a strict false-alarm-control guarantee.
+
+Claim strength by component:
+
+- Strong: low-storage decoupled detector; PCA/subspace ranking kept separate from calibration/reliability.
+- Strong: full VisA calibration under corruption shift; LOIO conformal has much lower ECE than Vector/Shift-Aware Platt.
+- Medium: MVTec representative conformal p-values give useful false-alarm/detection tradeoffs. LOIO alpha `0.20` has false-alarm `0.1057` and precision `0.8680`; alpha `0.25` detects most anomalies but false-alarm rises to `0.3337`.
+- Weak/supporting: weighted conformal as a detector. It is conservative and better framed as a safe diagnostic view.
+
+Recommended paper framing:
+
+> Conformal reliability routing improves probability reliability and exposes controllable operating tradeoffs, but formal false-alarm guarantees under dataset/corruption shift require additional threshold calibration or randomized conformal p-values.
+

@@ -1,0 +1,38 @@
+\begin{table}[t]
+\centering
+\caption{Clean image-level performance and storage. Best accuracy within each dataset/$k$ block is bold; CRR-style subspace models emphasize low storage rather than universal AUROC dominance. Official AnomalyDINO rows are reproductions with the released code (ViT-S/14, 448px, agnostic preprocessing, 3 seeds) and use its own evaluation protocol; ECE and per-class storage are not measured under our audit and are left blank. Controlled-NN ECE values are diagnostic, not competitive: under the label-free scalar-Platt protocol this baseline's probability collapses to a constant ($\approx$1 while all support patches self-match at $k\le2$; $\approx$0 once the 4096-patch memory cap forces subsampling at $k\ge4$), so ECE equals a prevalence complement (0.277/0.693) and storage saturates at exactly 6.000\,MB. CRR ECE at $k{=}1$ comes from the vector-Platt view, since LOIO conformal requires $k\ge2$. All rows are means over classes and 5 seeds.}
+\label{tab:clean-efficiency}
+\setlength{\tabcolsep}{2.4pt}
+\footnotesize
+\begin{tabular}{ll lrrrr}
+\toprule
+Dataset & $k$ & Method & AUROC $\uparrow$ & AP $\uparrow$ & ECE $\downarrow$ & MB $\downarrow$ \\
+\midrule
+\multirow{9}{*}{MVTec}
+& \multirow{3}{*}{1} & Official AnomalyDINO & \textbf{0.965} & \textbf{0.982} & -- & -- \\
+& & Controlled DINOv2 NN & 0.914 & 0.952 & 0.277 & 2.005 \\
+& & CRR / CalibSubspace & 0.904 & 0.951 & \textbf{0.274} & \textbf{0.472} \\
+\cmidrule(lr){2-7}
+& \multirow{3}{*}{4} & Official AnomalyDINO & \textbf{0.976} & \textbf{0.984} & -- & -- \\
+& & Controlled DINOv2 NN & 0.942 & 0.967 & 0.693 & 6.000 \\
+& & CRR / CalibSubspace & 0.937 & 0.967 & \textbf{0.214} & \textbf{0.472} \\
+\cmidrule(lr){2-7}
+& \multirow{3}{*}{8} & Official AnomalyDINO & \textbf{0.980} & \textbf{0.990} & -- & -- \\
+& & Controlled DINOv2 NN & 0.948 & 0.970 & 0.693 & 6.000 \\
+& & CRR / CalibSubspace & 0.945 & \textbf{0.972} & \textbf{0.154} & \textbf{0.472} \\
+\midrule
+\multirow{9}{*}{VisA}
+& \multirow{3}{*}{1} & Controlled DINOv2 NN & 0.804 & 0.809 & 0.434 & 2.005 \\
+& & CRR / PCA64 & 0.823 & 0.834 & \textbf{0.429} & \textbf{0.472} \\
+& & CRR / PCA128 & \textbf{0.834} & \textbf{0.842} & 0.430 & 0.566 \\
+\cmidrule(lr){2-7}
+& \multirow{3}{*}{4} & Controlled DINOv2 NN & 0.862 & 0.861 & 0.543 & 6.000 \\
+& & CRR / PCA64 & 0.870 & 0.883 & 0.284 & \textbf{0.472} \\
+& & CRR / PCA128 & \textbf{0.885} & \textbf{0.895} & \textbf{0.278} & 0.566 \\
+\cmidrule(lr){2-7}
+& \multirow{3}{*}{8} & Controlled DINOv2 NN & 0.873 & 0.870 & 0.533 & 6.000 \\
+& & CRR / PCA64 & 0.880 & 0.891 & 0.205 & \textbf{0.472} \\
+& & CRR / PCA128 & \textbf{0.897} & \textbf{0.905} & \textbf{0.170} & 0.566 \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,3 +1,11 @@
+# 2026-07-11 Audit: claim đang được nâng cấp
+
+Claim CRR dựa chủ yếu trên ECE cần hạ thành evidence phụ vì 1-p là anomaly extremeness, không mặc nhiên là posterior probability, và ECE thay đổi mạnh theo anomaly prevalence. Main operational evidence phải chuyển sang false-alarm, power và risk-coverage.
+
+Candidate contribution mới là Support-Conditioned Cross-Category Reliability Routing (SC3R). Pilot source-class-validated threshold trên MVTec representative k4 đạt mean FAR/power 0.044/0.120 tại alpha 0.05 và 0.076/0.307 tại alpha 0.10 trong matched-condition mode, không dùng target anomaly label. Kết quả chưa universal: Gaussian noise và JPEG còn vi phạm FAR theo cell. Chỉ nâng SC3R thành main claim sau stratified rerun, class-held-out/full-grid evaluation, hierarchical CI và no-harm gate.
+
+Local PatchCore/AnomalyDINO rows không phải official reproductions; chúng phải được gọi là Controlled DINOv2 nearest-neighbor memory-bank baseline.
+
 # Current Paper Claims For Q1 Draft
 
 This note is the short claim tracker after P0, P1 core, and the extended transfer calibration ablation completed.
@@ -131,3 +139,65 @@ Updated claim strength:
 - Stronger than representative-only evidence: full VisA now supports conformal reliability as a main contribution.
 - Keep caveat: k=8 has higher ECE than k=4 because normal conformal probability increases too much.
 - Weighted conformal is not main; it is an ablation with mixed behavior.
+
+## 2026-07-11 P1/P2 False-Alarm Update
+
+P1 has now completed the MVTec representative conformal false-alarm check on `bottle/cable/hazelnut`, k `{4,8}`, seeds `{0..4}`, and four corruptions. This is not a full 15-class MVTec result yet.
+
+Updated claim status:
+
+- Full VisA remains the strongest main evidence for CRR calibration: LOIO conformal ECE is `0.0766` overall and beats Vector/Shift-Aware Platt in every tested k/corruption cell.
+- MVTec representative supports conformal p-values as an operating-point diagnostic: LOIO separates normal/anomaly p-values by `0.3185`; alpha `0.20` gives false-alarm `0.1057`, detection `0.4558`, precision `0.8680`; alpha `0.25` gives false-alarm `0.3337`, detection `0.9261`, precision `0.8089`.
+- Weighted conformal is too conservative for the main detector but useful as a safe diagnostic mode: alpha `0.50` gives false-alarm `0.0464` and detection `0.1010`.
+
+Paper-safe wording:
+
+> CRR adds an interpretable conformal reliability layer to a low-storage DINOv2 subspace detector, providing calibrated probabilities and explicit false-alarm/detection operating tradeoffs under corruption shift.
+
+Do not claim exact conformal false-alarm control under non-exchangeable corruption shift. The stronger next experiment is randomized/smoothed few-shot p-values or normal-only threshold selection.
+
+## 2026-07-11 (evening) Update: SC3R Gate Passes (Scoped), Attainable Alpha, Float32 Fix
+
+### SC3R promotion decision
+
+The pre-registered stratified gate was evaluated on `sc3r_views_mvtec_repr_stratified.csv` (bottle/cable/hazelnut, k=4, seeds 0-2, 5 corruptions, label-stratified random sampling). Verdict: **conditional PASS for matched_condition mode** — promoted to a main contribution with a scoped claim.
+
+Paper-safe SC3R claim:
+
+> SC3R uses matched-condition normal images from other categories to source-validate conformal alarm thresholds, unlocking operating points below the target-only attainable-alpha floor 1/(k+1) without target anomaly labels. On stratified MVTec representative classes at k=4 it controls mean false alarms (0.067/0.098/0.204 at alpha 0.05/0.10/0.20, within alpha+0.02) with power 0.16/0.34 where target-only conformal is structurally silent, and no-harm rates of 93/82/84%. Gaussian noise and JPEG violate the false-alarm budget and are reported as limitations; at alpha >= 1/(k+1) the target-only anchor is preferred.
+
+Evidence: `source_validated_threshold_sc3r_mvtec_repr_stratified_{detailed,summary}.csv`, `sc3r_mvtec_repr_stratified_hierarchical_ci.csv`. Full 15-class extension queued (`sc3r_views_mvtec_full15_stratified.csv`) to firm up the CI criterion before submission.
+
+### Attainable-alpha claim (new)
+
+> With k support images, LOIO conformal p-values are quantized on {j/(k+1)}; no alarm can fire below alpha = 1/(k+1). Reporting near-zero false-alarm rates at nominal alphas below the floor as "conservative coverage" is a resolution artifact, not a safety property.
+
+Evidence: `attainable_alpha_{visa_full,mvtec_representative}_{summary,detailed}.csv` + new `scripts/analyze_attainable_alpha.py`.
+
+### Corrected false-alarm numbers (float32 fix)
+
+All k=4 alpha=0.20 false-alarm/detection cells previously reported as 0/0 were a float32 comparison artifact (1/5 stored as 0.20000000298 fails `p <= 0.20`). Corrected VisA full k=4 alpha=0.20: FAR 0.142-0.157, detection 0.585-0.610, precision ~0.81 across corruptions. The paper now states the tolerance rule explicitly.
+
+### Prevalence-stress claim (promoted to main-text warning)
+
+> ECE computed on conformal-derived scores is strongly prevalence-sensitive (VisA LOIO 0.404 at 1% prevalence vs 0.149 at 50%; method rankings reverse). ECE is a secondary metric; operational false-alarm/power/precision metrics are primary.
+
+## 2026-07-12 Update: Full-Scale Evidence — SC3R Promoted, MVTec Full15 Conformal Complete
+
+### SC3R final claim (gate FULL PASS at 15 classes)
+
+> On all 15 label-stratified MVTec classes (k=4, seeds 0-2, five conditions, 675 cells), matched-condition SC3R tracks nominal false-alarm rates almost exactly (mean FAR 0.050/0.105/0.216 at alpha 0.05/0.10/0.20) with power 0.216/0.416 at sub-floor alphas where target-only LOIO is structurally silent, precision > 0.90, no-harm 89/82/89%, and hierarchical class-seed power-gain CIs excluding zero for every corruption condition. At alpha=0.20 the target-only anchor over-alarms under corruption (FAR up to 0.46) while SC3R stays near nominal.
+
+Scope caveats to keep: k=4 only, seeds 0-2, per-condition exceedances jpeg@0.10 (0.121) and gaussian/jpeg@0.20 (0.226/0.235), requires multi-category deployment with matched conditions.
+
+### MVTec full15 conformal claim
+
+> LOIO conformal reliability replicates across datasets: overall ECE 0.0684 on all 15 MVTec classes (vs 0.0766 on full VisA), beating Vector Platt and Shift-Aware Platt in every k-corruption cell on both benchmarks with ranking unchanged.
+
+### Operational asymmetry claim (new, important)
+
+> At the first attainable operating point (alpha=0.20, k=4) target-only LOIO alarms are conservative on VisA (FAR 0.14-0.16) but anti-conservative on corrupted MVTec (FAR 0.31-0.46). Attainability of an operating point does not imply false-alarm control under shift; source validation restores it.
+
+### Official baseline claim hygiene
+
+Official AnomalyDINO (released code, 3 seeds) MVTec image AUROC k1/k4/k8: 0.9652/0.9756/0.9803 — reported as explicit accuracy reference rows; CRR does not claim MVTec ranking superiority.

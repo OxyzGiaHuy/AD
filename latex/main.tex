@@ -1,0 +1,47 @@
+\documentclass[pdflatex,sn-mathphys-num]{sn-jnl}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+\usepackage{graphicx}
+\graphicspath{{./}{figures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg,.jpeg}
+
+\usepackage{amsmath,amssymb}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage{float}
+
+\allowdisplaybreaks
+
+\begin{document}
+\selectlanguage{english}
+
+\title[Conformal Reliability Routing for Few-Shot Anomaly Detection]{Conformal Reliability Routing for Low-Storage Few-Shot Industrial Anomaly Detection}
+
+% TODO: fill in real author and affiliation information before submission.
+\author*[1]{\fnm{Given} \sur{Family}}\email{corresponding@example.org}
+\affil*[1]{\orgdiv{Department}, \orgname{University}, \orgaddress{\city{City}, \country{Country}}}
+
+\input{sections/abstract}
+
+\keywords{Industrial anomaly detection, Few-shot learning, Calibration, Conformal prediction, DINOv2, Reliability}
+
+\maketitle
+
+\input{sections/introduction}
+\input{sections/related_work}
+\input{sections/method}
+\input{sections/experiments}
+\input{sections/results}
+\input{sections/limitations}
+\input{sections/conclusion}
+
+\bibliography{references}
+
+\end{document}
