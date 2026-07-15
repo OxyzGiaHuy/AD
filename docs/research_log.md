@@ -518,3 +518,35 @@ All four remaining pre-submission items from the 2026-07-12 assessment are compl
 - Real author/affiliation block in `latex/main.tex`.
 - WinCLIP baseline and cross-dataset SC3R source archives remain scoped in limitations (advisor accepted positioning).
 - Advisor review of the k=8 SC3R boundary framing.
+
+## 2026-07-14 (later): SC3R VisA Replication + Cross-Dataset Transfer + Official AnomalyDINO VisA
+
+Session-restart kills solved by launching long jobs with `setsid nohup` + sentinel files (`scripts/run_visa_sc3r_chain.sh`); background processes now survive agent teardown.
+
+### SC3R within-VisA (12 classes, k=4, seeds 0-2, matched-condition, 180 cells/alpha)
+
+- FAR 0.051/0.095/0.192 at alpha 0.05/0.10/0.20 — at/below nominal at EVERY level (no Gaussian/JPEG exceedance, unlike MVTec).
+- Power 0.144/0.351 sub-floor, 0.637 at floor; precision 0.81-0.85; no-harm 89%/84%/78%.
+- Hierarchical power-gain CI excludes zero for every corruption at both sub-floor alphas (e.g. blur 0.10: [0.21,0.50]).
+- Verdict: gate passes at 0.05/0.10; alpha=0.20 no-harm 78% (<80%) but failure mode differs from MVTec — VisA anchor is conservative at its floor, SC3R stays below nominal.
+- Artifacts: `source_validated_threshold_sc3r_visa_full12_stratified_{detailed,summary}.csv`, `sc3r_visa_full12_stratified_hierarchical_ci.csv`.
+
+### Cross-dataset SC3R (MVTec source archive -> VisA targets) — NEW capability
+
+- `evaluate_source_validated_threshold.py` extended with `--source-dataset/--target-dataset` (+2 unit tests, suite now 62). Support-normalized per-class robust z-scores make cross-dataset pooling coherent.
+- Matched-condition: FAR 0.013/0.040/0.098 (well BELOW nominal — conservative), power 0.091/0.201/0.415 (~half of within-dataset), precision >0.85, no-harm 93-97%.
+- Power-gain CIs exclude zero for every corruption at both sub-floor alphas (weakest jpeg 0.05: [0.005,0.066]).
+- Narrative: cross-dataset archives FAIL SAFE — trade power for under-budget false alarms. Former limitation ("cross-dataset untested") is now a positive result.
+- Artifacts: `source_validated_threshold_sc3r_cross_mvtec_to_visa_*.csv`, `sc3r_cross_mvtec_to_visa_hierarchical_ci.csv`.
+
+### Official AnomalyDINO on VisA (fills Table 1 gap)
+
+- Built official 1cls layout via symlinks (`data/visa_pytorch/`, 10,821 images from split_csv/1cls.csv; masks linked into ground_truth/bad — eval only uses np.any(mask) for labels).
+- ViT-S/14 448 agnostic, k=1/4/8 x seeds 0-2: AUROC 0.8565±0.018 / 0.9122±0.009 / 0.9255±0.002 (matches published VisA numbers). AP 0.866/0.918/0.929.
+- Artifacts: `official_anomalydino_visa_{detailed,summary}.csv`; added as official rows to VisA blocks of `tab_clean_efficiency`.
+
+### Paper updates (latex/)
+
+- New table `tab_sc3r_visa.tex` (within + cross-dataset, via `build_ncaa_tables.py::build_sc3r_visa`); replication paragraph in results 5.6; intro bullet 3, limitations (cross-dataset limitation replaced by boundary statement + per-condition validation as future work), conclusion updated.
+- Abstract now mentions VisA replication + conservative cross-dataset transfer; exactly 250 words.
+- Compile: 26 pp, 0 errors/overfull/unresolved. Tests: 62 passed.

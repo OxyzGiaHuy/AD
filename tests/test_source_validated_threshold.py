@@ -54,3 +54,42 @@ def test_target_only_respects_attainable_alpha_floor():
     # anomaly scores exceed all support residuals -> p=0.2 -> alarms fire exactly at the floor
     assert at_floor.power == 1.0
     assert at_floor.false_alarm_rate == 0.0
+
+
+def _two_dataset_frame():
+    rows = []
+    rng = np.random.default_rng(0)
+    for dataset, classes in [("mvtec", ["a", "b", "c"]), ("visa", ["x", "y", "z"])]:
+        for cls in classes:
+            for label in [0, 1]:
+                for i in range(6):
+                    rows.append({
+                        "dataset": dataset,
+                        "class": cls,
+                        "k_shot": 4,
+                        "seed": 0,
+                        "corruption": "clean",
+                        "label": label,
+                        "score": float(rng.normal(0.0 if label == 0 else 4.0, 1.0)),
+                    })
+    return pd.DataFrame(rows)
+
+
+def test_evaluate_cross_dataset_source_pool():
+    from scripts.evaluate_source_validated_threshold import evaluate
+
+    frame = _two_dataset_frame()
+    result = evaluate(frame, "score", "matched_condition", [0.2], source_dataset="mvtec", target_dataset="visa")
+    # Only visa targets are evaluated, and every row records the mvtec source pool.
+    assert set(result["dataset"]) == {"visa"}
+    assert set(result["source_dataset"]) == {"mvtec"}
+    assert set(result["class"]) == {"x", "y", "z"}
+
+
+def test_evaluate_default_stays_within_dataset():
+    from scripts.evaluate_source_validated_threshold import evaluate
+
+    frame = _two_dataset_frame()
+    result = evaluate(frame, "score", "matched_condition", [0.2])
+    assert set(result["dataset"]) == {"mvtec", "visa"}
+    assert (result["source_dataset"] == result["dataset"]).all()

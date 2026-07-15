@@ -75,14 +75,32 @@ def evaluate_target_only(frame: pd.DataFrame, residuals: pd.DataFrame, alphas: l
     return pd.DataFrame(rows)
 
 
-def evaluate(frame: pd.DataFrame, score_col: str, source_mode: str, alphas: list[float]) -> pd.DataFrame:
+def evaluate(
+    frame: pd.DataFrame,
+    score_col: str,
+    source_mode: str,
+    alphas: list[float],
+    source_dataset: str | None = None,
+    target_dataset: str | None = None,
+) -> pd.DataFrame:
+    """Source-validated thresholding.
+
+    By default the source pool is the other classes of the target's own
+    dataset. Passing source_dataset pools normal images from that dataset
+    instead (cross-dataset source archives); support normalization puts both
+    sides on a per-class robust z-scale, which is what makes the pool
+    comparable across datasets.
+    """
     rows = []
     keys = ["dataset", "class", "k_shot", "seed", "corruption"]
     for key, target in frame.groupby(keys):
         dataset, target_class, k_shot, seed, corruption = key
+        if target_dataset is not None and dataset != target_dataset:
+            continue
+        pool_dataset = source_dataset if source_dataset is not None else dataset
         source_corruption = corruption if source_mode == "matched_condition" else "clean"
         source = frame[
-            (frame.dataset == dataset)
+            (frame.dataset == pool_dataset)
             & (frame["class"] != target_class)
             & (frame.k_shot == k_shot)
             & (frame.seed == seed)
@@ -107,6 +125,7 @@ def evaluate(frame: pd.DataFrame, score_col: str, source_mode: str, alphas: list
                 "seed": seed,
                 "corruption": corruption,
                 "source_mode": source_mode,
+                "source_dataset": pool_dataset,
                 "method": "source_validated_pool",
                 "alpha": alpha,
                 "selected_p_threshold": threshold,
@@ -125,30 +144,39 @@ def evaluate(frame: pd.DataFrame, score_col: str, source_mode: str, alphas: list
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--inputs", nargs="+", required=True)
-    parser.add_argument("--support-stats", required=True)
+    parser.add_argument("--support-stats", nargs="+", required=True)
     parser.add_argument("--support-residuals", default=None, help="Long CSV of per-support LOIO residuals; enables the target_only anchor method.")
     parser.add_argument("--source-modes", nargs="+", default=["matched_condition", "clean_source"])
+    parser.add_argument("--source-dataset", default=None, help="Pool source normals from this dataset instead of the target's own (cross-dataset source archives).")
+    parser.add_argument("--target-dataset", default=None, help="Restrict evaluation targets to this dataset.")
     parser.add_argument("--alphas", nargs="+", type=float, default=[0.05, 0.10, 0.20])
     parser.add_argument("--out-dir", default="outputs/paper_tables")
     parser.add_argument("--run-tag", default="representative")
     args = parser.parse_args()
 
     frame = pd.concat([pd.read_csv(path) for path in args.inputs], ignore_index=True)
-    stats = pd.read_csv(args.support_stats)
+    stats = pd.concat([pd.read_csv(path) for path in args.support_stats], ignore_index=True)
     frame = frame.merge(stats, on=["dataset", "class", "k_shot", "seed"], how="left")
     scale = np.maximum(frame.support_cal_mad.to_numpy(dtype=np.float64), 1e-6)
     frame["support_normalized_score"] = (frame.raw_score - frame.support_cal_median) / scale
-    parts = [evaluate(frame, "support_normalized_score", mode, args.alphas) for mode in args.source_modes]
+    parts = [
+        evaluate(frame, "support_normalized_score", mode, args.alphas, source_dataset=args.source_dataset, target_dataset=args.target_dataset)
+        for mode in args.source_modes
+    ]
     if args.support_residuals:
         residuals = pd.read_csv(args.support_residuals)
-        target_only = evaluate_target_only(frame, residuals, args.alphas)
+        anchor_frame = frame if args.target_dataset is None else frame[frame.dataset == args.target_dataset]
+        target_only = evaluate_target_only(anchor_frame, residuals, args.alphas)
         for mode in args.source_modes:
             replicated = target_only.copy()
             replicated["source_mode"] = mode
             parts.append(replicated)
     detailed = pd.concat(parts, ignore_index=True)
+    if "source_dataset" not in detailed.columns:
+        detailed["source_dataset"] = detailed["dataset"]
+    detailed["source_dataset"] = detailed["source_dataset"].fillna("none")
     metrics = ["selected_p_threshold", "source_validation_far", "false_alarm_rate", "power", "alarm_precision", "coverage_gap", "auroc", "ap"]
-    summary = detailed.groupby(["dataset", "source_mode", "method", "k_shot", "corruption", "alpha"])[metrics].agg(["mean", "std"]).reset_index()
+    summary = detailed.groupby(["dataset", "source_dataset", "source_mode", "method", "k_shot", "corruption", "alpha"])[metrics].agg(["mean", "std"]).reset_index()
     summary.columns = ["_".join(str(part) for part in column if part) if isinstance(column, tuple) else str(column) for column in summary.columns]
     out = Path(args.out_dir)
     out.mkdir(parents=True, exist_ok=True)

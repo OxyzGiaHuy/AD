@@ -176,11 +176,62 @@ def build_sc3r_k8() -> None:
     (OUT / "tab_sc3r_k8.tex").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
+def _no_harm(detailed: pd.DataFrame, alpha: float) -> float:
+    import numpy as np
+
+    m = detailed[detailed.source_mode == "matched_condition"]
+    piv = m.pivot_table(index=["class", "seed", "corruption", "alpha"], columns="method", values=["false_alarm_rate", "power"])
+    piv.columns = ["_".join(c) for c in piv.columns]
+    piv = piv.reset_index().dropna()
+    s = piv[piv.alpha == alpha]
+    return float((s.false_alarm_rate_source_validated_pool <= np.maximum(alpha, s.false_alarm_rate_target_only) + 0.02).mean())
+
+
+def build_sc3r_visa() -> None:
+    within_path = TABLES / "source_validated_threshold_sc3r_visa_full12_stratified_detailed.csv"
+    cross_path = TABLES / "source_validated_threshold_sc3r_cross_mvtec_to_visa_detailed.csv"
+    if not (within_path.exists() and cross_path.exists()):
+        print("sc3r visa CSVs missing; skipping tab_sc3r_visa")
+        return
+    lines = [
+        "\\begin{table}[t]",
+        "\\centering",
+        "\\caption{SC3R replication on all 12 label-stratified VisA classes ($k{=}4$, seeds 0--2, matched-condition mode, pooled over five conditions). The source pool is either the other VisA classes (within-dataset) or all 15 MVTec classes (cross-dataset source archive). Both sub-floor levels carry hierarchical power-gain intervals excluding zero for every corruption; the cross-dataset archive is conservative, keeping false alarms well below nominal at reduced power. Bold marks $\\mathrm{FAR}\\le\\alpha{+}0.02$ with nonzero power.}",
+        "\\label{tab:sc3r-visa}",
+        "\\footnotesize",
+        "\\setlength{\\tabcolsep}{4pt}",
+        "\\begin{tabular}{lrrrrr}",
+        "\\toprule",
+        "source pool & $\\alpha$ & FAR & power & prec. & no-harm \\\\",
+        "\\midrule",
+    ]
+    for label, path in [("VisA (within)", within_path), ("MVTec (cross-dataset)", cross_path)]:
+        detailed = pd.read_csv(path)
+        pool = detailed[(detailed.source_mode == "matched_condition") & (detailed.method == "source_validated_pool")]
+        first = True
+        for alpha in [0.05, 0.10, 0.20]:
+            s = pool[pool.alpha == alpha]
+            far = float(s.false_alarm_rate.mean())
+            power = float(s.power.mean())
+            prec = float(s.alarm_precision.mean())
+            noharm = _no_harm(detailed, alpha)
+            ok = far <= alpha + 0.02 and power > 0
+            far_s = f"\\textbf{{{far:.3f}}}" if ok else f"{far:.3f}"
+            power_s = f"\\textbf{{{power:.3f}}}" if ok else f"{power:.3f}"
+            left = label if first else ""
+            first = False
+            lines.append(f"{left} & {alpha:.2f} & {far_s} & {power_s} & {prec:.3f} & {noharm * 100:.0f}\\% \\\\")
+        lines.append("\\addlinespace[2pt]")
+    lines += ["\\bottomrule", "\\end{tabular}", "\\end{table}"]
+    (OUT / "tab_sc3r_visa.tex").write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
 def main() -> int:
     OUT.mkdir(parents=True, exist_ok=True)
     build_scalar_calibrators()
     build_agg_ablation()
     build_sc3r_k8()
+    build_sc3r_visa()
     for f in sorted(OUT.glob("tab_*.tex")):
         print(f.name)
     return 0

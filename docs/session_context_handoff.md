@@ -15,6 +15,8 @@ The paper now lives in **`latex/`** (Springer sn-jnl, target: Neural Computing a
 
 Tests: 60 passed. Remaining before submission: real author block in `latex/main.tex` (placeholder TODO), advisor review, optional WinCLIP + cross-dataset SC3R (kept in limitations). sn-jnl gotcha: do NOT use `\resizebox` around tabular — breaks in sn-jnl tables; use `\footnotesize`.
 
+**Update (2026-07-14 later)**: three more results are IN the paper (see research_log same date): (1) SC3R replicates on all 12 VisA classes (FAR 0.051/0.095/0.192, CIs exclude zero at sub-floor alphas, no-harm 89/84/78%); (2) cross-dataset source archives MVTec→VisA transfer conservatively (FAR 0.013–0.098 below nominal, ~half power, no-harm 93–97%, CIs exclude zero) via new `--source-dataset/--target-dataset` flags in `evaluate_source_validated_threshold.py` — the old "cross-dataset untested" limitation is now a positive result (`tab_sc3r_visa.tex`, Table 10); (3) official AnomalyDINO VisA k=1/4/8×3 seeds (AUROC 0.857/0.912/0.926, matches published) fills the VisA official rows in Table 1; layout `data/visa_pytorch/` built by symlinks from split_csv/1cls.csv. Declarations/Acknowledgements section added (Springer-required); abstract exactly 250 words; cover letter drafted at `latex/cover_letter.md`. Long GPU jobs MUST be launched `setsid nohup` + sentinel file (agent teardown kills session-attached processes; see `scripts/run_visa_sc3r_chain.sh`). Tests: 62 passed. PDF: 26 pp clean. Only remaining: author block + advisor review + optional WinCLIP.
+
 ## 0. 2026-07-12 Status Snapshot (superseded by 0a where they conflict)
 
 Major update: all P1/P2 experiments and the SC3R audit are COMPLETE, and the paper is at V2.
