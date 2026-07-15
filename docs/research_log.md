@@ -550,3 +550,23 @@ Session-restart kills solved by launching long jobs with `setsid nohup` + sentin
 - New table `tab_sc3r_visa.tex` (within + cross-dataset, via `build_ncaa_tables.py::build_sc3r_visa`); replication paragraph in results 5.6; intro bullet 3, limitations (cross-dataset limitation replaced by boundary statement + per-condition validation as future work), conclusion updated.
 - Abstract now mentions VisA replication + conservative cross-dataset transfer; exactly 250 words.
 - Compile: 26 pp, 0 errors/overfull/unresolved. Tests: 62 passed.
+
+## 2026-07-14 (evening): Figure-2 color variants, framing inversion, reference audit
+
+1. **Figure 2 variants**: `scripts/plot_fig2_variants.py` renders 5 CVD-validated palettes into `latex/figures/variants/` (+contact_sheet.png): v1 okabe-ito (current), v2 green/blue, v3 dark2, v4 cool/warm, v5 accent (Platt grays + LOIO vermillion + weighted blue — semantically strongest). User to pick; swap into plot_paper_v2_figures.py METHOD_COLORS.
+2. **Framing inversion per advisor**: attainable-alpha + SC3R now stated as the central contribution (problem+mechanism pair), decoupled pipeline/calibration benchmark as supporting substrate. All "we do not claim X is new" phrasings rewritten to "X is established prior art; our contribution begins after X" (intro, related work x2, experiments, results 5.9, prior-work table caption + column header + rows, conclusion reordered). Scope-honesty statements (no SOTA, no adversarial robustness) intentionally kept in negative form.
+3. **Reference audit (35 entries)**: found and FIXED a real citation error — subspacead2026 had wrong title and missing authors; corrected from the official repo README (Lendering, Akdag, Bondarev, "SubspaceAD: Training-Free Few-Shot Anomaly Detection via Subspace Modeling", arXiv:2602.23013). dinov2 upgraded to TMLR 2024 published version. All abbreviated venues (CVPR/ICCV/ECCV/ICML/ICLR/ICPR) expanded to full names for Springer consistency. SAGE "CVPR Findings" venue marked with a verify-before-submission comment (advisor also flagged; kept per group's own listing). Remaining post-cutoff entries that only the user can final-verify: khan2025calibration title, hennhofer2026 x2, SAGE venue.
+4. Compile: 27 pp, 0 errors/overfull/unresolved.
+
+## 2026-07-14 (night): Nature-tone Figure variants + CRR pipeline figure
+
+- Added 3 nature-tone variants (v6_nature_forest, v7_nature_moss, v8_nature_muted) to `plot_fig2_variants.py`; v6/v7 pass the full palette validator, v8 is deliberately muted (legal via legend/gap secondary encoding). 8 variants total in `latex/figures/variants/` + contact_sheet.png.
+- New pipeline overview figure: `latex/figures/fig_pipeline_src.tex` (TikZ standalone) -> `fig_pipeline.pdf`, integrated as Figure 1 in the Method section. Layout: shared frozen-backbone trunk -> RANKING lane (never modified) -> RELIABILITY lane (LOIO conformal + calibrator baselines, attainable floor) -> highlighted SC3R lane (source normals -> support-normalized residuals -> source-validated threshold; dashed safe-anchor defer path), plus conformal-audit strip. Rebuild: `tectonic fig_pipeline_src.tex`.
+- NOTE: figure numbering shifted — the ECE-by-corruption figure (the one being recolored) is now Figure 3 in the PDF.
+- Compile: 27 pp, 0 errors/overfull/unresolved.
+
+## 2026-07-15: Figure polish round 2
+- Pipeline figure temporarily hidden (commented out in method.tex; fig_pipeline.pdf + TikZ source kept in latex/figures/).
+- Zoom insets added to both line figures (fig_uniformity_cdf: operating region around the attainable floor; fig_reliability: high-confidence region), matplotlib inset_axes + indicate_inset_zoom; captions updated; reliability legend moved to lower right.
+- v9_npg variant added (Nature-journal npg palette: navy #3C5488 / cyan #4DBBD5 / red #E64B35 / teal #00A087) — "nature tone" clarified to mean Nature journal style. 9 variants total in latex/figures/variants/.
+- Compile clean, 27 pp.

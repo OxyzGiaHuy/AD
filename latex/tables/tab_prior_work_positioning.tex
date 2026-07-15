@@ -1,18 +1,18 @@
 \begin{table}[t]
 \centering
-\caption{Novelty positioning. The paper claims reliability routing around a low-storage subspace detector, not novelty of each ingredient in isolation.}
+\caption{Novelty positioning: each ingredient has established prior art, and this paper's contribution begins after it. The right column marks where prior work ends and our claims start.}
 \label{tab:prior-positioning}
 \footnotesize
 \setlength{\tabcolsep}{3pt}
-\begin{tabular}{p{0.24\linewidth}p{0.38\linewidth}p{0.32\linewidth}}
+\begin{tabular}{p{0.24\linewidth}p{0.34\linewidth}p{0.36\linewidth}}
 \toprule
-Work family & Already covers & Our safe claim boundary \\
+Work family & Established prior art & Our contribution starts after it \\
 \midrule
-AnomalyDINO & DINOv2 few-shot patch/memory-bank AD & Not DINOv2 few-shot novelty \\
-SubspaceAD & DINOv2 PCA/subspace residual ranking & Not PCA residual novelty \\
-Calibration/robustness studies & ECE, Platt scaling, FGSM fragility & Not first calibration/FGSM benchmark \\
-Conformal AD & P-values from nonconformity scores & Not first conformal AD \\
-SAGE-style routing & Gated shared/specialized experts & Routing inspiration only \\
+AnomalyDINO & DINOv2 few-shot patch/memory-bank AD & Reliability of the alarms such detectors raise \\
+SubspaceAD & DINOv2 PCA/subspace residual ranking & Everything downstream of the residual \\
+Calibration/robustness studies & ECE, Platt scaling, FGSM fragility & Conformal-native audit; full calibrator toolbox under one label-free protocol \\
+Conformal AD & P-values from nonconformity scores & The few-shot floor $1/(k{+}1)$ and source-validated thresholding below it \\
+SAGE-style routing & Gated shared/specialized experts & Safe-anchor routing for reliability, evaluated no-label \\
 \bottomrule
 \end{tabular}
 \end{table}

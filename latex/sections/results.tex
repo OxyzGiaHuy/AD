@@ -39,7 +39,7 @@ Conformal p-values promise $P(p\le\alpha)\le\alpha$ on normal data under exchang
 \begin{figure}[t]
     \centering
     \includegraphics[width=0.92\linewidth]{fig_uniformity_cdf}
-    \caption{Discrete Q-Q analysis of normal-image LOIO p-values: empirical CDF at each attainable grid point $j/(k{+}1)$ against its exact null expectation (dashed diagonal), per corruption. Points above the diagonal are anti-conservative (excess false alarms). VisA $k{=}4$ is conservative; VisA $k{=}8$ and MVTec drift anti-conservative under corruption, worst for Gaussian noise.}
+    \caption{Discrete Q-Q analysis of normal-image LOIO p-values: empirical CDF at each attainable grid point $j/(k{+}1)$ against its exact null expectation (dashed diagonal), per corruption. Points above the diagonal are anti-conservative (excess false alarms). VisA $k{=}4$ is conservative; VisA $k{=}8$ and MVTec drift anti-conservative under corruption, worst for Gaussian noise. Insets give a tight zoom around the first attainable grid point $1/(k{+}1)$, where the curves overlap most.}
     \label{fig:uniformity}
 \end{figure}
 
@@ -82,4 +82,4 @@ Pixel-level results (Table~\ref{tab:pixel-diagnostics}) show that the low-storag
 
 \subsection{Novelty Guardrails}
 \input{tables/tab_prior_work_positioning}
-Table~\ref{tab:prior-positioning} summarizes the claim boundary. The official SubspaceAD representative run is especially important because it reaches high image and pixel AUROC in our protocol. The paper should therefore be positioned around calibrated low-storage reliability and conformal diagnostics, not around inventing DINOv2 PCA residual ranking.
+Table~\ref{tab:prior-positioning} marks, for each ingredient, where prior work ends and this paper's claims begin. The official SubspaceAD representative run is especially important because it reaches high image and pixel AUROC in our protocol: the ranking mechanism is inherited, and the contributions of this paper start after it---at the attainable-alpha floor, its uniformity audit, and the source-validated thresholding that crosses it.

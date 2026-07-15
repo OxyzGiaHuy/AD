@@ -107,12 +107,47 @@ def fig_uniformity_cdf() -> None:
         ax.grid(True)
         ax.set_xlim(0, 1)
         ax.set_ylim(0, 1)
+        # Tight zoom inset around the first attainable grid point, where the
+        # corruption curves overlap most: y-limits hug the interpolated curve
+        # values inside the window so the four series separate visually.
+        p1 = 1.0 / (k + 1)
+        if name == "VisA" and k == 4:
+            # blur and brightness/contrast coincide at the first grid point
+            # (gap 0.0006); the curves separate at the 0.4 grid point, which is
+            # also where the paper reports the worst conservative gap.
+            center = 2 * p1
+            x0, x1 = center - 0.012, center + 0.028
+            y_margin = 0.004
+        else:
+            x0, x1 = p1 - 0.02, p1 + 0.05
+            y_margin = 0.008
+        axins = ax.inset_axes([0.52, 0.07, 0.44, 0.42])
+        axins.plot([0, 1], [0, 1], color="#999999", linestyle="--", linewidth=0.7, zorder=1)
+        y_vals = []
+        for corruption, g in sub.groupby("corruption"):
+            g = g.sort_values("nominal_cdf")
+            axins.plot(g.nominal_cdf, g.empirical_cdf, marker="o", markersize=3.0,
+                       linewidth=1.1, color=CORRUPTION_COLORS.get(corruption, "#666666"), zorder=2)
+            xs = np.concatenate([[0.0], g.nominal_cdf.to_numpy()])
+            ys = np.concatenate([[0.0], g.empirical_cdf.to_numpy()])
+            probe = np.concatenate([[x0, x1], xs[(xs >= x0) & (xs <= x1)]])
+            y_vals.extend(np.interp(probe, xs, ys).tolist())
+        lo, hi = min(y_vals) - y_margin, max(y_vals) + y_margin
+        axins.set_xlim(x0, x1)
+        axins.set_ylim(lo, hi)
+        axins.set_xticks([])
+        axins.set_yticks([])
+        for spine in axins.spines.values():
+            spine.set_visible(True)
+            spine.set_color("#555555")
+            spine.set_linewidth(0.7)
+        ax.indicate_inset_zoom(axins, edgecolor="#555555", linewidth=0.7)
     axes[1, 0].set_xlabel("nominal CDF $j/(k{+}1)$")
     axes[1, 1].set_xlabel("nominal CDF $j/(k{+}1)$")
     axes[0, 0].set_ylabel("empirical CDF of normal $p$")
     axes[1, 0].set_ylabel("empirical CDF of normal $p$")
     handles, labels = axes[0, 0].get_legend_handles_labels()
-    axes[0, 0].legend(handles, labels, loc="lower right", frameon=False)
+    axes[0, 0].legend(handles, labels, loc="upper left", frameon=False)
     fig.savefig(OUT / "fig_uniformity_cdf.pdf")
     plt.close(fig)
 
@@ -151,9 +186,11 @@ def fig_reliability() -> None:
         df = pd.read_csv(TABLES / tag)
         df = df[df.prob_col == "conformal_prob_loio"]
         ax.plot([0, 1], [0, 1], color="#999999", linestyle="--", linewidth=0.8, zorder=1)
+        series = []
         for k, color in [(4, OKABE_ITO["vermillion"]), (8, OKABE_ITO["blue"])]:
             sub = df[df.k_shot == k].dropna(subset=["confidence", "accuracy"])
             sub = sub[sub.n > 0].sort_values("confidence")
+            series.append(sub)
             ax.plot(sub.confidence, sub.accuracy, marker="o", markersize=3.2, linewidth=1.2,
                     color=color, label=f"$k={k}$", zorder=2)
         ax.set_title(name)
@@ -161,8 +198,9 @@ def fig_reliability() -> None:
         ax.set_xlim(0, 1)
         ax.set_ylim(0, 1)
         ax.grid(True)
+        del series  # k=4/k=8 curves are already visually separated; no inset here.
     axes[0].set_ylabel("empirical anomaly frequency")
-    axes[0].legend(loc="upper left", frameon=False)
+    axes[0].legend(loc="lower right", frameon=False)
     fig.savefig(OUT / "fig_reliability.pdf")
     plt.close(fig)
 

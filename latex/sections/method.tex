@@ -1,6 +1,13 @@
 \section{Method}\label{sec:method}
 \subsection{Problem Setup}
 For each category $c$, we observe a support set $\mathcal{S}_c=\{x_i\}_{i=1}^{k}$ containing only normal images. The test set contains normal and anomalous images, but anomaly labels are used only for evaluation, not for fitting the main detector or calibrator. The goal is to produce: (i) a raw anomaly ranking score $s(x)$, (ii) a probability-like reliability score $\hat{p}(y=1\mid x)$ or conformal anomaly confidence, and (iii) optional pixel-level maps.
+% Pipeline overview figure temporarily hidden (fig_pipeline.pdf / fig_pipeline_src.tex remain in figures/).
+% \begin{figure}[t]
+%     \centering
+%     \includegraphics[width=\linewidth]{fig_pipeline}
+%     \caption{CRR overview. A frozen DINOv2 backbone feeds two decoupled paths: the \emph{ranking} lane (PCA residuals, never modified; used for AUROC/AP and localization) and the label-free \emph{reliability} lane (LOIO conformal p-values from the $k$ supports, with Platt-family and standard scalar calibrators as baselines). Target-only alarms are structurally silent below the attainable floor $1/(k{+}1)$; the SC3R lane crosses it by pooling source-class normals under matched conditions and source-validating the threshold, deferring to the target-only anchor at levels the anchor can reach. The bottom strip lists the conformal-native audit used throughout.}
+%     \label{fig:pipeline}
+% \end{figure}
 
 \subsection{Frozen Patch Features and Subspace Ranking}
 We extract patch features with a frozen DINOv2 ViT-S/14 backbone. Let $z_{ij}\in\mathbb{R}^{d}$ denote patch $j$ from image $i$. A PCA/subspace model is fit on support patches. With support mean $\mu$ and retained principal directions $U\in\mathbb{R}^{d\times m}$, the patch residual is
