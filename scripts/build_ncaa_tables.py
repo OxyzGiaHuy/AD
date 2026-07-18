@@ -17,7 +17,7 @@ import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
 TABLES = ROOT / "outputs" / "paper_tables"
-OUT = ROOT / "latex" / "tables"
+OUT = ROOT / "els-cas-templates" / "tables"
 
 BASELINE_LABELS = {
     "vector_platt": "Vector Platt",
@@ -64,7 +64,7 @@ def build_scalar_calibrators() -> None:
     lines = [
         "\\begin{table}[t]",
         "\\centering",
-        "\\caption{LOIO conformal reliability versus Platt-family and standard scalar calibrators on the full corruption benchmarks. All calibrators are label-free and fit on the identical calibration set ($k$ support normals plus $k$ synthetic anomalies). Cells are class$\\times$seed$\\times$corruption ECE values (15 equal-width bins); $\\Delta$ is LOIO minus baseline (negative favors LOIO), $p$ is a paired two-sided Wilcoxon signed-rank test, and the last column is the fraction of cells where LOIO is better. The only comparison that is not significant is Shift-Aware Platt at VisA $k{=}8$.}",
+        "\\caption{LOIO conformal reliability versus Platt-family and standard scalar calibrators on the full corruption benchmarks. All calibrators are label-free and fit on the identical calibration set ($k$ support normals plus $k$ synthetic anomalies). Entries are means$\\pm$std of per-cell (class$\\times$seed$\\times$corruption) ECE with 15 equal-width bins---per-cell means are therefore higher than the pooled ECE of Table~\\ref{tab:visa-full-conformal}; $\\Delta$ is LOIO minus baseline (negative favors LOIO), $p$ is a paired two-sided Wilcoxon signed-rank test, and the last column is the fraction of cells where LOIO is better. Bold marks the better per-cell mean; the only comparison that is not significant is Shift-Aware Platt at VisA $k{=}8$.}",
         "\\label{tab:scalar-calibrators}",
         "\\footnotesize",
         "\\setlength{\\tabcolsep}{3pt}",
@@ -89,9 +89,15 @@ def build_scalar_calibrators() -> None:
                 loio_std = r["conformal_prob_loio_std"]
                 label = f"{name} $k{{=}}{k}$" if first else ""
                 first = False
+                base_cell = f"{base_mean:.3f}$\\pm${base_std:.3f}"
+                loio_cell = f"{loio_mean:.3f}$\\pm${loio_std:.3f}"
+                if loio_mean < base_mean:
+                    loio_cell = f"\\textbf{{{loio_cell}}}"
+                else:
+                    base_cell = f"\\textbf{{{base_cell}}}"
                 lines.append(
                     f"{label} & {BASELINE_LABELS[baseline]} & "
-                    f"{base_mean:.3f}$\\pm${base_std:.3f} & {loio_mean:.3f}$\\pm${loio_std:.3f} & "
+                    f"{base_cell} & {loio_cell} & "
                     f"{r.delta_mean:+.3f} & {fmt_p(r.wilcoxon_p)} & {r.candidate_better_frac * 100:.0f}\\% \\\\"
                 )
             lines.append("\\addlinespace[2pt]")
@@ -226,12 +232,58 @@ def build_sc3r_visa() -> None:
     (OUT / "tab_sc3r_visa.tex").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
+def build_randomized_pvalue() -> None:
+    specs = [
+        ("MVTec", "randomized_pvalue_mvtec_full15_k4_detailed.csv", "source_validated_threshold_sc3r_mvtec_full15_stratified_detailed.csv"),
+        ("VisA", "randomized_pvalue_visa_full12_k4_detailed.csv", "source_validated_threshold_sc3r_visa_full12_stratified_detailed.csv"),
+    ]
+    if not all((TABLES / r).exists() and (TABLES / s).exists() for _, r, s in specs):
+        print("randomized pvalue CSVs missing; skipping tab_randomized_pvalue")
+        return
+    lines = [
+        "\\begin{table}[t]",
+        "\\centering",
+        "\\caption{Why source validation, not randomization: smoothed (randomized) conformal p-values versus SC3R below the target-only floor ($k{=}4$, all classes, seeds 0--2, pooled over five conditions; randomized rates are exact expectations over the randomization). Randomization crosses the floor but inherits the target-only rule's bias---anti-conservative on MVTec even under the clean condition (FAR 0.067 at $\\alpha{=}0.05$) and up to $2.3\\times$ nominal under Gaussian noise---whereas SC3R attains comparable power with false-alarm rates at nominal. Bold marks $\\mathrm{FAR}\\le\\alpha{+}0.02$.}",
+        "\\label{tab:randomized-pvalue}",
+        "\\footnotesize",
+        "\\setlength{\\tabcolsep}{4pt}",
+        "\\begin{tabular}{lrrrrr}",
+        "\\toprule",
+        " & & \\multicolumn{2}{c}{Randomized p-value} & \\multicolumn{2}{c}{SC3R} \\\\",
+        "\\cmidrule(lr){3-4}\\cmidrule(lr){5-6}",
+        "dataset & $\\alpha$ & FAR & power & FAR & power \\\\",
+        "\\midrule",
+    ]
+    for name, rand_path, sc3r_path in specs:
+        rand = pd.read_csv(TABLES / rand_path)
+        sc3r = pd.read_csv(TABLES / sc3r_path)
+        sc3r = sc3r[(sc3r.source_mode == "matched_condition") & (sc3r.method == "source_validated_pool")]
+        first = True
+        for alpha in [0.05, 0.10]:
+            r = rand[rand.alpha == alpha]
+            s = sc3r[sc3r.alpha == alpha]
+
+            def cell(far, power):
+                far_s = f"\\textbf{{{far:.3f}}}" if far <= alpha + 0.02 else f"{far:.3f}"
+                return f"{far_s} & {power:.3f}"
+
+            left = name if first else ""
+            first = False
+            lines.append(
+                f"{left} & {alpha:.2f} & {cell(r.false_alarm_rate.mean(), r.power.mean())} & {cell(s.false_alarm_rate.mean(), s.power.mean())} \\\\"
+            )
+        lines.append("\\addlinespace[2pt]")
+    lines += ["\\bottomrule", "\\end{tabular}", "\\end{table}"]
+    (OUT / "tab_randomized_pvalue.tex").write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
 def main() -> int:
     OUT.mkdir(parents=True, exist_ok=True)
     build_scalar_calibrators()
     build_agg_ablation()
     build_sc3r_k8()
     build_sc3r_visa()
+    build_randomized_pvalue()
     for f in sorted(OUT.glob("tab_*.tex")):
         print(f.name)
     return 0

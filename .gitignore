@@ -36,5 +36,4 @@ outputs*/
 # Local editor / external references
 .vscode/
 SAGE/
-*.pdf
 0.2047

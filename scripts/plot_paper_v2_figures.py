@@ -25,7 +25,7 @@ import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
 TABLES = ROOT / "outputs" / "paper_tables"
-OUT = ROOT / "latex" / "figures"
+OUT = ROOT / "els-cas-templates" / "figures"
 
 OKABE_ITO = {
     "blue": "#0072B2",

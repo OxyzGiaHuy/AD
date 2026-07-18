@@ -1,8 +1,12 @@
 # Session Context Handoff
 
-Last updated: 2026-07-14
+Last updated: 2026-07-15
 
 This document is the high-level handoff for the few-shot anomaly detection paper workspace. Read this first in a new session before running experiments or editing the paper.
+
+## 0b. 2026-07-15 Snapshot — PAPER MOVED TO NEUROCOMPUTING (read before 0a)
+
+Target journal changed NCAA -> **Neurocomputing (Elsevier)**. Paper workspace is now **`els-cas-templates/`** (cas-sc, 1 column, numbered elsarticle-num citations; compile `cd els-cas-templates && tectonic main.tex`, currently 23 pp clean). `latex/` is the frozen NCAA sn-jnl snapshot — do not edit it. Table/figure generator scripts now emit into els-cas-templates/. New Elsevier bits: Research Highlights + graphical abstract (fig_pipeline) + CRediT/\printcredits + Declaration of competing interest; pipeline figure re-enabled as Fig 1; conclusion = "Conclusion and future work". 2026-07-16 readiness pass DONE: learning-systems reframe (anti desk-reject), Neurocomputing venue citations (ClipSAM 618/2025, UniAD 667/2026 — NOT FP-CLIP, that is a DSP paper), repro hardware para, Appendix A (3 secondary tables), Neurocomputing cover letter, overfull resolved/benign. Remaining: author block TODOs, verify uniadprompt2026 volume/pages, advisor sign-off. Latest science additions (also in the paper): randomized p-value baseline (randomized_pvalue_* CSVs; defends SC3R) and WinCLIP audit (winclip_reimpl_* CSVs; reported-vs-reimpl 20-point gap documented, WinCLIP cited-not-audited in Table 1).
 
 ## 0a. 2026-07-14 Status Snapshot (read this first)
 

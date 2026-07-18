@@ -570,3 +570,66 @@ Session-restart kills solved by launching long jobs with `setsid nohup` + sentin
 - Zoom insets added to both line figures (fig_uniformity_cdf: operating region around the attainable floor; fig_reliability: high-confidence region), matplotlib inset_axes + indicate_inset_zoom; captions updated; reliability legend moved to lower right.
 - v9_npg variant added (Nature-journal npg palette: navy #3C5488 / cyan #4DBBD5 / red #E64B35 / teal #00A087) — "nature tone" clarified to mean Nature journal style. 9 variants total in latex/figures/variants/.
 - Compile clean, 27 pp.
+
+## 2026-07-15: Table audit fixes
+- Table 12 (pixel/diagnostics) rebuilt with real numbers: pixel AUROC + AU-PRO for CRR vs controlled NN at k=1/4/8 (from pixel_metrics_summary.csv; CRR matches/exceeds on pixel AUROC everywhere, AU-PRO from k=4), and FGSM block with concrete numbers (eps 2/255: 0.937->0.158 = 83% drop, below chance = score inversion; eps 8/255: ->0.446 = 52%; non-monotonic in eps, disclosed as surrogate objective sensitivity). Removed prose-in-numeric-column rows; 5.8 text updated with the same numbers.
+- Table 11 (routing): no-harm 1.000 -> 100%; bold reduced to the LOIO column only.
+- Table 5 (calibrator significance): caption now explains per-cell means > pooled ECE of Table 3 (top reviewer-confusion risk); LOIO column bolded when better (builder updated in build_ncaa_tables.py).
+- Table 4 caption cross-references Figure ece-by-corruption.
+- Remaining "--" cells audited and kept: official AnomalyDINO ECE/MB (not audited, disclosed) and anchor precision below the floor (structurally undefined).
+- Compile clean, 27 pp.
+
+## 2026-07-15: Randomized p-value baseline (defends SC3R) + WinCLIP sweep launched
+
+### Randomized (smoothed) conformal p-values — the "why not just randomize?" objection, answered with numbers
+
+- `scripts/evaluate_randomized_pvalues.py`: exact closed-form expected alarm rate over the uniform tie-break (no Monte Carlo), on the same target-only LOIO residuals + label-stratified test images as SC3R.
+- MVTec k=4: FAR 0.085/0.170/0.340 at alpha 0.05/0.10/0.20 — over budget even on CLEAN (0.067 at 0.05; LOO asymmetry), 2.3x nominal under gaussian (0.115). Power 0.216/0.431 (comparable to SC3R 0.216/0.416).
+- VisA k=4: FAR 0.036/0.072 (conservative, mirrors target-only bias), power 0.150/0.300 vs SC3R 0.144/0.351.
+- Story in paper (results 5.6 + method forward-ref + `tab_randomized_pvalue.tex`): randomization solves resolution, not validity; SC3R solves both. Limitations updated (randomized route no longer future work).
+- Artifacts: `randomized_pvalue_{mvtec_full15_k4,visa_full12_k4}_{detailed,summary}.csv`.
+
+### WinCLIP (community reimplementation caoyunkang/WinClip, arXiv:2303.14814)
+
+- Setup: deps installed in ad env (open_clip_torch, seaborn, loguru, ftfy, tabulate); data symlinked to repo's hard-coded roots (third_party/datasets/{mvtec_anomaly_detection -> data/mvtec, VisA_pytorch/1cls -> data/visa_pytorch}).
+- Smoke test bottle k=0: i_AUROC 98.97 (paper ~99.2 — reproduction sane).
+- Sweep launched detached (`scripts/run_winclip_sweep.sh`, sentinel WINCLIP_SWEEP_DONE): both datasets, k=0 (deterministic) + k=1 x experiment_indx {0,1,2} (repo's fixed seed lists; its own protocol -> will be reported like official AnomalyDINO rows). Repo supports k in {0,1,5,10} only, so k=1 is the aligned row; ETA ~6h.
+- Compile: 28 pp clean.
+
+## 2026-07-15 (later): WinCLIP audit complete — reported-vs-reimplementation gap documented
+
+- Sweep finished (108 runs, ~1h): community reimpl (caoyunkang/WinClip, ViT-B-16+240 LAION-400M, its own protocol) gives MVTec image AUROC 0.7165 (k=0) / 0.7740±0.008 (k=1, 3 runs); VisA 0.6604 / 0.6999±0.003. These MATCH the reimplementation's own README numbers (repo reports 70.17 MVTec 0-shot; our grid 49.0 vs repo 48.9) — so our run is a faithful reproduction OF THE REIMPLEMENTATION, which itself falls ~20 AUROC points short of the paper's reported numbers (91.8/93.1 MVTec, 78.1/83.8 VisA — verified against ar5iv table 1, incl. 4-shot 95.2/87.3).
+- Editorial decision: reimpl numbers would be a strawman as a "WinCLIP" baseline row. Instead: (a) Table 1 gains "WinCLIP (reported)" rows at k=1/4 on both datasets with caption disclosure; (b) experiments/baselines gains an audit paragraph documenting the gap (turns the claim-rules separation of audited vs reported rows into demonstrated necessity); (c) limitations updated — audited VLM baseline blocks on absence of official code.
+- Artifacts: `winclip_reimpl_{detailed,summary}.csv`; raw per-class CSVs in outputs/winclip/csv/.
+- Compile 28 pp clean; 62 tests pass.
+
+## 2026-07-15 (night): Migrated paper to Neurocomputing (Elsevier CAS) — COMPLETE
+
+- New paper workspace: **`els-cas-templates/`** (cas-sc single column, numbered citations via elsarticle-num bst — model1-num-names not in tectonic bundle and CTAN fetch 404'd; elsarticle-num is equivalent numbered style). `latex/` frozen as the NCAA sn-jnl snapshot.
+- main.tex: CAS frontmatter (shorttitle/shortauthors TODO, author+\credit+\affiliation TODO placeholders, \cormark), Research Highlights (5 bullets), keywords with \sep, graphical abstract = fig_pipeline.pdf. Template samples moved to template_samples/; thumbnails/ must stay at root (class loads cas-email.jpeg).
+- Sections adapted: abstract -> environment + 2 sentences retoned for deployment relevance; pipeline figure RE-ENABLED in method (Fig 1); intro gained "remainder of this paper" paragraph; conclusion retitled "Conclusion and future work" and absorbed the future-work sentence from limitations; declarations.tex rewritten as Elsevier back matter (CRediT \printcredits, Declaration of competing interest, Data/Code availability, Acknowledgements).
+- Scripts build_ncaa_tables.py + plot_paper_v2_figures.py now emit into els-cas-templates/{tables,figures}.
+- Compile: `cd els-cas-templates && tectonic main.tex` — 23 pp, 0 errors, 0 broken citations (4 overfull warnings left to polish).
+- REMAINING (next session): visual pass on all 23 pages (esp. wide tables in CAS margins + 4 overfull boxes), highlights wording review, author block, update cover letter for Neurocomputing, session handoff doc snapshot.
+
+## 2026-07-16: Neurocomputing readiness review + fixes applied
+
+Researched Neurocomputing criteria (guide for authors, editorial-priorities analyses, recent AD papers in the journal). Key risk identified: #1 desk-reject cause is "generic DL application without learning-systems contribution" — our content qualifies but the NCAA-era deployment-first framing read as an application paper. Applied (all compile-verified, 23 pp, 62 tests pass):
+- A. Scope-fit reframe: abstract now OPENS with the learning-systems question ("What can an alarm calibrated on only k normal examples of a learned representation actually guarantee...?"); intro gains the science-question sentence + "lesson for learning systems" before contributions; conclusion gains the general-characterization closing sentence. Claims/numbers untouched.
+- B. Venue citations: ClipSAM (Neurocomputing 618, 2025) + UniAD prompt regularization (Neurocomputing 667, 2026) added to related work VLM line. CAUGHT+FIXED: initial search wrongly placed FP-CLIP in Neurocomputing — it is actually Digital Signal Processing 170:105798; swapped for the verified UniAD entry (TODO-verify note kept).
+- C. Reproducibility: hardware (RTX 5090), pinned conda env, fp32 feature cache determinism added to Reproducibility subsection.
+- D. Appendix A created: tab_visa_ece_by_corruption, tab_agg_ablation, tab_prior_work_positioning moved out of body (11 main-body tables remain); cross-refs updated.
+- E. cover_letter.md rewritten for Neurocomputing (leads with the AE question; cites the journal's own AD line for fit).
+- F. Overfull: graphical abstract scaled 0.86\textwidth; remaining warnings are a benign CAS keywords-box internal measurement (visual verified clean) + a 1.16pt line in intro (invisible).
+- Word count: body prose ~6.1k words (within the 6-9k strong-paper band); highlights all <=82 chars.
+
+## 2026-07-16: Workspace cleanup — freed ~211GB (disk 96% -> 80%)
+
+Deleted (all regenerable; every paper number lives in outputs/paper_tables CSVs which are untouched):
+- tmp/{sc3r,mvtec,sw_cad_image_views} (79GB): intermediate corrupted PNGs — regenerate automatically (deterministic seeds) whenever an exporter runs with a cold cache.
+- outputs/feature_cache *sc3r*/*corrupt*/*_eval_* (132GB): DINOv2 feature caches for corrupted/eval images — regenerate via export_sc3r_views.py / export_sw_cad_image_views.py (GPU, hours).
+- outputs/winclip except csv/ (990MB): patch distances; audited numbers preserved in winclip_reimpl_*.csv + outputs/winclip/csv.
+- els-cas-templates.zip.
+
+KEPT deliberately: 222 support feature caches (2.5GB — basis of the bit-exact scalar-calibrator reuse, verify 0.00e+00), outputs/paper_tables (all paper numbers), run-dir metrics/predictions (PCA CI source), third_party results (official/audit numbers), both paper trees.
+NOTE: datasets live at /tmp/AD-data via symlinks in data/ — if the OS clears /tmp on reboot, datasets must be re-downloaded before any cache regeneration.

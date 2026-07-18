@@ -1,0 +1,17 @@
+\begin{table}[t]
+\centering
+\caption{Aggregation-sensitivity ablation: clean image AUROC (mean over representative classes, seeds 0--2) when patch residuals are pooled by max versus top-$\rho$ mean. Bold marks the best aggregator per row; the max/top-1\% choices used in the paper are within 0.01--0.02 AUROC of the per-row optimum.}
+\label{tab:agg-ablation}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{llrrrrr}
+\toprule
+dataset & $k$ & max & top-0.5\% & top-1\% & top-2\% & top-5\% \\
+\midrule
+MVTec & 4 & 0.9571 & 0.9638 & 0.9667 & \textbf{0.9693} & 0.9621 \\
+MVTec & 8 & 0.9578 & 0.9685 & 0.9740 & \textbf{0.9759} & 0.9727 \\
+VisA & 4 & 0.9039 & \textbf{0.9101} & 0.9038 & 0.8944 & 0.8806 \\
+VisA & 8 & 0.9101 & \textbf{0.9200} & 0.9147 & 0.9071 & 0.8941 \\
+\bottomrule
+\end{tabular}
+\end{table}

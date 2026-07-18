@@ -1,0 +1,66 @@
+\documentclass[a4paper,fleqn]{cas-sc}
+
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{graphicx}
+\graphicspath{{./}{figures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg,.jpeg}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{url}
+
+\begin{document}
+\let\WriteBookmarks\relax
+\def\floatpagepagefraction{1}
+\def\textpagefraction{.001}
+
+\shorttitle{Conformal Reliability Routing for Few-Shot Anomaly Detection}
+% TODO: fill in real short author list, authors, affiliations, ORCID, and emails before submission.
+\shortauthors{Family et~al.}
+
+\title[mode = title]{Conformal Reliability Routing for Low-Storage Few-Shot Industrial Anomaly Detection}
+
+\author[1]{Given Family}[orcid=0000-0000-0000-0000]
+\cormark[1]
+\ead{corresponding@example.org}
+\credit{Conceptualization, Methodology, Software, Validation, Writing -- original draft}
+\affiliation[1]{organization={Department, University},
+                city={City},
+                country={Country}}
+
+\cortext[cor1]{Corresponding author.}
+
+\input{sections/abstract}
+
+\begin{graphicalabstract}
+\includegraphics[width=0.86\textwidth]{fig_pipeline}
+\end{graphicalabstract}
+
+\begin{highlights}
+\item A $k$-shot conformal anomaly alarm is structurally silent below $\alpha=1/(k{+}1)$
+\item Exact discrete uniformity tests localize when the false-alarm promise inverts
+\item SC3R pools cross-category normals to alarm below the floor without target labels
+\item Pre-registered gate passes on 15 MVTec classes and replicates on 12 VisA classes
+\item LOIO conformal beats Platt, temperature, isotonic, and histogram calibrators
+\end{highlights}
+
+\begin{keywords}
+Industrial anomaly detection \sep Few-shot learning \sep Calibration \sep Conformal prediction \sep DINOv2 \sep Reliability
+\end{keywords}
+
+\maketitle
+
+\input{sections/introduction}
+\input{sections/related_work}
+\input{sections/method}
+\input{sections/experiments}
+\input{sections/results}
+\input{sections/limitations}
+\input{sections/conclusion}
+\input{sections/declarations}
+\input{sections/appendix}
+
+\bibliographystyle{elsarticle-num}
+\bibliography{references}
+
+\end{document}
