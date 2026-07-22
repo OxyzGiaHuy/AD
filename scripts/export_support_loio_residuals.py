@@ -19,7 +19,7 @@ from src.data.sampling import few_shot_support
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--base-config", default="configs/generated/visa_full/calib_subspace_head_visa_candle_k1_seed0.yaml")
-    parser.add_argument("--dataset", choices=["mvtec", "visa"], required=True)
+    parser.add_argument("--dataset", choices=["mvtec", "visa", "mpdd"], required=True)
     parser.add_argument("--classes", nargs="*", default=None)
     parser.add_argument("--k-shots", nargs="*", type=int, default=[4, 8])
     parser.add_argument("--seeds", nargs="*", type=int, default=[0, 1, 2])
@@ -29,7 +29,14 @@ def main() -> int:
     args = parser.parse_args()
 
     config = load_config(args.base_config)
-    classes = args.classes or (MVTEC_CLASSES if args.dataset == "mvtec" else VISA_CLASSES)
+    if args.classes:
+        classes = args.classes
+    elif args.dataset == "mvtec":
+        classes = MVTEC_CLASSES
+    elif args.dataset == "visa":
+        classes = VISA_CLASSES
+    else:
+        raise ValueError("MPDD classes must be passed explicitly after auditing the downloaded archive.")
     backbone = config.get("backbone", {}).get("name", "dinov2_vits14")
     components = int(config.get("model", {}).get("pca_components", 64))
     out = Path(args.out)
@@ -52,6 +59,7 @@ def main() -> int:
                         "class": cls,
                         "k_shot": k,
                         "seed": seed,
+                        "support_calibration_mode": calibration.mode,
                         "residual_index": index,
                         "loio_residual": float(score),
                     })

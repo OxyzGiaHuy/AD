@@ -52,6 +52,7 @@ def test_k1_spatial_split_does_not_reuse_all_patches() -> None:
     features = rng.normal(size=(1, 10, 5)).astype(np.float32)
     cal = loio_calibration(features, pca_components=2)
     assert 0 < len(cal.patch_scores) < features.shape[1]
+    assert cal.mode == "patch_split_conformal"
 
 
 def test_weighted_p_values_and_effective_sample_size_bounds() -> None:
@@ -141,4 +142,3 @@ def test_brier_mixture_gate_outputs_valid_probabilities() -> None:
     assert weights.shape == expert_probs.shape
     assert np.allclose(weights.sum(axis=1), 1.0)
     assert np.all((probs >= 0.0) & (probs <= 1.0))
-

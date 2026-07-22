@@ -1,0 +1,5 @@
+Few-shot conformal alarms have an exact minimum attainable false-alarm level
+Cluster-aware diagnostics reveal false-alarm inversion under image corruptions
+Cross-category source normals enable alarms below the target-only resolution floor
+Historical tests show sub-floor power on MVTec and VisA without target labels
+Target-domain control remains conditional under source-to-target distribution shift

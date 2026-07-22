@@ -201,3 +201,9 @@ Scope caveats to keep: k=4 only, seeds 0-2, per-condition exceedances jpeg@0.10 
 ### Official baseline claim hygiene
 
 Official AnomalyDINO (released code, 3 seeds) MVTec image AUROC k1/k4/k8: 0.9652/0.9756/0.9803 — reported as explicit accuracy reference rows; CRR does not claim MVTec ranking superiority.
+# Historical claims snapshot — superseded
+
+Despite the filename, this is not the current claim ledger. It predates the
+nested source certification and multiplicity audit. Current claims are governed
+by `neurocomputing_claim_audit.md` and the manuscript itself; numerical claims
+here must not be copied into a submission without regenerated artifacts.

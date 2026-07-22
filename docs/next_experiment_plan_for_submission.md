@@ -358,3 +358,8 @@ Limitations to preserve:
 - No adversarial robustness claim.
 - No first conformal AD claim.
 - No first DINOv2 subspace claim.
+# Historical experiment plan — superseded
+
+Do not execute this file as the final protocol. The frozen GPU/CPU boundary,
+commands, negative-result rules, and acceptance gates are in
+`gpu_experiment_runbook.md`.

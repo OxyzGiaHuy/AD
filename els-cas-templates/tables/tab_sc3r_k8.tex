@@ -1,4 +1,4 @@
-\begin{table}[t]
+\begin{table*}[pos=t]
 \centering
 \caption{SC3R at $k{=}8$ (matched-condition source mode) versus the target-only LOIO anchor on all 15 label-stratified MVTec classes (seeds 0--2). The target-only floor is $1/9\approx0.111$, so $\alpha\in\{0.05,0.10\}$ are below the anchor's resolution. Bold marks cells satisfying $\mathrm{FAR}\le\alpha{+}0.02$ with nonzero power.}
 \label{tab:sc3r-k8}
@@ -10,26 +10,25 @@
 \cmidrule(lr){3-5}\cmidrule(lr){6-8}
 corruption & $\alpha$ & FAR & power & prec. & FAR & power & prec. \\
 \midrule
-clean & 0.05 & \textbf{0.053} & \textbf{0.764} & 0.976 & 0.000 & 0.000 & -- \\
+\multirow{3}{*}{clean} & 0.05 & \textbf{0.053} & \textbf{0.764} & 0.976 & 0.000 & 0.000 & -- \\
  & 0.10 & \textbf{0.110} & \textbf{0.833} & 0.936 & 0.000 & 0.000 & -- \\
  & 0.20 & \textbf{0.216} & \textbf{0.898} & 0.917 & \textbf{0.182} & \textbf{0.903} & 0.928 \\
-\addlinespace[2pt]
-blur & 0.05 & \textbf{0.050} & \textbf{0.751} & 0.976 & 0.000 & 0.000 & -- \\
+\cmidrule(lr){1-8}
+\multirow{3}{*}{blur} & 0.05 & \textbf{0.050} & \textbf{0.751} & 0.976 & 0.000 & 0.000 & -- \\
  & 0.10 & \textbf{0.110} & \textbf{0.813} & 0.957 & 0.000 & 0.000 & -- \\
  & 0.20 & 0.221 & 0.900 & 0.917 & \textbf{0.199} & \textbf{0.904} & 0.922 \\
-\addlinespace[2pt]
-bright/contr. & 0.05 & \textbf{0.051} & \textbf{0.770} & 0.976 & 0.000 & 0.000 & -- \\
+\cmidrule(lr){1-8}
+\multirow{3}{*}{bright/contr.} & 0.05 & \textbf{0.051} & \textbf{0.770} & 0.976 & 0.000 & 0.000 & -- \\
  & 0.10 & \textbf{0.107} & \textbf{0.831} & 0.958 & 0.000 & 0.000 & -- \\
  & 0.20 & 0.223 & 0.895 & 0.916 & \textbf{0.185} & \textbf{0.904} & 0.926 \\
-\addlinespace[2pt]
-Gauss. noise & 0.05 & \textbf{0.035} & \textbf{0.155} & 0.962 & 0.000 & 0.000 & -- \\
+\cmidrule(lr){1-8}
+\multirow{3}{*}{Gauss. noise} & 0.05 & \textbf{0.035} & \textbf{0.155} & 0.962 & 0.000 & 0.000 & -- \\
  & 0.10 & 0.138 & 0.398 & 0.951 & 0.000 & 0.000 & -- \\
  & 0.20 & 0.232 & 0.749 & 0.917 & 0.392 & 0.904 & 0.866 \\
-\addlinespace[2pt]
-JPEG & 0.05 & 0.071 & 0.296 & 0.972 & 0.000 & 0.000 & -- \\
+\cmidrule(lr){1-8}
+\multirow{3}{*}{JPEG} & 0.05 & 0.071 & 0.296 & 0.972 & 0.000 & 0.000 & -- \\
  & 0.10 & 0.141 & 0.588 & 0.959 & 0.000 & 0.000 & -- \\
  & 0.20 & 0.260 & 0.826 & 0.918 & 0.380 & 0.911 & 0.875 \\
-\addlinespace[2pt]
 \bottomrule
 \end{tabular}
-\end{table}
+\end{table*}

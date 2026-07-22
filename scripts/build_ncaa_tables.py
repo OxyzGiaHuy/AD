@@ -2,7 +2,7 @@
 
 Reads committed CSVs and writes LaTeX tables into latex/tables/:
 - tab_scalar_calibrators.tex: per-cell ECE of LOIO vs Platt-family and
-  standard scalar calibrators with paired Wilcoxon p-values, both benchmarks.
+  standard scalar calibrators with Holm-adjusted paired Wilcoxon p-values.
 - tab_agg_ablation.tex: AUROC sensitivity to the patch aggregation choice.
 - tab_sc3r_k8.tex: SC3R k=8 source-validated thresholding per condition
   (written only if the k=8 summary CSV exists).
@@ -59,18 +59,20 @@ def build_scalar_calibrators() -> None:
         df["dataset_name"] = name
         frames.append(df)
     sig = pd.concat(frames, ignore_index=True)
+    if "holm_p" not in sig.columns:
+        raise ValueError("Calibrator significance artifacts must include Holm-adjusted p-values.")
     sig = sig[sig.corruption == "all"]
 
     lines = [
-        "\\begin{table}[t]",
+        "\\begin{table*}[pos=t]",
         "\\centering",
-        "\\caption{LOIO conformal reliability versus Platt-family and standard scalar calibrators on the full corruption benchmarks. All calibrators are label-free and fit on the identical calibration set ($k$ support normals plus $k$ synthetic anomalies). Entries are means$\\pm$std of per-cell (class$\\times$seed$\\times$corruption) ECE with 15 equal-width bins---per-cell means are therefore higher than the pooled ECE of Table~\\ref{tab:visa-full-conformal}; $\\Delta$ is LOIO minus baseline (negative favors LOIO), $p$ is a paired two-sided Wilcoxon signed-rank test, and the last column is the fraction of cells where LOIO is better. Bold marks the better per-cell mean; the only comparison that is not significant is Shift-Aware Platt at VisA $k{=}8$.}",
+        "\\caption{LOIO conformal reliability versus label-free Platt-family and standard scalar calibrators on identical calibration sets. Entries are means$\\pm$std of per-cell ECE; $\\Delta$ is LOIO minus baseline, $p_{\\mathrm{Holm}}$ adjusts the paired two-sided Wilcoxon tests across the generated comparison family, and the last column is the LOIO win fraction. Bold marks the lower mean.}",
         "\\label{tab:scalar-calibrators}",
         "\\footnotesize",
         "\\setlength{\\tabcolsep}{3pt}",
         "\\begin{tabular}{llrrrrr}",
         "\\toprule",
-        "dataset / $k$ & baseline & base ECE & LOIO ECE & $\\Delta$ & Wilcoxon $p$ & LOIO better \\\\",
+        "dataset / $k$ & baseline & base ECE & LOIO ECE & $\\Delta$ & $p_{\\mathrm{Holm}}$ & LOIO better \\\\",
         "\\midrule",
     ]
     order = ["vector_platt", "shift_aware_vector_platt", "temperature", "isotonic", "histogram_binning", "scalar_platt"]
@@ -87,7 +89,7 @@ def build_scalar_calibrators() -> None:
                 base_std = r[f"{baseline}_std"]
                 loio_mean = r["conformal_prob_loio_mean"]
                 loio_std = r["conformal_prob_loio_std"]
-                label = f"{name} $k{{=}}{k}$" if first else ""
+                label = f"\\multirow{{6}}{{*}}{{{name} $k{{=}}{k}$}}" if first else ""
                 first = False
                 base_cell = f"{base_mean:.3f}$\\pm${base_std:.3f}"
                 loio_cell = f"{loio_mean:.3f}$\\pm${loio_std:.3f}"
@@ -98,10 +100,11 @@ def build_scalar_calibrators() -> None:
                 lines.append(
                     f"{label} & {BASELINE_LABELS[baseline]} & "
                     f"{base_cell} & {loio_cell} & "
-                    f"{r.delta_mean:+.3f} & {fmt_p(r.wilcoxon_p)} & {r.candidate_better_frac * 100:.0f}\\% \\\\"
+                    f"{r.delta_mean:+.3f} & {fmt_p(r.holm_p)} & {r.candidate_better_frac * 100:.0f}\\% \\\\"
                 )
-            lines.append("\\addlinespace[2pt]")
-    lines += ["\\bottomrule", "\\end{tabular}", "\\end{table}"]
+            lines.append("\\midrule")
+    lines[-1] = "\\bottomrule"
+    lines += ["\\end{tabular}", "\\end{table*}"]
     (OUT / "tab_scalar_calibrators.tex").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
@@ -202,7 +205,7 @@ def build_sc3r_visa() -> None:
     lines = [
         "\\begin{table}[t]",
         "\\centering",
-        "\\caption{SC3R replication on all 12 label-stratified VisA classes ($k{=}4$, seeds 0--2, matched-condition mode, pooled over five conditions). The source pool is either the other VisA classes (within-dataset) or all 15 MVTec classes (cross-dataset source archive). Both sub-floor levels carry hierarchical power-gain intervals excluding zero for every corruption; the cross-dataset archive is conservative, keeping false alarms well below nominal at reduced power. Bold marks $\\mathrm{FAR}\\le\\alpha{+}0.02$ with nonzero power.}",
+        "\\caption{Historical SC3R replication on all 12 label-stratified VisA classes ($k{=}4$, seeds 0--2, matched-condition mode, pooled over five conditions). The source pool is either the other VisA classes or all 15 MVTec classes. Pointwise hierarchical power-gain intervals exclude zero in the reported sub-floor cells but are not simultaneous across corruptions. In the evaluated MVTec-to-VisA direction, observed false alarms are below nominal at reduced power. Bold marks $\\mathrm{FAR}\\le\\alpha{+}0.02$ with nonzero power.}",
         "\\label{tab:sc3r-visa}",
         "\\footnotesize",
         "\\setlength{\\tabcolsep}{4pt}",

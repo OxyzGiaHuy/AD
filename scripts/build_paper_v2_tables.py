@@ -35,7 +35,7 @@ def sc3r_table(detailed_path: Path, out_path: Path) -> None:
     lines = [
         "\\begin{table}[t]",
         "\\centering",
-        "\\caption{Source-validated thresholding (SC3R, matched-condition source mode) versus the target-only LOIO anchor on all 15 label-stratified MVTec classes ($k{=}4$, seeds 0--2). Below the target-only attainable-alpha floor $1/(k{+}1){=}0.2$, the anchor cannot raise alarms; source pooling unlocks these operating points with controlled false alarms. Bold marks cells satisfying $\\mathrm{FAR}\\le\\alpha{+}0.02$ with nonzero power.}",
+        "\\caption{Historical source-validated thresholding (SC3R, matched-condition source mode) versus the target-only LOIO anchor on all 15 label-stratified MVTec classes ($k{=}4$, seeds 0--2). Below $1/(k{+}1){=}0.2$, the anchor cannot raise alarms; source pooling unlocks these operating points with false-alarm estimates near the pre-specified budget on the evaluated targets. Threshold selection and source assessment are not independent in this historical analysis. Bold marks cells satisfying $\\mathrm{FAR}\\le\\alpha{+}0.02$ with nonzero power.}",
         "\\label{tab:sc3r-source-validated}",
         "\\footnotesize",
         "\\setlength{\\tabcolsep}{3pt}",

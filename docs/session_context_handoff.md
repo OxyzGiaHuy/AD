@@ -526,4 +526,11 @@ If SC3R does not pass:
 ## 14. One-Sentence Project Summary
 
 This paper should be positioned as a reliability-first few-shot industrial anomaly detection study: it does not claim to beat every memory-bank/subspace method on AUROC, but it offers a low-storage decoupled DINOv2 detector and a careful calibration/shift/conformal diagnostic framework that exposes when few-shot AD scores can and cannot be trusted.
+# Historical handoff — superseded
+
+This file records an earlier development state and contains claims such as
+“pre-registered” and non-independent SC3R gate results that are not current
+submission evidence. Use `neurocomputing_submission_plan.md`,
+`neurocomputing_claim_audit.md`, `sc3r_formal_specification.md`, and
+`submission_blockers.md` as the authoritative documents.
 

@@ -106,7 +106,7 @@ def coverage_mask(risk_scores: np.ndarray, coverage: float) -> np.ndarray:
 
 def risk_coverage_auc(coverages: np.ndarray, risks: np.ndarray) -> float:
     order = np.argsort(coverages)
-    return float(np.trapz(np.asarray(risks)[order], np.asarray(coverages)[order]))
+    return float(np.trapezoid(np.asarray(risks)[order], np.asarray(coverages)[order]))
 
 
 def combined_minmax_score(columns: list[np.ndarray]) -> np.ndarray:

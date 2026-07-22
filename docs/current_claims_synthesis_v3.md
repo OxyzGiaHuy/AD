@@ -437,4 +437,10 @@ Claim strength by component:
 Recommended paper framing:
 
 > Conformal reliability routing improves probability reliability and exposes controllable operating tradeoffs, but formal false-alarm guarantees under dataset/corruption shift require additional threshold calibration or randomized conformal p-values.
+# Historical synthesis — superseded
+
+This document predates the Neurocomputing statistical audit. References to a
+“safe anchor,” universal routing, or historical gates are development notes,
+not final evidence. See `neurocomputing_claim_audit.md` and
+`sc3r_formal_specification.md`.
 

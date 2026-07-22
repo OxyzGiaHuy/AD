@@ -44,10 +44,10 @@
 \draw[arr] (pval) -- (floor);
 
 % ---------------- row 4: SC3R ----------------
-\node[sc3r, below=20mm of loio.south west, anchor=north west] (sc3rsrc) {source-class normals\\(matched condition)};
+\node[sc3r, below=20mm of loio.south west, anchor=north west] (sc3rsrc) {routed source-class\\normal images};
 \node[sc3r, right=of sc3rsrc] (sc3rnorm) {support-normalized\\residuals};
-\node[sc3r, right=of sc3rnorm] (sc3rthr) {source-validated\\threshold $\tau(\alpha)$};
-\node[outbox, right=of sc3rthr] (alarmout) {alarms below the floor:\\$\mathrm{FAR}\approx\alpha$, no target\\anomaly labels};
+\node[sc3r, right=of sc3rnorm] (sc3rthr) {$\mathcal R/\mathcal P/\mathcal C$ split\\simultaneous UCB};
+\node[outbox, right=of sc3rthr] (alarmout) {selected $\tau$ or zero\\no-alarm fallback};
 \draw[arr] (sc3rsrc) -- (sc3rnorm);
 \draw[arr] (sc3rnorm) -- (sc3rthr);
 \draw[arr] (sc3rthr) -- (alarmout);
@@ -59,8 +59,6 @@
 \draw[arr] (resid.south) -- node[note, right, pos=0.78, xshift=0.5mm]{$s(x)$ vs.\ $\mathcal{R}_{\mathrm{LOIO}}$} (pval.north);
 \draw[arr] (loio.south) -- node[note, left, pos=0.32, xshift=-0.5mm]{median/MAD} (sc3rnorm.north west);
 \draw[arr] ($(floor.south west)+(3mm,0)$) -- node[note, left, pos=0.3, xshift=-0.5mm]{$\alpha<\tfrac{1}{k+1}$} (sc3rthr.north);
-\draw[arr, dashed] ($(floor.south east)-(3mm,0)$) |- ($(alarmout.north)+(0,5mm)$)
-  node[note, pos=0.72, above]{$\alpha\ge\tfrac{1}{k+1}$: target-only LOIO (safe anchor)} -- (alarmout.north);
 
 % ---------------- lane frames ----------------
 \begin{scope}[on background layer]
@@ -74,7 +72,7 @@
 
 % ---------------- diagnostics strip ----------------
 \node[note, anchor=north west, yshift=-1.5mm] at (sc3rframe.south west)
-  {audit: exact discrete uniformity (Q--Q) $\cdot$ FAR at fixed $\alpha$ $\cdot$ risk--coverage $\cdot$ ECE secondary (prevalence-sensitive)};
+  {audit: discrete-uniformity Q--Q $\cdot$ FAR at fixed $\alpha$ $\cdot$ risk--coverage $\cdot$ ECE secondary (prevalence-sensitive)};
 
 \end{tikzpicture}
 \end{document}

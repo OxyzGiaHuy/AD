@@ -1,0 +1,16 @@
+# Documentation authority
+
+Authoritative for the Neurocomputing submission:
+
+1. `neurocomputing_submission_plan.md` — active roadmap and progress log.
+2. `neurocomputing_claim_audit.md` — claim/evidence ledger.
+3. `sc3r_formal_specification.md` — formal method and guarantee boundary.
+4. `gpu_experiment_runbook.md` — frozen server protocol and commands.
+5. `submission_blockers.md` — author, evidence, release, and editorial gates.
+6. `neurocomputing_author_guide_audit.md` — current journal-format audit.
+7. `mock_reviews_cpu_checkpoint.md` — editor/statistics/industrial-AD review gates.
+
+Other files in this directory are historical research notes. They may preserve
+failed ideas, old numerical results, or wording later judged too strong. They
+are useful for provenance but are not submission evidence unless an
+authoritative document explicitly promotes them.

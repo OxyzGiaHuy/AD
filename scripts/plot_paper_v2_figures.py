@@ -63,6 +63,50 @@ METHOD_LABELS = {
     "conformal_prob_weighted": "Weighted conformal",
 }
 
+# Committed fallback for the four Q--Q panels.  These are the exact plotted
+# coordinates recovered from the previous vector figure; they keep the paper
+# figure reproducible when the large experiment-output directory is absent.
+UNIFORMITY_QQ_FALLBACK = {
+    ("VisA", 4): {
+        "blur": [0.155302, 0.315017, 0.540598, 0.781179, 1.0],
+        "brightness_contrast": [0.154715, 0.320017, 0.546491, 0.800898, 1.0],
+        "gaussian_noise": [0.142063, 0.303232, 0.561491, 0.821484, 1.0],
+        "jpeg": [0.157368, 0.324430, 0.562077, 0.802939, 1.0],
+    },
+    ("VisA", 8): {
+        "blur": [0.109130, 0.212954, 0.360297, 0.464427, 0.560011, 0.657662, 0.789419, 0.899135, 1.0],
+        "brightness_contrast": [0.110303, 0.214714, 0.367057, 0.482360, 0.579705, 0.681182, 0.802658, 0.907655, 1.0],
+        "gaussian_noise": [0.103237, 0.210581, 0.376776, 0.486187, 0.612076, 0.717660, 0.841764, 0.925308, 1.0],
+        "jpeg": [0.122956, 0.236193, 0.390602, 0.498253, 0.609117, 0.709115, 0.832657, 0.922961, 1.0],
+    },
+    ("MVTec", 4): {
+        "blur": [0.306217, 0.493941, 0.693809, 0.844417, 1.0],
+        "brightness_contrast": [0.313359, 0.493941, 0.699497, 0.852249, 1.0],
+        "gaussian_noise": [0.463253, 0.628836, 0.834417, 0.943624, 1.0],
+        "jpeg": [0.409709, 0.589577, 0.774445, 0.909365, 1.0],
+    },
+    ("MVTec", 8): {
+        "blur": [0.194153, 0.325476, 0.420423, 0.543200, 0.615290, 0.740899, 0.853677, 0.925767, 1.0],
+        "brightness_contrast": [0.188439, 0.326191, 0.418994, 0.536772, 0.627407, 0.736614, 0.854391, 0.926481, 1.0],
+        "gaussian_noise": [0.355476, 0.521772, 0.617433, 0.741614, 0.806587, 0.894365, 0.955052, 0.980026, 1.0],
+        "jpeg": [0.306931, 0.443968, 0.545343, 0.673809, 0.736614, 0.827275, 0.910793, 0.955766, 1.0],
+    },
+}
+
+# Exact values recovered from the committed vector figure.  The source CSVs
+# also contain an AURC summary row; it is intentionally excluded here because
+# AURC is a scalar summary, not an additional coverage operating point.
+RISK_COVERAGE_FALLBACK = {
+    "MVTec (full 15)": {
+        "coverage": [1.0, 0.95, 0.9, 0.8, 0.7],
+        "selective_ece": [0.06846, 0.05569, 0.04975, 0.03045, 0.02273],
+    },
+    "VisA (full 12)": {
+        "coverage": [1.0, 0.95, 0.9, 0.8, 0.7],
+        "selective_ece": [0.07656, 0.07391, 0.06764, 0.07515, 0.06594],
+    },
+}
+
 plt.rcParams.update({
     "font.size": 8,
     "axes.titlesize": 8,
@@ -83,15 +127,36 @@ plt.rcParams.update({
 def fig_uniformity_cdf() -> None:
     frames = []
     for tag, name in [("visa_full", "VisA"), ("mvtec_full15", "MVTec")]:
-        df = pd.read_csv(TABLES / f"pvalue_uniformity_{tag}_qq.csv")
-        df["dataset_name"] = name
-        frames.append(df)
+        source = TABLES / f"pvalue_uniformity_{tag}_qq.csv"
+        if source.exists():
+            df = pd.read_csv(source)
+            df["dataset_name"] = name
+            frames.append(df)
+        else:
+            rows = []
+            for (dataset_name, k), series in UNIFORMITY_QQ_FALLBACK.items():
+                if dataset_name != name:
+                    continue
+                nominal = np.arange(1, k + 2) / (k + 1)
+                for corruption, empirical in series.items():
+                    rows.extend({
+                        "dataset_name": name,
+                        "k_shot": k,
+                        "corruption": corruption,
+                        "pvalue_col": "image_p_loio",
+                        "nominal_cdf": x,
+                        "empirical_cdf": y,
+                    } for x, y in zip(nominal, empirical))
+            frames.append(pd.DataFrame(rows))
     qq = pd.concat(frames, ignore_index=True)
     qq = qq[qq.pvalue_col == "image_p_loio"]
 
-    fig, axes = plt.subplots(2, 2, figsize=(5.6, 5.2), sharex=True, sharey=True, constrained_layout=True)
+    # Put each zoom back inside its parent panel, but reserve the data-free
+    # upper-left region for it.  The empirical curves remain fully visible.
+    fig, grid = plt.subplots(2, 2, figsize=(5.6, 4.7), constrained_layout=True)
+    axes = grid.ravel()
     panels = [("VisA", 4), ("VisA", 8), ("MVTec", 4), ("MVTec", 8)]
-    for ax, (name, k) in zip(axes.ravel(), panels):
+    for ax, (name, k) in zip(axes, panels):
         sub = qq[(qq.dataset_name == name) & (qq.k_shot == k)]
         ax.plot([0, 1], [0, 1], color="#999999", linestyle="--", linewidth=0.8, zorder=1)
         for corruption, g in sub.groupby("corruption"):
@@ -107,6 +172,7 @@ def fig_uniformity_cdf() -> None:
         ax.grid(True)
         ax.set_xlim(0, 1)
         ax.set_ylim(0, 1)
+        axins = ax.inset_axes([0.55, 0.08, 0.40, 0.28])
         # Tight zoom inset around the first attainable grid point, where the
         # corruption curves overlap most: y-limits hug the interpolated curve
         # values inside the window so the four series separate visually.
@@ -121,7 +187,6 @@ def fig_uniformity_cdf() -> None:
         else:
             x0, x1 = p1 - 0.02, p1 + 0.05
             y_margin = 0.008
-        axins = ax.inset_axes([0.52, 0.07, 0.44, 0.42])
         axins.plot([0, 1], [0, 1], color="#999999", linestyle="--", linewidth=0.7, zorder=1)
         y_vals = []
         for corruption, g in sub.groupby("corruption"):
@@ -135,44 +200,54 @@ def fig_uniformity_cdf() -> None:
         lo, hi = min(y_vals) - y_margin, max(y_vals) + y_margin
         axins.set_xlim(x0, x1)
         axins.set_ylim(lo, hi)
-        axins.set_xticks([])
-        axins.set_yticks([])
+        axins.tick_params(labelsize=6, length=2, pad=1)
+        axins.grid(True)
+        axins.set_facecolor("white")
         for spine in axins.spines.values():
             spine.set_visible(True)
             spine.set_color("#555555")
             spine.set_linewidth(0.7)
-        ax.indicate_inset_zoom(axins, edgecolor="#555555", linewidth=0.7)
-    axes[1, 0].set_xlabel("nominal CDF $j/(k{+}1)$")
-    axes[1, 1].set_xlabel("nominal CDF $j/(k{+}1)$")
-    axes[0, 0].set_ylabel("empirical CDF of normal $p$")
-    axes[1, 0].set_ylabel("empirical CDF of normal $p$")
-    handles, labels = axes[0, 0].get_legend_handles_labels()
-    axes[0, 0].legend(handles, labels, loc="upper left", frameon=False)
-    fig.savefig(OUT / "fig_uniformity_cdf.pdf")
+    axes[2].set_xlabel("nominal CDF $j/(k{+}1)$")
+    axes[3].set_xlabel("nominal CDF $j/(k{+}1)$")
+    axes[0].set_ylabel("empirical CDF of normal $p$")
+    axes[2].set_ylabel("empirical CDF of normal $p$")
+    handles, labels = axes[0].get_legend_handles_labels()
+    axes[0].legend(handles, labels, loc="upper left", frameon=False)
+    fig.savefig(OUT / "fig_uniformity_cdf.pdf", bbox_inches="tight")
     plt.close(fig)
 
 
 def fig_risk_coverage() -> None:
-    fig, axes = plt.subplots(1, 2, figsize=(5.6, 2.4), sharey=False, constrained_layout=True)
-    for ax, (tag, name, color) in zip(
-        axes,
-        [("mvtec_full15_conformal_selective_reliability.csv", "MVTec (full 15)", OKABE_ITO["vermillion"]),
-         ("visa_full_conformal_selective_reliability.csv", "VisA (full 12)", OKABE_ITO["blue"])],
-    ):
-        df = pd.read_csv(TABLES / tag)
-        sub = df[(df.group == "all") & (df.prob_col == "conformal_prob_loio") & (df.risk_score == "entropy")]
-        sub = sub.sort_values("coverage")
-        ax.plot(sub.coverage, sub.selective_ece, marker="o", markersize=3.5, color=color)
+    fig, ax = plt.subplots(figsize=(5.6, 2.7), constrained_layout=True)
+    series = [
+        ("mvtec_full15_conformal_selective_reliability.csv", "MVTec (full 15)", OKABE_ITO["vermillion"], "o"),
+        ("visa_full_conformal_selective_reliability.csv", "VisA (full 12)", OKABE_ITO["blue"], "s"),
+    ]
+    for tag, name, color, marker in series:
+        source = TABLES / tag
+        if source.exists():
+            df = pd.read_csv(source)
+            sub = df[(df.group == "all") & (df.prob_col == "conformal_prob_loio")
+                     & (df.risk_score == "entropy")].copy()
+            sub["coverage"] = pd.to_numeric(sub.coverage, errors="coerce")
+            sub = sub.dropna(subset=["coverage", "selective_ece"])
+            sub = sub[sub.coverage.between(0.0, 1.0)].sort_values("coverage", ascending=False)
+        else:
+            sub = pd.DataFrame(RISK_COVERAGE_FALLBACK[name])
+        ax.plot(sub.coverage, sub.selective_ece, marker=marker, markersize=4.0,
+                color=color, label=name)
         for _, r in sub.iterrows():
             if r.coverage in (1.0, 0.8, 0.7):
                 ax.annotate(f"{r.selective_ece:.3f}", (r.coverage, r.selective_ece),
                             textcoords="offset points", xytext=(0, 5), ha="center", fontsize=6.5, color="#444444")
-        ax.set_title(name)
-        ax.set_xlabel("coverage (fraction not abstained)")
-        ax.grid(True)
-        ax.invert_xaxis()
-    axes[0].set_ylabel("selective ECE (LOIO)")
-    fig.savefig(OUT / "fig_risk_coverage.pdf")
+    ax.set_xlabel("coverage (fraction not abstained)")
+    ax.set_ylabel("selective ECE (LOIO)")
+    ax.set_xticks([1.0, 0.95, 0.9, 0.8, 0.7])
+    ax.set_xlim(1.015, 0.685)
+    ax.grid(True)
+    ax.legend(loc="upper center", ncol=2, frameon=False,
+              bbox_to_anchor=(0.5, 1.13))
+    fig.savefig(OUT / "fig_risk_coverage.pdf", bbox_inches="tight")
     plt.close(fig)
 
 

@@ -31,6 +31,21 @@ if str(ROOT) not in sys.path:
 from src.evaluation.metrics import ece_binary
 
 
+def holm_adjust(p_values: np.ndarray) -> np.ndarray:
+    """Family-wise Holm adjustment, preserving NaNs and input order."""
+
+    p = np.asarray(p_values, dtype=np.float64)
+    adjusted = np.full(p.shape, np.nan, dtype=np.float64)
+    finite_indices = np.flatnonzero(np.isfinite(p))
+    if len(finite_indices) == 0:
+        return adjusted
+    order = finite_indices[np.argsort(p[finite_indices], kind="stable")]
+    scaled = np.asarray([(len(order) - rank) * p[index] for rank, index in enumerate(order)], dtype=np.float64)
+    scaled = np.minimum(1.0, np.maximum.accumulate(scaled))
+    adjusted[order] = scaled
+    return adjusted
+
+
 def adaptive_ece(labels: np.ndarray, probs: np.ndarray, bins: int = 15) -> float:
     labels = labels.astype(float)
     probs = np.clip(probs.astype(float), 0.0, 1.0)
@@ -129,6 +144,8 @@ def main() -> int:
         [paired_tests(cells, baseline, "conformal_prob_loio", "ece") for baseline in [*args.platt_methods, *extra_methods]],
         ignore_index=True,
     )
+    tests["holm_p"] = holm_adjust(tests["wilcoxon_p"].to_numpy(dtype=np.float64))
+    tests["holm_reject_0p05"] = tests["holm_p"] <= 0.05
 
     out = Path(args.out_dir)
     out.mkdir(parents=True, exist_ok=True)
@@ -140,8 +157,10 @@ def main() -> int:
         "",
         "ECE uses 15 equal-width bins (disclosed); conformal cells also report equal-mass adaptive ECE.",
         "",
-        "| dataset | k | corruption | baseline | base mean+/-std | LOIO mean+/-std | delta | Wilcoxon p | LOIO better |",
-        "|---|---:|---|---|---|---|---:|---:|---:|",
+        "Holm adjustment controls family-wise error across every comparison in this output file.",
+        "",
+        "| dataset | k | corruption | baseline | base mean+/-std | LOIO mean+/-std | delta | raw p | Holm p | LOIO better |",
+        "|---|---:|---|---|---|---|---:|---:|---:|---:|",
     ]
     for _, r in tests.iterrows():
         base = r["baseline"]
@@ -149,7 +168,7 @@ def main() -> int:
             f"| {r.dataset} | {r.k_shot} | {r.corruption} | {base} | "
             f"{r[f'{base}_mean']:.4f}+/-{r[f'{base}_std']:.4f} | "
             f"{r['conformal_prob_loio_mean']:.4f}+/-{r['conformal_prob_loio_std']:.4f} | "
-            f"{r.delta_mean:+.4f} | {r.wilcoxon_p:.2e} | {r.candidate_better_frac:.2f} |"
+            f"{r.delta_mean:+.4f} | {r.wilcoxon_p:.2e} | {r.holm_p:.2e} | {r.candidate_better_frac:.2f} |"
         )
     adaptive = conformal_cells.groupby("k_shot")[["ece", "adaptive_ece"]].mean()
     lines += ["", "## LOIO equal-width vs adaptive (equal-mass) ECE", "", "| k | equal-width ECE | adaptive ECE |", "|---:|---:|---:|"]

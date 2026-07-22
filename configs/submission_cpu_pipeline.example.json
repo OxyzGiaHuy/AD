@@ -1,0 +1,64 @@
+{
+  "run_tag": "REPLACE_WITH_IMMUTABLE_RUN_TAG",
+  "out_dir": "../outputs/submission_cpu",
+  "grid": {
+    "k_shots": [1, 2, 4, 8],
+    "seeds": [0, 1, 2, 3, 4],
+    "corruptions": ["clean", "gaussian_noise", "blur", "brightness_contrast", "jpeg"]
+  },
+  "alphas": [0.05, 0.10, 0.20],
+  "delta": 0.05,
+  "max_candidates": 20,
+  "bootstrap_iterations": 20000,
+  "bootstrap_seed": 0,
+  "family_alpha": 0.05,
+  "artifact_sets": {
+    "mvtec": {
+      "views": "../outputs/paper_tables/sc3r_views_mvtec_RUN_TAG.csv",
+      "support_stats": "../outputs/paper_tables/sc3r_support_mvtec_RUN_TAG.csv",
+      "support_manifest": "../outputs/manifests/RUN_TAG/support_mvtec.csv",
+      "support_residuals": "../outputs/paper_tables/sc3r_loio_mvtec_RUN_TAG.csv"
+    },
+    "visa": {
+      "views": "../outputs/paper_tables/sc3r_views_visa_RUN_TAG.csv",
+      "support_stats": "../outputs/paper_tables/sc3r_support_visa_RUN_TAG.csv",
+      "support_manifest": "../outputs/manifests/RUN_TAG/support_visa.csv",
+      "support_residuals": "../outputs/paper_tables/sc3r_loio_visa_RUN_TAG.csv"
+    }
+  },
+  "jobs": [
+    {
+      "id": "mvtec_within",
+      "artifact_sets": ["mvtec"],
+      "target_dataset": "mvtec",
+      "source_modes": ["matched_condition", "clean_source", "condition_agnostic", "mismatched_condition"]
+    },
+    {
+      "id": "visa_within",
+      "artifact_sets": ["visa"],
+      "target_dataset": "visa",
+      "source_modes": ["matched_condition", "clean_source", "condition_agnostic", "mismatched_condition"]
+    },
+    {
+      "id": "mvtec_to_visa",
+      "artifact_sets": ["mvtec", "visa"],
+      "source_dataset": "mvtec",
+      "target_dataset": "visa",
+      "source_modes": ["matched_condition", "clean_source", "condition_agnostic", "mismatched_condition"]
+    }
+  ],
+  "analyses": [
+    {"id": "primary", "normalization": "median_mad", "confirmatory": true},
+    {"id": "norm_none", "normalization": "none"},
+    {"id": "norm_iqr", "normalization": "median_iqr"},
+    {"id": "classes_6", "normalization": "median_mad", "source_class_limit": 6},
+    {"id": "classes_9", "normalization": "median_mad", "source_class_limit": 9},
+    {"id": "classes_12", "normalization": "median_mad", "source_class_limit": 12},
+    {"id": "images_20", "normalization": "median_mad", "source_images_per_class": 20},
+    {"id": "images_60", "normalization": "median_mad", "source_images_per_class": 60},
+    {"id": "candidates_5", "normalization": "median_mad", "max_candidates": 5},
+    {"id": "candidates_10", "normalization": "median_mad", "max_candidates": 10},
+    {"id": "allocation_40_30_30", "normalization": "median_mad", "partition_allocation": [0.4, 0.3, 0.3]},
+    {"id": "allocation_60_20_20", "normalization": "median_mad", "partition_allocation": [0.6, 0.2, 0.2]}
+  ]
+}

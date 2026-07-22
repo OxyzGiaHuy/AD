@@ -145,6 +145,7 @@ def loio_calibration(support_features: np.ndarray, pca_components: int, rho: flo
     patch_covariates: list[np.ndarray] = []
     image_scores: list[float] = []
     image_covariates: list[np.ndarray] = []
+    mode = "loio_conformal" if n_images >= 2 else "patch_split_conformal"
     if n_images >= 2:
         for index in range(n_images):
             train = np.delete(support_features, index, axis=0)
@@ -174,7 +175,7 @@ def loio_calibration(support_features: np.ndarray, pca_components: int, rho: flo
         np.concatenate(patch_covariates).astype(np.float32),
         np.asarray(image_scores, dtype=np.float32),
         np.asarray(image_covariates, dtype=np.float32),
-        "loio_conformal",
+        mode,
     )
 
 

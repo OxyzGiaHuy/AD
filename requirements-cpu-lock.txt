@@ -1,0 +1,7 @@
+# CPU analysis/test environment verified on 2026-07-22.
+# The GPU server must create a separate CUDA-aware lock after feature export.
+numpy==2.5.1
+pandas==3.0.3
+scikit-learn==1.9.0
+scipy==1.18.0
+pytest==9.1.1

@@ -1,4 +1,4 @@
-\begin{table}[t]
+\begin{table*}[pos=t]
 \centering
 \caption{Clean image-level performance and storage (means over classes and 5 seeds; official rows: 3 seeds). Best accuracy within each dataset/$k$ block is bold. Official AnomalyDINO rows are reproductions with the released code under its own protocol (ECE/storage not audited, left blank). WinCLIP rows are the numbers reported in~\cite{winclip2023}: no official implementation is released, and our audit of the leading community reimplementation falls about 20 AUROC points short of these numbers (see text), so WinCLIP is cited rather than audited. Controlled-NN ECE is diagnostic, not competitive (degenerate constant probability; see text), and CRR ECE at $k{=}1$ uses the vector-Platt view since LOIO requires $k\ge2$.}
 \label{tab:clean-efficiency}
@@ -42,4 +42,4 @@ Dataset & $k$ & Method & AUROC $\uparrow$ & AP $\uparrow$ & ECE $\downarrow$ & M
 & & CRR / PCA128 & 0.897 & 0.905 & \textbf{0.170} & 0.566 \\
 \bottomrule
 \end{tabular}
-\end{table}
+\end{table*}

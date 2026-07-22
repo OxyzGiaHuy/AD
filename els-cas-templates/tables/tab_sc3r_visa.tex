@@ -1,6 +1,6 @@
-\begin{table}[t]
+\begin{table*}[pos=t]
 \centering
-\caption{SC3R replication on all 12 label-stratified VisA classes ($k{=}4$, seeds 0--2, matched-condition mode, pooled over five conditions). The source pool is either the other VisA classes (within-dataset) or all 15 MVTec classes (cross-dataset source archive). Both sub-floor levels carry hierarchical power-gain intervals excluding zero for every corruption; the cross-dataset archive is conservative, keeping false alarms well below nominal at reduced power. Bold marks $\mathrm{FAR}\le\alpha{+}0.02$ with nonzero power.}
+\caption{Historical SC3R replication on all 12 label-stratified VisA classes ($k{=}4$, seeds 0--2, matched-condition mode, pooled over five conditions). The source pool is either the other VisA classes or all 15 MVTec classes. Pointwise hierarchical power-gain intervals exclude zero in the reported sub-floor cells but are not simultaneous across corruptions. In the evaluated MVTec-to-VisA direction, observed false alarms are below nominal at reduced power. Bold marks $\mathrm{FAR}\le\alpha{+}0.02$ with nonzero power.}
 \label{tab:sc3r-visa}
 \footnotesize
 \setlength{\tabcolsep}{4pt}
@@ -8,14 +8,13 @@
 \toprule
 source pool & $\alpha$ & FAR & power & prec. & no-harm \\
 \midrule
-VisA (within) & 0.05 & \textbf{0.051} & \textbf{0.144} & 0.847 & 89\% \\
+\multirow{3}{*}{VisA (within)} & 0.05 & \textbf{0.051} & \textbf{0.144} & 0.847 & 89\% \\
  & 0.10 & \textbf{0.095} & \textbf{0.351} & 0.843 & 84\% \\
  & 0.20 & \textbf{0.192} & \textbf{0.637} & 0.810 & 78\% \\
-\addlinespace[2pt]
-MVTec (cross-dataset) & 0.05 & \textbf{0.013} & \textbf{0.091} & 0.936 & 97\% \\
+\midrule
+\multirow{3}{*}{MVTec (cross-dataset)} & 0.05 & \textbf{0.013} & \textbf{0.091} & 0.936 & 97\% \\
  & 0.10 & \textbf{0.040} & \textbf{0.201} & 0.881 & 93\% \\
  & 0.20 & \textbf{0.098} & \textbf{0.415} & 0.852 & 93\% \\
-\addlinespace[2pt]
 \bottomrule
 \end{tabular}
-\end{table}
+\end{table*}

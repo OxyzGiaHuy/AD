@@ -101,7 +101,7 @@ def pro_auc_score(masks: list[np.ndarray], scores: list[np.ndarray], max_fpr: fl
     if x[-1] < max_fpr:
         x = np.concatenate([x, [max_fpr]])
         y = np.concatenate([y, [y[-1]]])
-    return float(np.trapz(y, x) / max_fpr)
+    return float(np.trapezoid(y, x) / max_fpr)
 
 
 def summarize_pixel(masks: list[np.ndarray], scores: list[np.ndarray]) -> dict[str, float]:

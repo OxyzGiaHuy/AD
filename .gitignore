@@ -4,13 +4,13 @@ __pycache__/
 .ruff_cache/
 .mypy_cache/
 .venv/
-outputs/
-data/
+/outputs/
+/data/
 
 # Generated experiment artifacts / data
-tmp/
-logs/
-outputs*/
+/tmp/
+/logs/
+/outputs*/
 *.npz
 *.parquet
 

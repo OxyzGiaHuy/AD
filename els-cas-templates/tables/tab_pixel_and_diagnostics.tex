@@ -1,4 +1,4 @@
-\begin{table}[t]
+\begin{table*}[pos=t]
 \centering
 \caption{Pixel-level localization and adversarial-fragility diagnostics on MVTec (means over classes and 5 seeds). Top: the low-storage subspace detector matches the controlled memory bank on pixel AUROC and AU-PRO. Bottom: a label-aware PCA-residual FGSM surrogate collapses image AUROC far below chance at small $\varepsilon$ (score inversion), and the drop is non-monotonic in $\varepsilon$---evidence of objective sensitivity that we report as a diagnostic, not as a robustness claim.}
 \label{tab:pixel-diagnostics}
@@ -9,20 +9,23 @@
 \multicolumn{4}{l}{\emph{Pixel localization}} \\
 $k$ & Method & pixel AUROC & AU-PRO \\
 \midrule
-1 & CRR / CalibSubspace & \textbf{0.944} & 0.820 \\
+\multirow{2}{*}{1} & CRR / CalibSubspace & \textbf{0.944} & 0.820 \\
   & Controlled DINOv2 NN & 0.940 & \textbf{0.845} \\
-4 & CRR / CalibSubspace & \textbf{0.957} & 0.862 \\
+\cmidrule(lr){1-4}
+\multirow{2}{*}{4} & CRR / CalibSubspace & \textbf{0.957} & 0.862 \\
   & Controlled DINOv2 NN & 0.951 & 0.862 \\
-8 & CRR / CalibSubspace & \textbf{0.960} & \textbf{0.876} \\
+\cmidrule(lr){1-4}
+\multirow{2}{*}{8} & CRR / CalibSubspace & \textbf{0.960} & \textbf{0.876} \\
   & Controlled DINOv2 NN & 0.952 & 0.863 \\
 \midrule
 \multicolumn{4}{l}{\emph{FGSM fragility diagnostic (image AUROC)}} \\
 $\varepsilon$ & $k$ & clean $\to$ FGSM & rel.\ drop \\
 \midrule
-$2/255$ & 4 & 0.937 $\to$ 0.158 & 83\% \\
+\multirow{2}{*}{$2/255$} & 4 & 0.937 $\to$ 0.158 & 83\% \\
         & 8 & 0.945 $\to$ 0.175 & 82\% \\
-$8/255$ & 4 & 0.937 $\to$ 0.446 & 52\% \\
+\cmidrule(lr){1-4}
+\multirow{2}{*}{$8/255$} & 4 & 0.937 $\to$ 0.446 & 52\% \\
         & 8 & 0.945 $\to$ 0.446 & 53\% \\
 \bottomrule
 \end{tabular}
-\end{table}
+\end{table*}
