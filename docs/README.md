@@ -9,6 +9,8 @@ Authoritative for the Neurocomputing submission:
 5. `submission_blockers.md` — author, evidence, release, and editorial gates.
 6. `neurocomputing_author_guide_audit.md` — current journal-format audit.
 7. `mock_reviews_cpu_checkpoint.md` — editor/statistics/industrial-AD review gates.
+8. `gpu_ai_handoff_prompt.md` — self-contained prompt for the AI operating the
+   GPU server; it delegates execution but does not supersede the frozen runbook.
 
 Other files in this directory are historical research notes. They may preserve
 failed ideas, old numerical results, or wording later judged too strong. They
