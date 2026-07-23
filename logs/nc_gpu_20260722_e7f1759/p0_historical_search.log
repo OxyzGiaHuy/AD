@@ -1,0 +1,9 @@
+run_tag=nc_gpu_20260722_e7f1759
+git_commit=e7f175990b02aa3cbdb7c92250d57c0272abef9d
+start_utc=2026-07-22T17:16:38Z
+command=find /home/crl/AD /scratch /data /mnt -xdev -type f \( -iname \*sc3r\*.csv -o -iname \*source\*validated\*.csv -o -iname \*pvalue\*.csv -o -iname \*p_value\*.csv -o -iname \*uniformity\*.csv -o -iname \*selective\*.csv -o -iname \*abstention\*.csv -o -iname \*calibrat\*.csv -o -iname \*bootstrap\*.csv -o -iname \*support\*residual\*.csv \) -printf %p\\t%s\\t%TY-%Tm-%TdT%TH:%TM:%TS\\n 
+find: ‘/home/crl/AD’: No such file or directory
+find: ‘/scratch’: No such file or directory
+find: ‘/data’: No such file or directory
+end_utc=2026-07-22T17:16:38Z
+exit_code=1

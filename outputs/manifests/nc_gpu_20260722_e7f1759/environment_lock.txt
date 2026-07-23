@@ -1,0 +1,30 @@
+RUN_TAG=nc_gpu_20260722_e7f1759
+GIT_COMMIT=e7f175990b02aa3cbdb7c92250d57c0272abef9d
+PYTHON_EXECUTABLE=/home/crl/miniconda3/envs/ad/bin/python
+PYTHON=3.10.20
+PYTORCH=2.12.1+cu130
+TORCHVISION=0.27.1+cu130
+PYTORCH_CUDA=13.0
+CUDNN=92000
+NVIDIA_DRIVER=580.126.09
+NVIDIA_SMI_CUDA=13.0
+GPU_0=NVIDIA GeForce RTX 5090
+GPU_0_MEMORY_MIB=32607
+GPU_0_COMPUTE_CAPABILITY=12.0
+GPU_DEVICE=cuda:0
+DINO_MODEL=dinov2_vits14
+DINO_IMAGE_SIZE=518
+DINO_SOURCE_PATH=/home/crl/.cache/torch/hub/facebookresearch_dinov2_main
+DINO_SOURCE_GIT=UNAVAILABLE_TORCH_HUB_SNAPSHOT_WITHOUT_GIT_METADATA
+DINO_SOURCE_TREE_SHA256=fd85b105a21d0b9fce4377f915a97a330661893f5dbb97846373bbe99520dd65
+DINO_WEIGHT_PATH=/home/crl/.cache/torch/hub/checkpoints/dinov2_vits14_pretrain.pth
+DINO_WEIGHT_SHA256=b938bf1bc15cd2ec0feacfe3a1bb553fe8ea9ca46a7e1d8d00217f29aef60cd9
+CPU_TESTS=PASS_98
+GPU_SMOKE=PASS_SYNTHETIC_NOT_PAPER_EVIDENCE
+PIP_CHECK=FAIL_UNRELATED_generate_parameter_library_py_missing_typeguard
+XFORMERS=NOT_AVAILABLE_OPTIONAL_STANDARD_ATTENTION_PATH_USED
+
+The environment also contains an unrelated stale editable freeze entry for
+`/home/crl/AD/third_party/SubspaceAD`. Frozen SC3R code imports `src` from the
+current repository, and the full CPU suite plus DINOv2 GPU smoke passed. This
+environment inconsistency remains recorded and must not be hidden.

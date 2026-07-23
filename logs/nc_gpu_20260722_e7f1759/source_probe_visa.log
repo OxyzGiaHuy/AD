@@ -1,0 +1,21 @@
+run_tag=nc_gpu_20260722_e7f1759
+git_commit=e7f175990b02aa3cbdb7c92250d57c0272abef9d
+start_utc=2026-07-22T16:21:06Z
+command=curl -I -L --max-redirs 5 https://amazon-visual-anomaly.s3.us-west-2.amazonaws.com/VisA_20220922.tar 
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0 1840M    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0 1840M    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+HTTP/1.1 200 OK
+x-amz-id-2: R8JGHDlgD4PhI742IzMWLYqrjN1DPqHWA+IQJ9cgQfA3rZyzYyh5FmVR6DHXuDCP/WOljjDxwdg=
+x-amz-request-id: TMGA27RD0DW8JWZA
+Date: Wed, 22 Jul 2026 16:18:26 GMT
+Last-Modified: Thu, 22 Sep 2022 19:23:39 GMT
+ETag: "05c830591a1172938cb714895c9e0cfb-113"
+x-amz-storage-class: INTELLIGENT_TIERING
+Accept-Ranges: bytes
+Content-Type: application/x-tar
+Content-Length: 1929840640
+Server: AmazonS3
+
+end_utc=2026-07-22T16:21:06Z
+exit_code=0

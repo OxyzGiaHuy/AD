@@ -1,0 +1,21 @@
+{
+  "git_commit": "e7f175990b02aa3cbdb7c92250d57c0272abef9d",
+  "missing_search_roots": [
+    "/home/crl/AD",
+    "/scratch",
+    "/data"
+  ],
+  "note": "No historical CSV matching the documented SC3R/source-validated/p-value/selective/calibration/bootstrap patterns was found. Historical manuscript numbers remain lineage-only; P1+ regeneration is required.",
+  "promotion_to_new_evidence": [],
+  "recovered_files": [],
+  "run_tag": "nc_gpu_20260722_e7f1759",
+  "searched": [
+    "/home/crl/MoME/other/AD/outputs",
+    "/home/crl/MoME",
+    "/home/crl/AD",
+    "/scratch",
+    "/data",
+    "/mnt"
+  ],
+  "status": "COMPLETE_NO_RECOVERED_ARTIFACTS"
+}

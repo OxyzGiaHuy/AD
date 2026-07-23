@@ -1,0 +1,7 @@
+run_tag=nc_gpu_20260722_e7f1759
+git_commit=e7f175990b02aa3cbdb7c92250d57c0272abef9d
+start_utc=2026-07-22T16:56:35Z
+command=/home/crl/miniconda3/envs/ad/bin/python tmp/preflight/parallel_http_download.py --url https://huggingface.co/datasets/meksamiao/mpdd/resolve/7b6f213b2203f696b7018e8d94033fce6aacb30b/MPDD.zip\?download=true --output tmp/ad-neurocomputing/downloads/MPDD.zip --size 1825041283 --workers 8 
+output=tmp/ad-neurocomputing/downloads/MPDD.zip bytes=1825041283
+end_utc=2026-07-22T16:56:36Z
+exit_code=0

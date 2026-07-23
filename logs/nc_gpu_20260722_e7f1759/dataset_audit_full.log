@@ -1,0 +1,10 @@
+run_tag=nc_gpu_20260722_e7f1759
+git_commit=e7f175990b02aa3cbdb7c92250d57c0272abef9d
+start_utc=2026-07-22T17:03:04Z
+command=/home/crl/miniconda3/envs/ad/bin/python tmp/preflight/dataset_audit_full.py 
+Traceback (most recent call last):
+  File "/home/crl/MoME/other/AD/tmp/preflight/dataset_audit_full.py", line 7, in <module>
+    from src.data import evaluation_records, few_shot_support, load_records
+ModuleNotFoundError: No module named 'src'
+end_utc=2026-07-22T17:03:04Z
+exit_code=1

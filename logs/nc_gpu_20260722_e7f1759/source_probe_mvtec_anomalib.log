@@ -1,0 +1,24 @@
+run_tag=nc_gpu_20260722_e7f1759
+git_commit=e7f175990b02aa3cbdb7c92250d57c0272abef9d
+start_utc=2026-07-22T16:22:26Z
+command=curl -I -L --max-redirs 5 https://www.mydrive.ch/shares/38536/3830184030e49fe74747669442f0f283/download/420938113-1629960298/mvtec_anomaly_detection.tar.xz 
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+HTTP/1.1 404
+Server: nginx/1.18.0
+Date: Wed, 22 Jul 2026 16:19:45 GMT
+Content-Type: text/html; charset=utf-8
+Connection: keep-alive
+Set-Cookie: _mydrive_session=0j4egm9sh08iko9hh30eebqva0; path=/; domain=mydrive.ch; secure
+Expires: Thu, 19 Nov 1981 08:52:00 GMT
+Cache-Control: private
+Pragma: cache
+Set-Cookie: language=de; expires=Sat, 19-Jul-2036 16:19:45 GMT; Max-Age=315360000; path=/; domain=mydrive.ch; secure
+X-Frame-Options: SAMEORIGIN
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+X-Content-Type-Options: nosniff
+Content-Security-Policy: default-src 'self' mydrive.ch *.mydrive.ch; img-src 'self' mydrive.ch *.mydrive.ch data: blob: tile.openstreetmap.org; script-src 'self' mydrive.ch *.mydrive.ch 'unsafe-inline' 'unsafe-eval' youtube.com www.youtube.com challenges.cloudflare.com; style-src 'self' mydrive.ch *.mydrive.ch 'unsafe-inline' 'unsafe-eval'; frame-src 'self' mydrive.ch *.mydrive.ch youtube.com www.youtube.com blob: challenges.cloudflare.com; object-src 'none';
+
+end_utc=2026-07-22T16:22:27Z
+exit_code=0

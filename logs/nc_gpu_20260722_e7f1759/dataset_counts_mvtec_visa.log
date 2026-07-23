@@ -1,0 +1,89 @@
+run_tag=nc_gpu_20260722_e7f1759
+git_commit=e7f175990b02aa3cbdb7c92250d57c0272abef9d
+start_utc=2026-07-22T16:40:08Z
+command=/home/crl/miniconda3/envs/ad/bin/python -c from\ collections\ import\ Counter\;\ from\ scripts.generate_benchmark_grid\ import\ MVTEC_CLASSES\,VISA_CLASSES\;\ from\ src.data.datasets\ import\ load_records\;\ \[\(print\(dataset\,len\(rows\)\)\,\[print\(key\,value\)\ for\ key\,value\ in\ sorted\(Counter\(\(r.category\,r.split\,r.label\,bool\(r.mask_path\)\)\ for\ r\ in\ rows\).items\(\)\)\]\)\ for\ dataset\,classes\ in\ \(\(\'mvtec\'\,MVTEC_CLASSES\)\,\(\'visa\'\,VISA_CLASSES\)\)\ for\ rows\ in\ \[load_records\(dataset\,f\'data/\{dataset\}\'\,classes\)\]\] 
+mvtec 5354
+('bottle', 'test', 0, False) 20
+('bottle', 'test', 1, True) 63
+('bottle', 'train', 0, False) 209
+('cable', 'test', 0, False) 58
+('cable', 'test', 1, True) 92
+('cable', 'train', 0, False) 224
+('capsule', 'test', 0, False) 23
+('capsule', 'test', 1, True) 109
+('capsule', 'train', 0, False) 219
+('carpet', 'test', 0, False) 28
+('carpet', 'test', 1, True) 89
+('carpet', 'train', 0, False) 280
+('grid', 'test', 0, False) 21
+('grid', 'test', 1, True) 57
+('grid', 'train', 0, False) 264
+('hazelnut', 'test', 0, False) 40
+('hazelnut', 'test', 1, True) 70
+('hazelnut', 'train', 0, False) 391
+('leather', 'test', 0, False) 32
+('leather', 'test', 1, True) 92
+('leather', 'train', 0, False) 245
+('metal_nut', 'test', 0, False) 22
+('metal_nut', 'test', 1, True) 93
+('metal_nut', 'train', 0, False) 220
+('pill', 'test', 0, False) 26
+('pill', 'test', 1, True) 141
+('pill', 'train', 0, False) 267
+('screw', 'test', 0, False) 41
+('screw', 'test', 1, True) 119
+('screw', 'train', 0, False) 320
+('tile', 'test', 0, False) 33
+('tile', 'test', 1, True) 84
+('tile', 'train', 0, False) 230
+('toothbrush', 'test', 0, False) 12
+('toothbrush', 'test', 1, True) 30
+('toothbrush', 'train', 0, False) 60
+('transistor', 'test', 0, False) 60
+('transistor', 'test', 1, True) 40
+('transistor', 'train', 0, False) 213
+('wood', 'test', 0, False) 19
+('wood', 'test', 1, True) 60
+('wood', 'train', 0, False) 247
+('zipper', 'test', 0, False) 32
+('zipper', 'test', 1, True) 119
+('zipper', 'train', 0, False) 240
+visa 10821
+('candle', 'test', 0, False) 100
+('candle', 'test', 1, True) 100
+('candle', 'train', 0, False) 900
+('capsules', 'test', 0, False) 60
+('capsules', 'test', 1, True) 100
+('capsules', 'train', 0, False) 542
+('cashew', 'test', 0, False) 50
+('cashew', 'test', 1, True) 100
+('cashew', 'train', 0, False) 450
+('chewinggum', 'test', 0, False) 50
+('chewinggum', 'test', 1, True) 100
+('chewinggum', 'train', 0, False) 453
+('fryum', 'test', 0, False) 50
+('fryum', 'test', 1, True) 100
+('fryum', 'train', 0, False) 450
+('macaroni1', 'test', 0, False) 100
+('macaroni1', 'test', 1, True) 100
+('macaroni1', 'train', 0, False) 900
+('macaroni2', 'test', 0, False) 100
+('macaroni2', 'test', 1, True) 100
+('macaroni2', 'train', 0, False) 900
+('pcb1', 'test', 0, False) 100
+('pcb1', 'test', 1, True) 100
+('pcb1', 'train', 0, False) 904
+('pcb2', 'test', 0, False) 100
+('pcb2', 'test', 1, True) 100
+('pcb2', 'train', 0, False) 901
+('pcb3', 'test', 0, False) 101
+('pcb3', 'test', 1, True) 100
+('pcb3', 'train', 0, False) 905
+('pcb4', 'test', 0, False) 101
+('pcb4', 'test', 1, True) 100
+('pcb4', 'train', 0, False) 904
+('pipe_fryum', 'test', 0, False) 50
+('pipe_fryum', 'test', 1, True) 100
+('pipe_fryum', 'train', 0, False) 450
+end_utc=2026-07-22T16:40:08Z
+exit_code=0

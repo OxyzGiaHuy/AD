@@ -1,0 +1,7 @@
+run_tag=nc_gpu_20260722_e7f1759
+git_commit=e7f175990b02aa3cbdb7c92250d57c0272abef9d
+start_utc=2026-07-22T16:10:57Z
+command=/home/crl/miniconda3/envs/ad/bin/python --version 
+Python 3.10.20
+end_utc=2026-07-22T16:10:57Z
+exit_code=0

@@ -1,0 +1,775 @@
+{
+  "overall_status": "FAIL",
+  "datasets": [
+    {
+      "dataset": "mvtec",
+      "status": "PASS",
+      "configured_root": "/home/crl/MoME/other/AD/data/mvtec",
+      "resolved_root": "/home/crl/MoME/other/AD/tmp/ad-neurocomputing/extracted/mvtec",
+      "class_count": 15,
+      "record_count": 5354,
+      "available_classes": [
+        "bottle",
+        "cable",
+        "capsule",
+        "carpet",
+        "grid",
+        "hazelnut",
+        "leather",
+        "metal_nut",
+        "pill",
+        "screw",
+        "tile",
+        "toothbrush",
+        "transistor",
+        "wood",
+        "zipper"
+      ],
+      "per_class": {
+        "bottle": {
+          "train_normal": 209,
+          "test_normal": 20,
+          "test_anomaly": 63
+        },
+        "cable": {
+          "train_normal": 224,
+          "test_normal": 58,
+          "test_anomaly": 92
+        },
+        "capsule": {
+          "train_normal": 219,
+          "test_normal": 23,
+          "test_anomaly": 109
+        },
+        "carpet": {
+          "train_normal": 280,
+          "test_normal": 28,
+          "test_anomaly": 89
+        },
+        "grid": {
+          "train_normal": 264,
+          "test_normal": 21,
+          "test_anomaly": 57
+        },
+        "hazelnut": {
+          "train_normal": 391,
+          "test_normal": 40,
+          "test_anomaly": 70
+        },
+        "leather": {
+          "train_normal": 245,
+          "test_normal": 32,
+          "test_anomaly": 92
+        },
+        "metal_nut": {
+          "train_normal": 220,
+          "test_normal": 22,
+          "test_anomaly": 93
+        },
+        "pill": {
+          "train_normal": 267,
+          "test_normal": 26,
+          "test_anomaly": 141
+        },
+        "screw": {
+          "train_normal": 320,
+          "test_normal": 41,
+          "test_anomaly": 119
+        },
+        "tile": {
+          "train_normal": 230,
+          "test_normal": 33,
+          "test_anomaly": 84
+        },
+        "toothbrush": {
+          "train_normal": 60,
+          "test_normal": 12,
+          "test_anomaly": 30
+        },
+        "transistor": {
+          "train_normal": 213,
+          "test_normal": 60,
+          "test_anomaly": 40
+        },
+        "wood": {
+          "train_normal": 247,
+          "test_normal": 19,
+          "test_anomaly": 60
+        },
+        "zipper": {
+          "train_normal": 240,
+          "test_normal": 32,
+          "test_anomaly": 119
+        }
+      },
+      "counts": [
+        {
+          "category": "bottle",
+          "split": "test",
+          "label": 0,
+          "has_mask": false,
+          "count": 20
+        },
+        {
+          "category": "bottle",
+          "split": "test",
+          "label": 1,
+          "has_mask": true,
+          "count": 63
+        },
+        {
+          "category": "bottle",
+          "split": "train",
+          "label": 0,
+          "has_mask": false,
+          "count": 209
+        },
+        {
+          "category": "cable",
+          "split": "test",
+          "label": 0,
+          "has_mask": false,
+          "count": 58
+        },
+        {
+          "category": "cable",
+          "split": "test",
+          "label": 1,
+          "has_mask": true,
+          "count": 92
+        },
+        {
+          "category": "cable",
+          "split": "train",
+          "label": 0,
+          "has_mask": false,
+          "count": 224
+        },
+        {
+          "category": "capsule",
+          "split": "test",
+          "label": 0,
+          "has_mask": false,
+          "count": 23
+        },
+        {
+          "category": "capsule",
+          "split": "test",
+          "label": 1,
+          "has_mask": true,
+          "count": 109
+        },
+        {
+          "category": "capsule",
+          "split": "train",
+          "label": 0,
+          "has_mask": false,
+          "count": 219
+        },
+        {
+          "category": "carpet",
+          "split": "test",
+          "label": 0,
+          "has_mask": false,
+          "count": 28
+        },
+        {
+          "category": "carpet",
+          "split": "test",
+          "label": 1,
+          "has_mask": true,
+          "count": 89
+        },
+        {
+          "category": "carpet",
+          "split": "train",
+          "label": 0,
+          "has_mask": false,
+          "count": 280
+        },
+        {
+          "category": "grid",
+          "split": "test",
+          "label": 0,
+          "has_mask": false,
+          "count": 21
+        },
+        {
+          "category": "grid",
+          "split": "test",
+          "label": 1,
+          "has_mask": true,
+          "count": 57
+        },
+        {
+          "category": "grid",
+          "split": "train",
+          "label": 0,
+          "has_mask": false,
+          "count": 264
+        },
+        {
+          "category": "hazelnut",
+          "split": "test",
+          "label": 0,
+          "has_mask": false,
+          "count": 40
+        },
+        {
+          "category": "hazelnut",
+          "split": "test",
+          "label": 1,
+          "has_mask": true,
+          "count": 70
+        },
+        {
+          "category": "hazelnut",
+          "split": "train",
+          "label": 0,
+          "has_mask": false,
+          "count": 391
+        },
+        {
+          "category": "leather",
+          "split": "test",
+          "label": 0,
+          "has_mask": false,
+          "count": 32
+        },
+        {
+          "category": "leather",
+          "split": "test",
+          "label": 1,
+          "has_mask": true,
+          "count": 92
+        },
+        {
+          "category": "leather",
+          "split": "train",
+          "label": 0,
+          "has_mask": false,
+          "count": 245
+        },
+        {
+          "category": "metal_nut",
+          "split": "test",
+          "label": 0,
+          "has_mask": false,
+          "count": 22
+        },
+        {
+          "category": "metal_nut",
+          "split": "test",
+          "label": 1,
+          "has_mask": true,
+          "count": 93
+        },
+        {
+          "category": "metal_nut",
+          "split": "train",
+          "label": 0,
+          "has_mask": false,
+          "count": 220
+        },
+        {
+          "category": "pill",
+          "split": "test",
+          "label": 0,
+          "has_mask": false,
+          "count": 26
+        },
+        {
+          "category": "pill",
+          "split": "test",
+          "label": 1,
+          "has_mask": true,
+          "count": 141
+        },
+        {
+          "category": "pill",
+          "split": "train",
+          "label": 0,
+          "has_mask": false,
+          "count": 267
+        },
+        {
+          "category": "screw",
+          "split": "test",
+          "label": 0,
+          "has_mask": false,
+          "count": 41
+        },
+        {
+          "category": "screw",
+          "split": "test",
+          "label": 1,
+          "has_mask": true,
+          "count": 119
+        },
+        {
+          "category": "screw",
+          "split": "train",
+          "label": 0,
+          "has_mask": false,
+          "count": 320
+        },
+        {
+          "category": "tile",
+          "split": "test",
+          "label": 0,
+          "has_mask": false,
+          "count": 33
+        },
+        {
+          "category": "tile",
+          "split": "test",
+          "label": 1,
+          "has_mask": true,
+          "count": 84
+        },
+        {
+          "category": "tile",
+          "split": "train",
+          "label": 0,
+          "has_mask": false,
+          "count": 230
+        },
+        {
+          "category": "toothbrush",
+          "split": "test",
+          "label": 0,
+          "has_mask": false,
+          "count": 12
+        },
+        {
+          "category": "toothbrush",
+          "split": "test",
+          "label": 1,
+          "has_mask": true,
+          "count": 30
+        },
+        {
+          "category": "toothbrush",
+          "split": "train",
+          "label": 0,
+          "has_mask": false,
+          "count": 60
+        },
+        {
+          "category": "transistor",
+          "split": "test",
+          "label": 0,
+          "has_mask": false,
+          "count": 60
+        },
+        {
+          "category": "transistor",
+          "split": "test",
+          "label": 1,
+          "has_mask": true,
+          "count": 40
+        },
+        {
+          "category": "transistor",
+          "split": "train",
+          "label": 0,
+          "has_mask": false,
+          "count": 213
+        },
+        {
+          "category": "wood",
+          "split": "test",
+          "label": 0,
+          "has_mask": false,
+          "count": 19
+        },
+        {
+          "category": "wood",
+          "split": "test",
+          "label": 1,
+          "has_mask": true,
+          "count": 60
+        },
+        {
+          "category": "wood",
+          "split": "train",
+          "label": 0,
+          "has_mask": false,
+          "count": 247
+        },
+        {
+          "category": "zipper",
+          "split": "test",
+          "label": 0,
+          "has_mask": false,
+          "count": 32
+        },
+        {
+          "category": "zipper",
+          "split": "test",
+          "label": 1,
+          "has_mask": true,
+          "count": 119
+        },
+        {
+          "category": "zipper",
+          "split": "train",
+          "label": 0,
+          "has_mask": false,
+          "count": 240
+        }
+      ],
+      "missing_anomaly_masks": 0,
+      "train_test_path_overlap": 0,
+      "train_test_content_overlap": 0,
+      "support_evaluation_overlap": 0,
+      "nested_support_checks": 20,
+      "nested_support_failures": 0,
+      "license_path": "/home/crl/MoME/other/AD/tmp/ad-neurocomputing/extracted/mvtec/license.txt",
+      "license_sha256": "a355a57937552790ebd751f8a8026b23882160ab73f1c38f8030456dfcf1a330",
+      "license_marker_ok": true,
+      "file_manifest": "outputs/manifests/nc_gpu_20260722_e7f1759/dataset_files_mvtec.csv",
+      "file_manifest_sha256": "bce6ed7f8f5709032013dc291563fff61981f96e7996b686866eb84c9097a981",
+      "failures": []
+    },
+    {
+      "dataset": "visa",
+      "status": "FAIL",
+      "configured_root": "/home/crl/MoME/other/AD/data/visa",
+      "resolved_root": "/home/crl/MoME/other/AD/tmp/ad-neurocomputing/extracted/visa_raw",
+      "class_count": 12,
+      "record_count": 10821,
+      "available_classes": [],
+      "per_class": {
+        "candle": {
+          "train_normal": 900,
+          "test_normal": 100,
+          "test_anomaly": 100
+        },
+        "capsules": {
+          "train_normal": 542,
+          "test_normal": 60,
+          "test_anomaly": 100
+        },
+        "cashew": {
+          "train_normal": 450,
+          "test_normal": 50,
+          "test_anomaly": 100
+        },
+        "chewinggum": {
+          "train_normal": 453,
+          "test_normal": 50,
+          "test_anomaly": 100
+        },
+        "fryum": {
+          "train_normal": 450,
+          "test_normal": 50,
+          "test_anomaly": 100
+        },
+        "macaroni1": {
+          "train_normal": 900,
+          "test_normal": 100,
+          "test_anomaly": 100
+        },
+        "macaroni2": {
+          "train_normal": 900,
+          "test_normal": 100,
+          "test_anomaly": 100
+        },
+        "pcb1": {
+          "train_normal": 904,
+          "test_normal": 100,
+          "test_anomaly": 100
+        },
+        "pcb2": {
+          "train_normal": 901,
+          "test_normal": 100,
+          "test_anomaly": 100
+        },
+        "pcb3": {
+          "train_normal": 905,
+          "test_normal": 101,
+          "test_anomaly": 100
+        },
+        "pcb4": {
+          "train_normal": 904,
+          "test_normal": 101,
+          "test_anomaly": 100
+        },
+        "pipe_fryum": {
+          "train_normal": 450,
+          "test_normal": 50,
+          "test_anomaly": 100
+        }
+      },
+      "counts": [
+        {
+          "category": "candle",
+          "split": "test",
+          "label": 0,
+          "has_mask": false,
+          "count": 100
+        },
+        {
+          "category": "candle",
+          "split": "test",
+          "label": 1,
+          "has_mask": true,
+          "count": 100
+        },
+        {
+          "category": "candle",
+          "split": "train",
+          "label": 0,
+          "has_mask": false,
+          "count": 900
+        },
+        {
+          "category": "capsules",
+          "split": "test",
+          "label": 0,
+          "has_mask": false,
+          "count": 60
+        },
+        {
+          "category": "capsules",
+          "split": "test",
+          "label": 1,
+          "has_mask": true,
+          "count": 100
+        },
+        {
+          "category": "capsules",
+          "split": "train",
+          "label": 0,
+          "has_mask": false,
+          "count": 542
+        },
+        {
+          "category": "cashew",
+          "split": "test",
+          "label": 0,
+          "has_mask": false,
+          "count": 50
+        },
+        {
+          "category": "cashew",
+          "split": "test",
+          "label": 1,
+          "has_mask": true,
+          "count": 100
+        },
+        {
+          "category": "cashew",
+          "split": "train",
+          "label": 0,
+          "has_mask": false,
+          "count": 450
+        },
+        {
+          "category": "chewinggum",
+          "split": "test",
+          "label": 0,
+          "has_mask": false,
+          "count": 50
+        },
+        {
+          "category": "chewinggum",
+          "split": "test",
+          "label": 1,
+          "has_mask": true,
+          "count": 100
+        },
+        {
+          "category": "chewinggum",
+          "split": "train",
+          "label": 0,
+          "has_mask": false,
+          "count": 453
+        },
+        {
+          "category": "fryum",
+          "split": "test",
+          "label": 0,
+          "has_mask": false,
+          "count": 50
+        },
+        {
+          "category": "fryum",
+          "split": "test",
+          "label": 1,
+          "has_mask": true,
+          "count": 100
+        },
+        {
+          "category": "fryum",
+          "split": "train",
+          "label": 0,
+          "has_mask": false,
+          "count": 450
+        },
+        {
+          "category": "macaroni1",
+          "split": "test",
+          "label": 0,
+          "has_mask": false,
+          "count": 100
+        },
+        {
+          "category": "macaroni1",
+          "split": "test",
+          "label": 1,
+          "has_mask": true,
+          "count": 100
+        },
+        {
+          "category": "macaroni1",
+          "split": "train",
+          "label": 0,
+          "has_mask": false,
+          "count": 900
+        },
+        {
+          "category": "macaroni2",
+          "split": "test",
+          "label": 0,
+          "has_mask": false,
+          "count": 100
+        },
+        {
+          "category": "macaroni2",
+          "split": "test",
+          "label": 1,
+          "has_mask": true,
+          "count": 100
+        },
+        {
+          "category": "macaroni2",
+          "split": "train",
+          "label": 0,
+          "has_mask": false,
+          "count": 900
+        },
+        {
+          "category": "pcb1",
+          "split": "test",
+          "label": 0,
+          "has_mask": false,
+          "count": 100
+        },
+        {
+          "category": "pcb1",
+          "split": "test",
+          "label": 1,
+          "has_mask": true,
+          "count": 100
+        },
+        {
+          "category": "pcb1",
+          "split": "train",
+          "label": 0,
+          "has_mask": false,
+          "count": 904
+        },
+        {
+          "category": "pcb2",
+          "split": "test",
+          "label": 0,
+          "has_mask": false,
+          "count": 100
+        },
+        {
+          "category": "pcb2",
+          "split": "test",
+          "label": 1,
+          "has_mask": true,
+          "count": 100
+        },
+        {
+          "category": "pcb2",
+          "split": "train",
+          "label": 0,
+          "has_mask": false,
+          "count": 901
+        },
+        {
+          "category": "pcb3",
+          "split": "test",
+          "label": 0,
+          "has_mask": false,
+          "count": 101
+        },
+        {
+          "category": "pcb3",
+          "split": "test",
+          "label": 1,
+          "has_mask": true,
+          "count": 100
+        },
+        {
+          "category": "pcb3",
+          "split": "train",
+          "label": 0,
+          "has_mask": false,
+          "count": 905
+        },
+        {
+          "category": "pcb4",
+          "split": "test",
+          "label": 0,
+          "has_mask": false,
+          "count": 101
+        },
+        {
+          "category": "pcb4",
+          "split": "test",
+          "label": 1,
+          "has_mask": true,
+          "count": 100
+        },
+        {
+          "category": "pcb4",
+          "split": "train",
+          "label": 0,
+          "has_mask": false,
+          "count": 904
+        },
+        {
+          "category": "pipe_fryum",
+          "split": "test",
+          "label": 0,
+          "has_mask": false,
+          "count": 50
+        },
+        {
+          "category": "pipe_fryum",
+          "split": "test",
+          "label": 1,
+          "has_mask": true,
+          "count": 100
+        },
+        {
+          "category": "pipe_fryum",
+          "split": "train",
+          "label": 0,
+          "has_mask": false,
+          "count": 450
+        }
+      ],
+      "missing_anomaly_masks": 0,
+      "train_test_path_overlap": 0,
+      "train_test_content_overlap": 0,
+      "support_evaluation_overlap": 0,
+      "nested_support_checks": 20,
+      "nested_support_failures": 0,
+      "license_path": "/home/crl/MoME/other/AD/tmp/ad-neurocomputing/extracted/visa_raw/LICENSE-DATASET",
+      "license_sha256": "9e5f1b3c610b9c2da5c313bf81d577a7d1acec686bdb0384edefa6df0f90cd94",
+      "license_marker_ok": true,
+      "file_manifest": "outputs/manifests/nc_gpu_20260722_e7f1759/dataset_files_visa.csv",
+      "file_manifest_sha256": "7b44a4b5720be10a393201aaa3788b49c51a40fa50a806d5a892c850a67d4d63",
+      "failures": [
+        "class mismatch: []"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+run_tag=nc_gpu_20260722_e7f1759
+git_commit=e7f175990b02aa3cbdb7c92250d57c0272abef9d
+start_utc=2026-07-22T16:45:19Z
+command=curl -I -L --max-redirs 10 --range 379125105-456260321 https://huggingface.co/datasets/meksamiao/mpdd/resolve/7b6f213b2203f696b7018e8d94033fce6aacb30b/MPDD.zip\?download=true 
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0  1044    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0 73.5M    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+HTTP/2 302 
+content-type: text/plain; charset=utf-8
+content-length: 1044
+location: https://us.aws.cdn.hf.co/xet-bridge-us/69fd9fa6b5f7ea3b49ccbff7/80f80b489f89da1672e9478b1dede7e644857e0edd3e01b082371cdc0af0544f?response-content-disposition=attachment%3B+filename*%3DUTF-8%27%27MPDD.zip%3B+filename%3D%22MPDD.zip%22%3B&X-Xet-Cas-Uid=public&response-content-type=application%2Fzip&user_id=public&Expires=1784742158&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly91cy5hd3MuY2RuLmhmLmNvL3hldC1icmlkZ2UtdXMvNjlmZDlmYTZiNWY3ZWEzYjQ5Y2NiZmY3LzgwZjgwYjQ4OWY4OWRhMTY3MmU5NDc4YjFkZWRlN2U2NDQ4NTdlMGVkZDNlMDFiMDgyMzcxY2RjMGFmMDU0NGZcXD9yZXNwb25zZS1jb250ZW50LWRpc3Bvc2l0aW9uPWF0dGFjaG1lbnQlM0IrZmlsZW5hbWUlMkElM0RVVEYtOCUyNyUyN01QREQuemlwJTNCK2ZpbGVuYW1lJTNEJTIyTVBERC56aXAlMjIlM0ImWC1YZXQtQ2FzLVVpZD1wdWJsaWMmcmVzcG9uc2UtY29udGVudC10eXBlPWFwcGxpY2F0aW9uJTJGemlwJnVzZXJfaWQ9cHVibGljIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJFcG9jaFRpbWUiOjE3ODQ3NDIxNTh9fX1dfQ__&Signature=MEUCIG6agAnIByd4-HEl1%7E5Co0hbSCx3i1V3v9hXpZbnpwfFAiEAkY6fKMYSXugDYK85TDMTQexLo0Z-MUK--jdc14KMls4_&Key-Pair-Id=01KXEF4KZ1B6FV465MAWR4M21F
+date: Wed, 22 Jul 2026 16:42:38 GMT
+x-powered-by: huggingface-moon
+x-request-id: Root=1-6a60f2fe-4843cf8809c54240405864a7
+ratelimit: "resolvers";r=2999;t=230
+ratelimit-policy: "fixed window";"resolvers";q=3000;w=300
+cross-origin-opener-policy: same-origin
+referrer-policy: strict-origin-when-cross-origin
+access-control-max-age: 86400
+access-control-allow-origin: https://huggingface.co
+vary: Origin, Accept
+access-control-expose-headers: X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash
+x-repo-commit: 7b6f213b2203f696b7018e8d94033fce6aacb30b
+accept-ranges: bytes
+x-hub-cache: MISS
+x-linked-size: 1825041283
+x-linked-etag: "69f8da73eea4a31451a50251e5c261e83e0c53f2d1a39a7d4dfc78b5c434ddd6"
+cache-control: no-store
+x-xet-hash: 80f80b489f89da1672e9478b1dede7e644857e0edd3e01b082371cdc0af0544f
+link: <https://huggingface.co/api/datasets/meksamiao/mpdd/xet-read-token/7b6f213b2203f696b7018e8d94033fce6aacb30b>; rel="xet-auth", <https://cas-server.xethub.hf.co/v1/reconstructions/80f80b489f89da1672e9478b1dede7e644857e0edd3e01b082371cdc0af0544f>; rel="xet-reconstruction-info"
+x-cache: Miss from cloudfront
+via: 1.1 60a4019a365a195cb4f354a7c8fdb39a.cloudfront.net (CloudFront)
+x-amz-cf-pop: CMH68-P4
+alt-svc: h3=":443"; ma=86400
+x-amz-cf-id: ybZ9AccnaIDRh3uIVZq9Lpljsh5uEXcoJsOgdhSFEnWRiGk1WpwwLQ==
+
+HTTP/2 206 
+content-type: application/zip
+accept-ranges: bytes
+content-disposition: attachment; filename*=UTF-8''MPDD.zip; filename="MPDD.zip";
+etag: "80f80b489f89da1672e9478b1dede7e644857e0edd3e01b082371cdc0af0544f"
+access-control-allow-headers: Content-Range, Content-Type, Content-Disposition, ETag
+access-control-expose-headers: *
+content-length: 77135217
+content-range: bytes 379125105-456260321/1825041283
+vary: origin, access-control-request-method, access-control-request-headers
+access-control-allow-origin: *
+x-request-id: 01KY5BAD07SHE0SG3AD3QX2MRC
+x-hf-cdn-pop: aws-us-east-1
+date: Wed, 22 Jul 2026 16:42:39 GMT
+alt-svc: h3=":443";ma=60;
+
+end_utc=2026-07-22T16:45:19Z
+exit_code=0

@@ -1,0 +1,39 @@
+run_tag=nc_gpu_20260722_e7f1759
+git_commit=e7f175990b02aa3cbdb7c92250d57c0272abef9d
+start_utc=2026-07-23T01:45:13Z
+command=/home/crl/miniconda3/envs/ad/bin/python scripts/audit_sc3r_artifacts.py --views outputs/paper_tables/sc3r_views_visa_nc_gpu_20260722_e7f1759.csv --support-stats outputs/paper_tables/sc3r_support_visa_nc_gpu_20260722_e7f1759.csv --support-manifest outputs/manifests/nc_gpu_20260722_e7f1759/support_visa.csv --expected-k-shots 1 2 4 8 --expected-seeds 0 1 2 3 4 --expected-corruptions clean gaussian_noise blur brightness_contrast jpeg --out outputs/manifests/nc_gpu_20260722_e7f1759/audit_visa.json 
+{
+  "corruptions": [
+    "blur",
+    "brightness_contrast",
+    "clean",
+    "gaussian_noise",
+    "jpeg"
+  ],
+  "datasets": [
+    "visa"
+  ],
+  "issues": [],
+  "k_shots": [
+    1,
+    2,
+    4,
+    8
+  ],
+  "max_rows_per_cell": 120,
+  "min_rows_per_cell": 120,
+  "n_stat_rows": 240,
+  "n_support_rows": 900,
+  "n_view_cells": 1200,
+  "n_view_rows": 144000,
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "status": "pass"
+}
+end_utc=2026-07-23T01:45:17Z
+exit_code=0

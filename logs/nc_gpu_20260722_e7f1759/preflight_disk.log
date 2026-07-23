@@ -1,0 +1,9 @@
+run_tag=nc_gpu_20260722_e7f1759
+git_commit=e7f175990b02aa3cbdb7c92250d57c0272abef9d
+start_utc=2026-07-22T16:11:05Z
+command=df -hT /home/crl/MoME/other/AD/tmp/ad-neurocomputing /home/crl/MoME/other/AD/outputs 
+Filesystem     Type  Size  Used Avail Use% Mounted on
+/dev/nvme0n1p3 ext4  1.4T  1.1T  279G  79% /home
+/dev/nvme0n1p3 ext4  1.4T  1.1T  279G  79% /home
+end_utc=2026-07-22T16:11:05Z
+exit_code=0

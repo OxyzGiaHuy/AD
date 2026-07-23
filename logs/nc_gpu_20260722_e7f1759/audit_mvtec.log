@@ -1,0 +1,39 @@
+run_tag=nc_gpu_20260722_e7f1759
+git_commit=e7f175990b02aa3cbdb7c92250d57c0272abef9d
+start_utc=2026-07-22T20:41:18Z
+command=/home/crl/miniconda3/envs/ad/bin/python scripts/audit_sc3r_artifacts.py --views outputs/paper_tables/sc3r_views_mvtec_nc_gpu_20260722_e7f1759.csv --support-stats outputs/paper_tables/sc3r_support_mvtec_nc_gpu_20260722_e7f1759.csv --support-manifest outputs/manifests/nc_gpu_20260722_e7f1759/support_mvtec.csv --expected-k-shots 1 2 4 8 --expected-seeds 0 1 2 3 4 --expected-corruptions clean gaussian_noise blur brightness_contrast jpeg --out outputs/manifests/nc_gpu_20260722_e7f1759/audit_mvtec.json 
+{
+  "corruptions": [
+    "blur",
+    "brightness_contrast",
+    "clean",
+    "gaussian_noise",
+    "jpeg"
+  ],
+  "datasets": [
+    "mvtec"
+  ],
+  "issues": [],
+  "k_shots": [
+    1,
+    2,
+    4,
+    8
+  ],
+  "max_rows_per_cell": 120,
+  "min_rows_per_cell": 42,
+  "n_stat_rows": 300,
+  "n_support_rows": 1125,
+  "n_view_cells": 1500,
+  "n_view_rows": 156100,
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "status": "pass"
+}
+end_utc=2026-07-22T20:41:22Z
+exit_code=0

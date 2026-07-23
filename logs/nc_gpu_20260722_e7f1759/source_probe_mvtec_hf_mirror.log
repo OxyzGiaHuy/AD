@@ -1,0 +1,55 @@
+run_tag=nc_gpu_20260722_e7f1759
+git_commit=e7f175990b02aa3cbdb7c92250d57c0272abef9d
+start_utc=2026-07-22T16:22:48Z
+command=curl -I -L --max-redirs 10 https://huggingface.co/datasets/micguida1/mvtech_anomaly_detection/resolve/main/mvtec_anomaly_detection.tar.xz\?download=true 
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0  1147    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+  0 5021M    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+HTTP/2 302 
+content-type: text/plain; charset=utf-8
+content-length: 1147
+location: https://us.aws.cdn.hf.co/xet-bridge-us/6967d6a44efceeda711fe546/7032d0de4ba616af94cccdb31887b653bd2396177ab4cd5fcaebffe491358596?response-content-type=application%2Fx-xz&response-content-disposition=attachment%3B+filename*%3DUTF-8%27%27mvtec_anomaly_detection.tar.xz%3B+filename%3D%22mvtec_anomaly_detection.tar.xz%22%3B&X-Xet-Cas-Uid=public&user_id=public&Expires=1784740807&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly91cy5hd3MuY2RuLmhmLmNvL3hldC1icmlkZ2UtdXMvNjk2N2Q2YTQ0ZWZjZWVkYTcxMWZlNTQ2LzcwMzJkMGRlNGJhNjE2YWY5NGNjY2RiMzE4ODdiNjUzYmQyMzk2MTc3YWI0Y2Q1ZmNhZWJmZmU0OTEzNTg1OTZcXD9yZXNwb25zZS1jb250ZW50LXR5cGU9YXBwbGljYXRpb24lMkZ4LXh6JnJlc3BvbnNlLWNvbnRlbnQtZGlzcG9zaXRpb249YXR0YWNobWVudCUzQitmaWxlbmFtZSUyQSUzRFVURi04JTI3JTI3bXZ0ZWNfYW5vbWFseV9kZXRlY3Rpb24udGFyLnh6JTNCK2ZpbGVuYW1lJTNEJTIybXZ0ZWNfYW5vbWFseV9kZXRlY3Rpb24udGFyLnh6JTIyJTNCJlgtWGV0LUNhcy1VaWQ9cHVibGljJnVzZXJfaWQ9cHVibGljIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJFcG9jaFRpbWUiOjE3ODQ3NDA4MDd9fX1dfQ__&Signature=MEQCIADxoN4XNykukPAUULOSUvu3e-Jr46xnXHTOcj1Iqz1LAiBt7fjwbyhAHCrWDwFED-RYl9mUVDX56i15EA3cafH8rw__&Key-Pair-Id=01KXEF4KZ1B6FV465MAWR4M21F
+date: Wed, 22 Jul 2026 16:20:07 GMT
+x-powered-by: huggingface-moon
+x-request-id: Root=1-6a60edb7-1475d51b5e4a7f643b2e6cb5
+ratelimit: "resolvers";r=2999;t=81
+ratelimit-policy: "fixed window";"resolvers";q=3000;w=300
+cross-origin-opener-policy: same-origin
+referrer-policy: strict-origin-when-cross-origin
+access-control-max-age: 86400
+access-control-allow-origin: https://huggingface.co
+vary: Origin, Accept
+access-control-expose-headers: X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash
+x-repo-commit: eb692b36147a3b3f12c561b879a062104c1f20b8
+accept-ranges: bytes
+x-hf-warning: unauthenticated; Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+x-hub-cache: MISS
+x-linked-size: 5264982680
+x-linked-etag: "cf4313b13603bec67abb49ca959488f7eedce2a9f7795ec54446c649ac98cd3d"
+cache-control: no-store
+x-xet-hash: 7032d0de4ba616af94cccdb31887b653bd2396177ab4cd5fcaebffe491358596
+link: <https://huggingface.co/api/datasets/micguida1/mvtech_anomaly_detection/xet-read-token/eb692b36147a3b3f12c561b879a062104c1f20b8>; rel="xet-auth", <https://cas-server.xethub.hf.co/v1/reconstructions/7032d0de4ba616af94cccdb31887b653bd2396177ab4cd5fcaebffe491358596>; rel="xet-reconstruction-info"
+x-cache: Miss from cloudfront
+via: 1.1 7ed6222f7e560bc392fd7d47d98df770.cloudfront.net (CloudFront)
+x-amz-cf-pop: IAD55-P8
+alt-svc: h3=":443"; ma=86400
+x-amz-cf-id: s01mLSS_uAukt-hm2sGpmITDsh-BzNo-1ZTxWS1hAX1e0C6JaqV5Qw==
+
+HTTP/2 200 
+content-type: application/x-xz
+accept-ranges: bytes
+content-disposition: attachment; filename*=UTF-8''mvtec_anomaly_detection.tar.xz; filename="mvtec_anomaly_detection.tar.xz";
+etag: "7032d0de4ba616af94cccdb31887b653bd2396177ab4cd5fcaebffe491358596"
+access-control-allow-headers: Content-Range, Content-Type, Content-Disposition, ETag
+access-control-expose-headers: *
+content-length: 5264982680
+vary: origin, access-control-request-method, access-control-request-headers
+access-control-allow-origin: *
+x-request-id: 01KY5A15AGRMHGCEWBCXEZ9WNT
+x-hf-cdn-pop: aws-us-east-1
+date: Wed, 22 Jul 2026 16:20:07 GMT
+alt-svc: h3=":443";ma=60;
+
+end_utc=2026-07-22T16:22:48Z
+exit_code=0

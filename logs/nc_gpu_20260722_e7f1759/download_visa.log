@@ -1,0 +1,4 @@
+run_tag=nc_gpu_20260722_e7f1759
+git_commit=e7f175990b02aa3cbdb7c92250d57c0272abef9d
+start_utc=2026-07-22T16:24:57Z
+command=curl --fail --location --retry 5 --retry-all-errors --continue-at - --silent --show-error --output tmp/ad-neurocomputing/downloads/VisA_20220922.tar https://amazon-visual-anomaly.s3.us-west-2.amazonaws.com/VisA_20220922.tar 

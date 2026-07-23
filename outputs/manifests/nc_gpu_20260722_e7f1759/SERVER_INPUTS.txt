@@ -1,0 +1,20 @@
+RUN_TAG=nc_gpu_20260722_e7f1759
+REPO_ROOT=/home/crl/MoME/other/AD
+MVTEC_ROOT=/home/crl/MoME/other/AD/tmp/ad-neurocomputing/extracted/mvtec
+VISA_ROOT=/home/crl/MoME/other/AD/tmp/ad-neurocomputing/extracted/visa_raw
+MPDD_ROOT=/home/crl/MoME/other/AD/tmp/ad-neurocomputing/extracted/mpdd_raw/MPDD
+SCRATCH_ROOT=/home/crl/MoME/other/AD/tmp/ad-neurocomputing
+GPU_DEVICE=cuda:0
+
+Resolution status:
+- REPO_ROOT: resolved with readlink -f; clean Git worktree at the recorded commit.
+- MVTEC_ROOT: user-authorized download; archive SHA-256 verified; mapped by data/mvtec.
+- VISA_ROOT: downloaded from the official AWS Open Data object; mapped by data/visa.
+- MPDD_ROOT: archive SHA-256 verified against the pinned mirror revision; mapped by data/mpdd.
+- SCRATCH_ROOT: writable persistent workspace path; disk audits are logged.
+- GPU_DEVICE: resolved from nvidia-smi and PyTorch CUDA probe.
+
+Resolved mappings:
+- data/mvtec -> /home/crl/MoME/other/AD/tmp/ad-neurocomputing/extracted/mvtec
+- data/visa -> /home/crl/MoME/other/AD/tmp/ad-neurocomputing/extracted/visa_raw
+- data/mpdd -> /home/crl/MoME/other/AD/tmp/ad-neurocomputing/extracted/mpdd_raw/MPDD

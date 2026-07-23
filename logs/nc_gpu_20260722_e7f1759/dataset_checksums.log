@@ -1,0 +1,14 @@
+run_tag=nc_gpu_20260722_e7f1759
+git_commit=e7f175990b02aa3cbdb7c92250d57c0272abef9d
+start_utc=2026-07-22T17:03:40Z
+command=sha256sum tmp/ad-neurocomputing/downloads/mvtec_anomaly_detection.tar.xz tmp/ad-neurocomputing/extracted/mvtec/license.txt tmp/ad-neurocomputing/extracted/mvtec/readme.txt tmp/ad-neurocomputing/downloads/VisA_20220922.tar tmp/ad-neurocomputing/extracted/visa_raw/split_csv/1cls.csv tmp/ad-neurocomputing/extracted/visa_raw/LICENSE-DATASET tmp/ad-neurocomputing/downloads/MPDD.zip tmp/ad-neurocomputing/provenance/mpdd_repo/LICENSE 
+cf4313b13603bec67abb49ca959488f7eedce2a9f7795ec54446c649ac98cd3d  tmp/ad-neurocomputing/downloads/mvtec_anomaly_detection.tar.xz
+a355a57937552790ebd751f8a8026b23882160ab73f1c38f8030456dfcf1a330  tmp/ad-neurocomputing/extracted/mvtec/license.txt
+60222d7e42a41e6e63ee6ed632d1149b76705fa49924b4c7594ebfc36f0a667c  tmp/ad-neurocomputing/extracted/mvtec/readme.txt
+2eb8690c803ab37de0324772964100169ec8ba1fa3f7e94291c9ca673f40f362  tmp/ad-neurocomputing/downloads/VisA_20220922.tar
+a48557e6033318cb90556f706196bc9d247a776a23ea51aecee5a80dd0332995  tmp/ad-neurocomputing/extracted/visa_raw/split_csv/1cls.csv
+9e5f1b3c610b9c2da5c313bf81d577a7d1acec686bdb0384edefa6df0f90cd94  tmp/ad-neurocomputing/extracted/visa_raw/LICENSE-DATASET
+69f8da73eea4a31451a50251e5c261e83e0c53f2d1a39a7d4dfc78b5c434ddd6  tmp/ad-neurocomputing/downloads/MPDD.zip
+1349a4b6148492b44f629e64eed676612e234fe9a839e4f3b277c1482c8849f1  tmp/ad-neurocomputing/provenance/mpdd_repo/LICENSE
+end_utc=2026-07-22T17:03:44Z
+exit_code=0

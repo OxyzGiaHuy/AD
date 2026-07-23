@@ -1,0 +1,87 @@
+run_tag=nc_gpu_20260722_e7f1759
+git_commit=e7f175990b02aa3cbdb7c92250d57c0272abef9d
+start_utc=2026-07-22T17:03:15Z
+command=env PYTHONPATH=/home/crl/MoME/other/AD /home/crl/miniconda3/envs/ad/bin/python tmp/preflight/dataset_audit_full.py 
+{
+  "datasets": {
+    "mpdd": {
+      "aggregate_counts": {
+        "test_anomaly": 282,
+        "test_normal": 176,
+        "train_normal": 888
+      },
+      "checks": {
+        "all_anomaly_masks_exist": true,
+        "all_images_exist": true,
+        "all_images_inside_root": true,
+        "all_masks_inside_root": true,
+        "classes_exact": true,
+        "each_class_has_8_train_normal": true,
+        "each_class_has_test_normal_and_anomaly": true,
+        "evaluation_only_test": true,
+        "few_shot_support_invariants": true,
+        "no_outbound_symlinks": true,
+        "total_exact": true,
+        "train_only_normal": true,
+        "train_test_paths_disjoint": true
+      },
+      "resolved_root": "/home/crl/MoME/other/AD/tmp/ad-neurocomputing/extracted/mpdd_raw/MPDD",
+      "status": "PASS",
+      "total_records": 1346
+    },
+    "mvtec": {
+      "aggregate_counts": {
+        "test_anomaly": 1258,
+        "test_normal": 467,
+        "train_normal": 3629
+      },
+      "checks": {
+        "all_anomaly_masks_exist": true,
+        "all_images_exist": true,
+        "all_images_inside_root": true,
+        "all_masks_inside_root": true,
+        "classes_exact": true,
+        "each_class_has_8_train_normal": true,
+        "each_class_has_test_normal_and_anomaly": true,
+        "evaluation_only_test": true,
+        "few_shot_support_invariants": true,
+        "no_outbound_symlinks": true,
+        "total_exact": true,
+        "train_only_normal": true,
+        "train_test_paths_disjoint": true
+      },
+      "resolved_root": "/home/crl/MoME/other/AD/tmp/ad-neurocomputing/extracted/mvtec",
+      "status": "PASS",
+      "total_records": 5354
+    },
+    "visa": {
+      "aggregate_counts": {
+        "test_anomaly": 1200,
+        "test_normal": 962,
+        "train_normal": 8659
+      },
+      "checks": {
+        "all_anomaly_masks_exist": true,
+        "all_images_exist": true,
+        "all_images_inside_root": true,
+        "all_masks_inside_root": true,
+        "classes_exact": true,
+        "each_class_has_8_train_normal": true,
+        "each_class_has_test_normal_and_anomaly": true,
+        "evaluation_only_test": true,
+        "few_shot_support_invariants": true,
+        "no_outbound_symlinks": true,
+        "total_exact": true,
+        "train_only_normal": true,
+        "train_test_paths_disjoint": true
+      },
+      "resolved_root": "/home/crl/MoME/other/AD/tmp/ad-neurocomputing/extracted/visa_raw",
+      "status": "PASS",
+      "total_records": 10821
+    }
+  },
+  "output": "/home/crl/MoME/other/AD/outputs/manifests/nc_gpu_20260722_e7f1759/dataset_audit_full.json",
+  "status": "PASS"
+}
+end_utc=2026-07-22T17:03:17Z
+exit_code=0

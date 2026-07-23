@@ -1,0 +1,68 @@
+run_tag=nc_gpu_20260722_e7f1759
+git_commit=e7f175990b02aa3cbdb7c92250d57c0272abef9d
+start_utc=2026-07-22T16:21:11Z
+command=curl -I -L --max-redirs 5 https://vutbr-my.sharepoint.com/:f:/g/personal/xjezek16_vutbr_cz/EhHS_ufVigxDo3MC6Lweau0BVMuoCmhMZj6ddamiQ7-FnA\?e=oHKCxI\&download=1 
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0   164    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0
+HTTP/2 302 
+cache-control: private
+content-length: 164
+content-type: text/html; charset=utf-8
+location: /personal/xjezek16_vutbr_cz/Documents/MPDD?ga=1
+p3p: CP="ALL IND DSP COR ADM CONo CUR CUSo IVAo IVDo PSA PSD TAI TELo OUR SAMo CNT COM INT NAV ONL PHY PRE PUR UNI"
+set-cookie: FedAuth=77u/PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48U1A+VjE1LDBoLmZ8bWVtYmVyc2hpcHx1cm4lM2FzcG8lM2F0ZW5hbnRhbm9uI2M2M2NlNzI5LWNhMTctNGU1Mi1hYTJkLTk2Yjc5NDg5YTU0MiwwIy5mfG1lbWJlcnNoaXB8dXJuJTNhc3BvJTNhdGVuYW50YW5vbiNjNjNjZTcyOS1jYTE3LTRlNTItYWEyZC05NmI3OTQ4OWE1NDIsMTM0MjkyMTEwMTEwMDAwMDAwLDAsMTM0MjkyOTcxMTEyMTg2NjQyLDAuMC4wLjAsMjU4LGM2M2NlNzI5LWNhMTctNGU1Mi1hYTJkLTk2Yjc5NDg5YTU0MiwsLGJmY2MyOWEyLTEwNDMtOTAwMC01ZTAxLTA0Mzc1NGJkYTQ5MCxiZmNjMjlhMi0xMDQzLTkwMDAtNWUwMS0wNDM3NTRiZGE0OTAsSDNTYzRzbS9za3lvWjBVWXFrZEpoUSwwLDAsMCwsLCwyNjUwNDY3NzQzOTk5OTk5OTk5LDAsLCwsLCwsMCwsMTkwODY2LHB2WkM2WnNqcTA0dU1DSkE0T0dqa29LVnpqOCwsMCwsR1plZEpuOUFoZ2ZGb0EzMGw2SHc0ZXc2WG5GYlhCMm9YMktESDVZeTREUkNzWkJia0MrOVFsdE9TWTJlNE1OVnROMStsalZKT1p3Y0t6REdQUmNlZXJjTWFpYW5PVXY4VDBUZ1BHMk90T0Zjd043R3lMNVhhK3hEVWppbmJQWkw5azVCYlJDcWVqSTRLUWFCRDdubmt5ZFpLUHJFdERTd1hqMzBET0o5UjJUVEVqQXhKZFIzMzZidkNJZUZUek80RGFwZ1djb01uaDh0NzMvV3Z6YWdrQVV4QWc2aC8zNXpmZi9GekJHRlVtNG54YVhCV2hNVmR3ZDhpeDh4Y3B3bE5nRSthcDVzR2djUWF3dzliUVRHa0xDTjNwMm0vRG1RTE1pakZLaHUvQTFFL3N6MHM1UnhBU2lBMndwV2tSTDgxUTZpczVCT0V1MUIzdTM1QnBVWTh3PT08L1NQPg==; path=/; SameSite=None; secure; HttpOnly
+x-networkstatistics: 0,0,0,0,0,0,0,0
+x-sharepointhealthscore: 0
+x-ms-spo-cookievalidator: GZedJn9AhgfFoA30l6Hw4ew6XnFbXB2oX2KDH5Yy4DRCsZBbkC+9QltOSY2e4MNVtN1+ljVJOZwcKzDGPRceercMaianOUv8T0TgPG2OtOFcwN7GyL5Xa+xDUjinbPZL9k5BbRCqejI4KQaBD7nnkydZKPrEtDSwXj30DOJ9R2TTEjAxJdR336bvCIeFTzO4DapgWcoMnh8t73/WvzagkAUxAg6h/35zff/FzBGFUm4nxaXBWhMVdwd8ix8xcpwlNgE+ap5sGgcQaww9bQTGkLCN3p2m/DmQLMijFKhu/A1E/sz0s5RxASiA2wpWkRL81Q6is5BOEu1B3u35BpUY8w==
+x-aspnet-version: 4.0.30319
+isocdi: 0
+x-databoundary: EU
+x-1dscollectorurl: https://eu-mobile.events.data.microsoft.com/OneCollector/1.0/
+x-ariacollectorurl: https://eu-mobile.events.data.microsoft.com/Collector/3.0/
+sprequestguid: bfcc29a2-2039-9000-5e01-0019bfbd173f
+request-id: bfcc29a2-2039-9000-5e01-0019bfbd173f
+ms-cv: oinMvzkgAJBeAQAZv70XPw.0
+splogid: bfcc29a2-2039-9000-5e01-0019bfbd173f
+alt-svc: h3=":443";ma=86400
+strict-transport-security: max-age=31536000
+x-frame-options: SAMEORIGIN
+content-security-policy: frame-ancestors 'self' teams.microsoft.com *.teams.microsoft.com *.skype.com *.teams.microsoft.us local.teams.office.com teams.cloud.microsoft *.office365.com goals.cloud.microsoft *.powerapps.com *.powerbi.com *.yammer.com engage.cloud.microsoft word.cloud.microsoft excel.cloud.microsoft powerpoint.cloud.microsoft *.officeapps.live.com *.office.com *.microsoft365.com m365.cloud.microsoft *.cloud.microsoft *.stream.azure-test.net *.dynamics.com *.microsoft.com onedrive.live.com *.onedrive.live.com teams.microsoft.com *.teams.microsoft.com securebroker.sharepointonline.com;
+sprequestduration: 341
+spiislatency: 4
+x-powered-by: ASP.NET
+microsoftsharepointteamservices: 16.0.0.27508
+x-content-type-options: nosniff
+x-ms-invokeapp: 1; RequireReadOnly
+x-cache: CONFIG_NOCACHE
+x-msedge-ref: Ref A: 1606EC76E26B41788D0C095AD7728CFD Ref B: DFW311000108037 Ref C: 2026-07-22T16:18:30Z
+date: Wed, 22 Jul 2026 16:18:31 GMT
+
+HTTP/2 403 
+content-length: 13
+content-type: text/plain; charset=utf-8
+p3p: CP="ALL IND DSP COR ADM CONo CUR CUSo IVAo IVDo PSA PSD TAI TELo OUR SAMo CNT COM INT NAV ONL PHY PRE PUR UNI"
+x-networkstatistics: 0,63997,0,0,158745,90040,90040,131315
+x-sharepointhealthscore: 3
+x-forms_based_auth_required: https://vutbr-my.sharepoint.com/_forms/default.aspx?ReturnUrl=/_layouts/15/error.aspx&Source=%2fpersonal%2fxjezek16_vutbr_cz%2fDocuments%2fMPDD%3fga%3d1
+x-forms_based_auth_return_url: https://vutbr-my.sharepoint.com/_layouts/15/error.aspx
+x-msdavext_error: 917656; Access+denied.+Before+opening+files+in+this+location%2c+you+must+first+browse+to+the+web+site+and+select+the+option+to+login+automatically.
+sprequestguid: bfcc29a2-b058-9000-5728-aa0489e5d3  0    13    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0
+48
+request-id: bfcc29a2-b058-9000-5728-aa0489e5d348
+ms-cv: oinMv1iwAJBXKKoEieXTSA.0
+strict-transport-security: max-age=31536000
+isocdi: 0
+sprequestduration: 22
+spiislatency: 1
+x-idcrl_auth_params_v1: IDCRL Type="BPOSIDCRL", EndPoint="/personal/xjezek16_vutbr_cz/_vti_bin/idcrl.svc/", RootDomain="sharepoint.com", Policy="MBI"
+x-powered-by: ASP.NET
+microsoftsharepointteamservices: 16.0.0.27508
+x-content-type-options: nosniff
+x-ms-invokeapp: 1; RequireReadOnly
+x-cache: CONFIG_NOCACHE
+x-msedge-ref: Ref A: B41F7B2E5B06489091697869B8A86866 Ref B: DFW311000108037 Ref C: 2026-07-22T16:18:31Z
+date: Wed, 22 Jul 2026 16:18:31 GMT
+
+end_utc=2026-07-22T16:21:12Z
+exit_code=0

@@ -1,0 +1,48 @@
+{
+  "datasets": {
+    "mpdd": {
+      "archive": "/home/crl/MoME/other/AD/tmp/ad-neurocomputing/downloads/MPDD.zip",
+      "archive_sha256": "69f8da73eea4a31451a50251e5c261e83e0c53f2d1a39a7d4dfc78b5c434ddd6",
+      "archive_size": 1825041283,
+      "configured_path": "/home/crl/MoME/other/AD/data/mpdd",
+      "download_lineage": "Pinned Hugging Face mirror because the official SharePoint object required authentication/returned 403.",
+      "license": "CC BY-NC-SA 4.0",
+      "mirror_repository": "meksamiao/mpdd",
+      "mirror_revision": "7b6f213b2203f696b7018e8d94033fce6aacb30b",
+      "official_repository": "https://github.com/stepanje/MPDD",
+      "official_repository_commit": "07425ed9b9a4accd67aa049e6abf9f0464a90190",
+      "official_repository_license_sha256": "1349a4b6148492b44f629e64eed676612e234fe9a839e4f3b277c1482c8849f1",
+      "resolved_root": "/home/crl/MoME/other/AD/tmp/ad-neurocomputing/extracted/mpdd_raw/MPDD",
+      "zip_crc_test": "PASS"
+    },
+    "mvtec": {
+      "archive": "/home/crl/MoME/other/AD/tmp/ad-neurocomputing/downloads/mvtec_anomaly_detection.tar.xz",
+      "archive_sha256": "cf4313b13603bec67abb49ca959488f7eedce2a9f7795ec54446c649ac98cd3d",
+      "archive_size": 5264982680,
+      "configured_path": "/home/crl/MoME/other/AD/data/mvtec",
+      "download_lineage": "Pinned Hugging Face mirror because the current official page requires a web form; archive hash equals the linked LFS SHA-256 and known MVTec archive hash.",
+      "license": "CC BY-NC-SA 4.0",
+      "license_sha256": "a355a57937552790ebd751f8a8026b23882160ab73f1c38f8030456dfcf1a330",
+      "mirror_repository": "micguida1/mvtech_anomaly_detection",
+      "mirror_revision": "eb692b36147a3b3f12c561b879a062104c1f20b8",
+      "official_page": "https://www.mvtec.com/research-teaching/datasets/mvtec-ad",
+      "readme_sha256": "60222d7e42a41e6e63ee6ed632d1149b76705fa49924b4c7594ebfc36f0a667c",
+      "resolved_root": "/home/crl/MoME/other/AD/tmp/ad-neurocomputing/extracted/mvtec"
+    },
+    "visa": {
+      "archive": "/home/crl/MoME/other/AD/tmp/ad-neurocomputing/downloads/VisA_20220922.tar",
+      "archive_sha256": "2eb8690c803ab37de0324772964100169ec8ba1fa3f7e94291c9ca673f40f362",
+      "archive_size": 1929840640,
+      "configured_path": "/home/crl/MoME/other/AD/data/visa",
+      "download_url": "https://amazon-visual-anomaly.s3.us-west-2.amazonaws.com/VisA_20220922.tar",
+      "license": "CC BY 4.0",
+      "license_sha256": "9e5f1b3c610b9c2da5c313bf81d577a7d1acec686bdb0384edefa6df0f90cd94",
+      "official_page": "https://registry.opendata.aws/visa/",
+      "resolved_root": "/home/crl/MoME/other/AD/tmp/ad-neurocomputing/extracted/visa_raw",
+      "split_1cls_sha256": "a48557e6033318cb90556f706196bc9d247a776a23ea51aecee5a80dd0332995"
+    }
+  },
+  "git_commit": "e7f175990b02aa3cbdb7c92250d57c0272abef9d",
+  "raw_data_redistributed": false,
+  "run_tag": "nc_gpu_20260722_e7f1759"
+}

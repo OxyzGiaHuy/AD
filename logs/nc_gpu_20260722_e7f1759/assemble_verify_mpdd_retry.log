@@ -1,0 +1,25 @@
+run_tag=nc_gpu_20260722_e7f1759
+git_commit=e7f175990b02aa3cbdb7c92250d57c0272abef9d
+start_utc=2026-07-22T16:56:48Z
+command=/home/crl/miniconda3/envs/ad/bin/python -c $'from pathlib import Path\nimport hashlib, os\nroot=Path("tmp/ad-neurocomputing/downloads/.MPDD.zip.parts")\nfor source,target,size in [\n("part-001-prefix","part-001-prefix-fixed",124051456),\n("part-002-prefix","part-002-prefix-fixed",81952768),\n]:\n with (root/source).open("rb") as src, (root/target).open("wb") as dst:\n  remaining=size\n  while remaining:\n   block=src.read(min(8*1024*1024,remaining))\n   if not block: raise SystemExit(f"short prefix: {source}")\n   dst.write(block); remaining-=len(block)\nspecs=[\n("part-000",228130161),\n("part-001-prefix-fixed",124051456),\n("part-001a",34692902),\n("part-001b",34692902),\n("part-001c",34692901),\n("part-002-prefix-fixed",81952768),\n("part-002a",36544349),\n("part-002b",36544348),\n("part-002c",36544348),\n("part-002d",36544348),\n("part-003",228130161),\n("part-004",228130161),\n("part-005",228130161),\n("part-006",228130161),\n("part-007",228130156),\n]\nfor name,expected in specs:\n actual=(root/name).stat().st_size\n print(f"{name}: expected={expected} actual={actual}")\n if actual != expected: raise SystemExit(f"size mismatch: {name}")\nout=Path("tmp/ad-neurocomputing/downloads/MPDD.zip.assembling")\ndigest=hashlib.sha256(); total=0\nwith out.open("wb") as dst:\n for name,_ in specs:\n  with (root/name).open("rb") as src:\n   while True:\n    block=src.read(8*1024*1024)\n    if not block: break\n    dst.write(block); digest.update(block); total+=len(block)\nactual_sha=digest.hexdigest()\nexpected_sha="69f8da73eea4a31451a50251e5c261e83e0c53f2d1a39a7d4dfc78b5c434ddd6"\nprint(f"archive_bytes={total}")\nprint(f"archive_sha256={actual_sha}")\nprint(f"expected_sha256={expected_sha}")\nif total != 1825041283 or actual_sha != expected_sha: raise SystemExit("assembled archive validation failed")\nos.replace(out,Path("tmp/ad-neurocomputing/downloads/MPDD.zip"))\nprint("archive_validation=PASS")' 
+assembled archive validation failed
+part-000: expected=228130161 actual=228130161
+part-001-prefix-fixed: expected=124051456 actual=124051456
+part-001a: expected=34692902 actual=34692902
+part-001b: expected=34692902 actual=34692902
+part-001c: expected=34692901 actual=34692901
+part-002-prefix-fixed: expected=81952768 actual=81952768
+part-002a: expected=36544349 actual=36544349
+part-002b: expected=36544348 actual=36544348
+part-002c: expected=36544348 actual=36544348
+part-002d: expected=36544348 actual=36544348
+part-003: expected=228130161 actual=228130161
+part-004: expected=228130161 actual=228130161
+part-005: expected=228130161 actual=228130161
+part-006: expected=228130161 actual=228130161
+part-007: expected=228130156 actual=228130156
+archive_bytes=1825041283
+archive_sha256=259c89a883bdace3d216783f1627f3df6db953ed55fafcd53d6f4958c88e6580
+expected_sha256=69f8da73eea4a31451a50251e5c261e83e0c53f2d1a39a7d4dfc78b5c434ddd6
+end_utc=2026-07-22T16:56:49Z
+exit_code=1

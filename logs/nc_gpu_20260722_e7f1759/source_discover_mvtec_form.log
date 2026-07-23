@@ -1,0 +1,154 @@
+run_tag=nc_gpu_20260722_e7f1759
+git_commit=e7f175990b02aa3cbdb7c92250d57c0272abef9d
+start_utc=2026-07-22T16:21:36Z
+command=bash -lc curl\ -fsSL\ https://www.mvtec.com/research-teaching/datasets/mvtec-ad\ \|\ rg\ -n\ -C\ 8\ \'Fill\ in\ the\ form\|form\|download.\*dataset\|powermail\|ajax\|fileadmin.\*anomaly\' 
+4-
+5-<!-- 
+6-	created by BippesBrandão GmbH (https://www.bippesbrandao.de  - kontakt@bippesbrandao.de)
+7-	    ===
+8-
+9-	This website is powered by TYPO3 - inspiring people to share!
+10-	TYPO3 is a free open source Content Management Framework initially created by Kasper Skaarhoj and licensed under GNU/GPL.
+11-	TYPO3 is copyright 1998-2026 of Kasper Skaarhoj. Extensions are copyright of their respective owners.
+12:	Information and contribution at https://typo3.org/
+13--->
+14-
+15-
+16-
+17-<meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">
+18-<meta name="generator" content="TYPO3 CMS">
+19-<meta name="description" content="MVTec AD is a benchmark dataset for industrial anomaly detection and localization. It contains more than 5,000 high-resolution images across 15 object and texture categories like bottle, cable etc.">
+20-<meta name="viewport" content="width=device-width, initial-scale=1">
+--
+1359-
+1360-
+1361-
+1362-			
+1363-			
+1364-
+1365-
+1366-<a id="c3389"></a><section class="container-fluid  mb-96"><div class="container  "><div class="row no-row-col-margins "><div class="col col-12 col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12  "><a id="c3390"></a><div class="bb-teaser-tile bb-teaser-tile--content-right  bb-content-item"><div class="bb-teaser-tile__image-container"><div class="bb-image bb-teaser-tile__image" style="max-width: 928px;"><div class="bb-image__image-holder"><picture><source
+1367:									srcset="https://www.mvtec.com/fileadmin/_processed_/0/4/csm_teaser_image_dataset_anomaly_detection_d24b9707cd.webp"
+1368-									media="(min-width: 992px)"
+1369-									width="710"
+1370-									height="520"
+1371-								/><source
+1372:									srcset="https://www.mvtec.com/fileadmin/_processed_/0/4/csm_teaser_image_dataset_anomaly_detection_0d839f1cd0.webp"
+1373-									media="(min-width: 600px)"
+1374-									width="928"
+1375-									height="680"
+1376-								/><source
+1377:									srcset="https://www.mvtec.com/fileadmin/_processed_/0/4/csm_teaser_image_dataset_anomaly_detection_6308ae803a.webp, https://www.mvtec.com/fileadmin/_processed_/0/4/csm_teaser_image_dataset_anomaly_detection_d238c167a1.webp 1.5x"
+1378-									media="(min-width: 1px)"
+1379-									width="568"
+1380-									height="416"
+1381-								/><img
+1382:								src="https://www.mvtec.com/fileadmin/_processed_/0/4/csm_teaser_image_dataset_anomaly_detection_b7de33b91e.webp"
+1383-								alt=""
+1384-								title=""
+1385-								width="928"
+1386-								height="680"
+1387-																									loading="lazy"
+1388:																style="width: 928px;"							/></picture></div></div></div><div class="bb-teaser-tile__content-container bg-white"><div><div class="bb-teaser-tile__content-headline h2 mb-0">Abstract</div></div><div class="bb-teaser-tile__content-divider"></div><div class="bb-teaser-tile__copy"><div class="ce-bodytext"><div class="frame frame--type-textpic frame--medium-margin-bottom"><p><strong>MVTec AD</strong> is a dataset for benchmarking anomaly detection methods with a focus on industrial inspection. It contains over 5000 high-resolution images divided into fifteen different object and texture categories. Each category comprises a set of defect-free training images and a test set of images with various kinds of defects as well as images without defects.</p><p>Pixel-precise annotations of all anomalies are also provided. More information can be in our paper "<a href="/fileadmin/Redaktion/mvtec.com/05_research_teaching/datasets/mvtec_ad.pdf" target="_blank">MVTec AD – A Comprehensive Real-World Dataset for Unsupervised Anomaly Detection</a>" and its extended version "<a href="https://link.springer.com/content/pdf/10.1007/s11263-020-01400-4.pdf" target="_blank" rel="noreferrer">The MVTec Anomaly Detection Dataset: A Comprehensive Real-World Dataset for Unsupervised Anomaly Detection</a>".&nbsp;</p></div></div></div></div></div></div></div></div></section>
+1389-
+1390-
+1391-
+1392-
+1393:<a id="c3391"></a><section class="container-fluid  mb-96 has-max-width bg-primary"><div class="container pt-96 pb-96 "><div class="row no-row-col-margins "><div class="col col-12 col-xs-12   col-lg-8 col-xl-8  "><div class="bb-grid-container__headline-container mb-36 "><p class="bb-grid-container__subline h5 mb-0 text-uppercase">Download dataset</p><h2 class="bb-grid-container__headline mb-0">Fill in the form</h2></div></div></div><div class="row no-row-col-margins "><div class="col col-12 col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8  "><a id="c3392"></a><div class="bb-content-item frame frame-default frame-type-html 0"><script type="text/javascript">var aoAdBlockDetected = true;</script><script type="text/javascript" src="//software.mvtec.com/acton/content/aoAdDetect.js"></script><script type="text/javascript">window.addEventListener("load",function(){if(aoAdBlockDetected){var t=document.createElement("div"),o=document.createElement("div"),e=document.createElement("div"),n=document.createElement("div"),d=document.createElement("button"),i="<h1 style=\"text-align: center; line-height: 21px; color: #444444;\"><span style=\"font-family: 'helvetica neue', helvetica, arial, sans-serif;\"><strong style=\"font-weight: bold;\"><span style=\"white-space: pre-wrap; font-size: 18pt;\">It looks like you’re using an AdBlocker</span></strong></span></h1><p style=\"text-align: center; line-height: 20px; color: #444444;\"><span style=\"font-family: 'helvetica neue', helvetica, arial, sans-serif; color: #767676;\"><span style=\"white-space: pre-wrap; font-size: 18pt;\"><span style=\"white-space: pre-wrap;\"><span style=\"font-size: 14pt;\">Some of the forms and images on this page may not work correctly with this enabled. Please disable your ad blocker for this page.</span></span></span></span></p><p style=\"text-align: left; line-height: 20px; color: #444444;\"><span style=\"font-size: 14pt;\"><strong style=\"font-weight: 500;\"><span style=\"font-family: 'helvetica neue', helvetica, arial, sans-serif;\"><span style=\"white-space: pre-wrap;\"><span style=\"white-space: pre-wrap;\">Instructions</span></span></span></strong></span></p><p style=\"text-align: left; line-height: 20px; color: #444444;\"><span style=\"font-size: 14pt;\"><strong style=\"font-weight: 500;\"><span style=\"font-family: 'helvetica neue', helvetica, arial, sans-serif;\"><span style=\"white-space: pre-wrap;\"><span style=\"white-space: pre-wrap;\">1. Find the ad blocker icon installed on your browser.</span></span></span></strong></span></p><p style=\"text-align: left; line-height: 20px; color: #444444;\"><span style=\"font-size: 14pt;\"><span style=\"font-family: 'helvetica neue', helvetica, arial, sans-serif;\"><span style=\"white-space: pre-wrap;\"><span style=\"white-space: pre-wrap;\">This icon is usually located on the upper right side of your screen. You may have more than one ad blocker installed.</span></span></span></span></p><p style=\"text-align: left; line-height: 20px; color: #444444;\"><strong style=\"font-weight: 500;\"><span style=\"font-size: 14pt;\"><span style=\"font-family: 'helvetica neue', helvetica, arial, sans-serif;\"><span style=\"white-space: pre-wrap;\"><span style=\"white-space: pre-wrap;\">2. Click the icon and disable the ad blocker for this website.</span></span></span></span></strong></p><p style=\"text-align: left; line-height: 20px; color: #444444;\"><strong style=\"font-weight: 500;\"><span style=\"font-size: 14pt;\"><span style=\"font-family: 'helvetica neue', helvetica, arial, sans-serif;\"><span style=\"white-space: pre-wrap;\"><span style=\"white-space: pre-wrap;\">3. Refresh this website page, either by following prompts or clicking your browser’s “refresh” or “reload” button.</span></span></span></span></strong></p>";t.style.cssText="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:1000;background:red;background: rgba(0,0,0,0.3);",o.style.cssText="position: fixed; top: 50%; left: 50%; width: 600px; max-width: 80vw; transform: translate(-50%, -50%) !important; background: #ffffff; border-width: 1px; border-radius: 4px; border-color: #444444; border-style: solid; max-height: 80vh; overflow: auto; padding: 24px 56px 0 56px;",o.innerHTML=i,n.style.cssText="margin-top: 36px; margin-bottom: 24px; text-align: center;",o.appendChild(n),d.innerHTML="Refresh Page",d.style.cssText="cursor: pointer; padding: 12px 24px; background: #FFFFFF; border-width: 1px; color: #444444; border-color: #444444; border-radius: 4px;",n.appendChild(d),d.addEventListener("click",function(){window.location.reload()}),e.style.cssText="position: absolute; right: 25px; top: 25px; cursor: pointer; font-size: 14px; line-height: 14px; color: #444444",e.innerHTML="&#10005;",e.addEventListener("click",function(){o.parentNode.removeChild(o),t.parentNode.removeChild(t)}),document.body.appendChild(t),t.appendChild(o),o.appendChild(e)}});</script><script type="text/javascript" id="aoform-script-c92559d1-5797-4de8-aa04-48d75107de76:d-0001">!function(o,t,e,a){o._aoForms=o._aoForms||[],o._aoForms.push(a);var n=function(){var o=t.createElement(e);o.src=("https:"==t.location.protocol?"https://":"http://")+"software.mvtec.com/acton/content/form_embed.js",o.async=!0;for(var a=t.getElementsByTagName(e)[0],n=a.parentNode,c=document.getElementsByTagName("script"),r=!1,s=0;s<c.length;s++){if(c[s].getAttribute("src")==o.getAttribute("src"))r=!0;}r?typeof(_aoFormLoader)!="undefined"?_aoFormLoader.load({id:"c92559d1-5797-4de8-aa04-48d75107de76:d-0001",accountId:"43208",domain:"software.mvtec.com",isTemp:false,noStyle:true,prefill:false}):"":n.insertBefore(o,a)};window.attachEvent?window.attachEvent("onload",n):window.addEventListener("load",n,!1),n()}(window,document,"script",{id:"c92559d1-5797-4de8-aa04-48d75107de76",accountId:"43208",domain:"software.mvtec.com",isTemp:false,noStyle:true,prefill:false});</script></div></div></div></div></section>
+1394-
+1395-
+1396-
+1397-
+1398-<a id="c3394"></a><section class="container-fluid  mb-96 has-max-width"><div class="container  "><div class="row no-row-col-margins "><div class="col col-12 col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8  "><a id="c3395"></a><div class="bb-content-item frame frame-default frame-type-text 0"><div class="frame frame--type-text frame--medium-margin-bottom"><h2>Evaluation Code</h2><p>In order to ensure a fair and consistent comparison of new and existing methods on our dataset, we provide python scripts that allow an easy evaluation. For details on how to use the script, please take a look at the included readme file. For details on the metrics used for the evaluation, we refer to our corresponding paper.</p><p><a href="https://www.mydrive.ch/shares/150450/bb24b914a28ddd2b5e35bd53d23177cd/download/439517473-1665675012/mvtec_ad_evaluation.tar.xz" target="_blank" class="bb-button bb-button--primary-alt has-icon--download" rel="noreferrer"><span class="mvtec-blue">Download the evaluation code</span></a></p></div></div></div></div></div></section>
+1399-
+1400-
+1401-
+--
+1442-	<div class="row bb-footer__main-row">
+1443-								<div class="col col-12 col-xs-12 col-sm-6 col-xl-4    ">
+1444-					<div class="box">
+1445-		
+1446-
+1447-
+1448-<a id="c12"></a><div class="bb-content-item frame frame-default frame-type-text 0"><h6 class="">
+1449-                MVTec News – Stay up to date with our newsletter!
+1450:            </h6><p>Stay informed with the latest updates, product releases and industry insights delivered straight to your inbox.</p><p><a href="/knowledge-base/news/newsletter" class="bb-button bb-button--primary-alt has-icon--send">Subscribe to MVTec News</a></p></div>
+1451-
+1452-
+1453-	</div>
+1454-
+1455-			</div>
+1456-								<div class="col col-12 col-xs-12 col-sm-6 col-xl-4    ">
+1457-					<div class="box">
+1458-		<p><strong>More from MVTec</strong></p>
+--
+1510-			</div>
+1511-
+1512-			</div>
+1513-								<div class="col col-12 col-xs-12 col-sm-6 col-xl-4    ">
+1514-					<div class="box">
+1515-		
+1516-
+1517-
+1518:<a id="c13"></a><div class="bb-content-item frame frame-default frame-type-text 0"><p><strong>Do you have questions or would like a consultation?</strong></p><p>Fill out our contact form, and our experts will get back to you as soon as possible.</p><p><a href="/contact" class="bb-button bb-button--primary-alt has-icon--headset">Get in touch</a></p></div>
+1519-
+1520-
+1521-	</div>
+1522-
+1523-			</div>
+1524-			</div>
+1525-	</div>
+1526-</section>	</div>
+--
+1686-
+1687-
+1688-
+1689-
+1690-
+1691-
+1692-
+1693-
+1694:<div class="tx-solr-search-form">
+1695-    
+1696-
+1697-    
+1698-        
+1699-<div class="bb-search-overlay ">
+1700-	
+1701-	
+1702-
+--
+1729-								<div class="col col-12 col-xs-12      ">
+1730-				
+1731-        
+1732-<div class="tx_solr container">
+1733-	<div class="row">
+1734-		<div class="col-md-12">
+1735-			
+1736-	
+1737:	<div class="bb-search-overlay__search-form">
+1738:		<form method="get" id="tx-solr-search-form-pi-results" action="/search" data-suggest="/search?type=7384" data-suggest-header="Top Results" accept-charset="utf-8">
+1739-            
+1740:            <div class="bb-inputfield-wrapper form-element-wrapper">
+1741-                <div class="bb-inputfield">
+1742-                    <label for="bb-search-overlay--input" class="bb-inputfield__label label-top">
+1743-                        <span class="bb-inputfield__label-text">Search term</span>
+1744-                    </label>
+1745-                    <input type="text" name="tx_solr[q]" value="" maxlength="50" id="bb-search-overlay--input" />
+1746-                </div>
+1747-            </div>
+1748-            <button class="bb-button bb-button--primary-alt bb-button--has-icon bb-button--icon-position-left" type="submit">
+1749-                <i class="bb-icon bb-icon--magnifying-glass"></i>
+1750-                Search
+1751-            </button>
+1752:		</form>
+1753-	</div>
+1754-
+1755-
+1756-		</div>
+1757-	</div>
+1758-</div>
+1759-    
+1760-			</div>
+end_utc=2026-07-22T16:21:37Z
+exit_code=0

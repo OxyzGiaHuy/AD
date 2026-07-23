@@ -1,0 +1,7 @@
+run_tag=nc_gpu_20260722_e7f1759
+git_commit=e7f175990b02aa3cbdb7c92250d57c0272abef9d
+start_utc=2026-07-22T16:42:31Z
+command=git clone --depth 1 https://github.com/stepanje/MPDD.git tmp/ad-neurocomputing/provenance/mpdd_repo 
+Cloning into 'tmp/ad-neurocomputing/provenance/mpdd_repo'...
+end_utc=2026-07-22T16:42:32Z
+exit_code=0
