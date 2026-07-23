@@ -1,0 +1,6 @@
+HANDOFF_ARTIFACT_COMMIT=8369ffe
+FROZEN_RUN_COMMIT=e7f175990b02aa3cbdb7c92250d57c0272abef9d
+
+git status --short after artifact commit (excluding this snapshot file):
+ M .gitignore
+?? tmp/ad-neurocomputing/

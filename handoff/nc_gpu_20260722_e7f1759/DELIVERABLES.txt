@@ -1,6 +1,7 @@
 configs/submission_cpu_pipeline.final.json
 els-cas-templates/main.log
 els-cas-templates/main.pdf
+handoff/nc_gpu_20260722_e7f1759/FINAL_GIT_STATE.txt
 handoff/nc_gpu_20260722_e7f1759/GPU_RUN_REPORT.md
 handoff/nc_gpu_20260722_e7f1759/MISSING_OR_FAILED.md
 logs/nc_gpu_20260722_e7f1759/assemble_mpdd.log

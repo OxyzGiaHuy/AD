@@ -16,6 +16,7 @@ The frozen scientific protocol was not changed.
 
 - Frozen run commit: `e7f175990b02aa3cbdb7c92250d57c0272abef9d`.
 - First artifact checkpoint: `07d8031`.
+- Complete handoff artifact commit: `8369ffe`.
 - Repository: `/home/crl/MoME/other/AD`.
 - Python: 3.10.20.
 - PyTorch: 2.12.1+cu130.
