@@ -1,0 +1,7 @@
+run_tag=nc_gpu_20260722_e7f1759
+git_commit=e7f175990b02aa3cbdb7c92250d57c0272abef9d
+start_utc=2026-07-23T07:06:38Z
+command=env PYTHONUNBUFFERED=1 OPENBLAS_NUM_THREADS=16 OMP_NUM_THREADS=16 MKL_NUM_THREADS=16 taskset -c 0-31 /home/crl/miniconda3/envs/ad/bin/python -u scripts/run_cpu_submission_pipeline.py --config configs/submission_cpu_pipeline.final.json 
+CPU submission pipeline completed: /home/crl/MoME/other/AD/outputs/submission_cpu/cpu_pipeline_manifest_nc_gpu_20260722_e7f1759.json
+end_utc=2026-07-23T11:38:14Z
+exit_code=0

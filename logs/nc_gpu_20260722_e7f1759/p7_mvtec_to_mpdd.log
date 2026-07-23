@@ -1,0 +1,7 @@
+run_tag=nc_gpu_20260722_e7f1759
+git_commit=e7f175990b02aa3cbdb7c92250d57c0272abef9d
+start_utc=2026-07-23T06:32:57Z
+command=/home/crl/miniconda3/envs/ad/bin/python -u scripts/evaluate_nested_sc3r.py --inputs outputs/paper_tables/sc3r_views_mvtec_nc_gpu_20260722_e7f1759.csv outputs/paper_tables/sc3r_views_mpdd_nc_gpu_20260722_e7f1759.csv --support-stats outputs/paper_tables/sc3r_support_mvtec_nc_gpu_20260722_e7f1759.csv outputs/paper_tables/sc3r_support_mpdd_nc_gpu_20260722_e7f1759.csv --support-residuals outputs/paper_tables/sc3r_loio_mvtec_nc_gpu_20260722_e7f1759.csv outputs/paper_tables/sc3r_loio_mpdd_nc_gpu_20260722_e7f1759.csv --source-mode matched_condition --source-dataset mvtec --target-dataset mpdd --alphas 0.05 0.10 0.20 --delta 0.05 --max-candidates 20 --run-tag mvtec_to_mpdd_nc_gpu_20260722_e7f1759 
+wrote 10800 result rows, 71958 candidate rows, and 600 manifests
+end_utc=2026-07-23T06:33:12Z
+exit_code=0

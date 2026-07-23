@@ -1,0 +1,74 @@
+run_tag=nc_gpu_20260722_e7f1759
+git_commit=e7f175990b02aa3cbdb7c92250d57c0272abef9d
+start_utc=2026-07-23T03:48:02Z
+command=env PYTHONUNBUFFERED=1 /home/crl/miniconda3/envs/ad/bin/python -u scripts/export_matched_loio_views.py --base-config configs/generated/mvtec_full/calib_subspace_head_mvtec_bottle_k1_seed0.yaml --dataset mvtec --classes bottle cable capsule carpet grid hazelnut leather metal_nut pill screw tile toothbrush transistor wood zipper --k-shots 4 8 --seeds 0 1 2 3 4 --corruptions clean gaussian_noise blur brightness_contrast jpeg --max-images 120 --tmp-root /home/crl/MoME/other/AD/tmp/ad-neurocomputing/corruptions --out-dir outputs/paper_tables --run-tag mvtec_nc_gpu_20260722_e7f1759 --rho 0.01 --resume 
+/home/crl/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/layers/swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)
+  warnings.warn("xFormers is not available (SwiGLU)")
+/home/crl/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/layers/attention.py:33: UserWarning: xFormers is not available (Attention)
+  warnings.warn("xFormers is not available (Attention)")
+/home/crl/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/layers/block.py:40: UserWarning: xFormers is not available (Block)
+  warnings.warn("xFormers is not available (Block)")
+matched_loio_progress=116/750 dataset=mvtec class=capsule k=4 seed=3 corruption=clean
+matched_loio_progress=117/750 dataset=mvtec class=capsule k=4 seed=3 corruption=gaussian_noise
+matched_loio_progress=118/750 dataset=mvtec class=capsule k=4 seed=3 corruption=blur
+matched_loio_progress=119/750 dataset=mvtec class=capsule k=4 seed=3 corruption=brightness_contrast
+matched_loio_progress=120/750 dataset=mvtec class=capsule k=4 seed=3 corruption=jpeg
+matched_loio_progress=121/750 dataset=mvtec class=capsule k=4 seed=4 corruption=clean
+matched_loio_progress=122/750 dataset=mvtec class=capsule k=4 seed=4 corruption=gaussian_noise
+matched_loio_progress=123/750 dataset=mvtec class=capsule k=4 seed=4 corruption=blur
+matched_loio_progress=124/750 dataset=mvtec class=capsule k=4 seed=4 corruption=brightness_contrast
+matched_loio_progress=125/750 dataset=mvtec class=capsule k=4 seed=4 corruption=jpeg
+matched_loio_progress=126/750 dataset=mvtec class=capsule k=8 seed=0 corruption=clean
+matched_loio_progress=127/750 dataset=mvtec class=capsule k=8 seed=0 corruption=gaussian_noise
+matched_loio_progress=128/750 dataset=mvtec class=capsule k=8 seed=0 corruption=blur
+matched_loio_progress=129/750 dataset=mvtec class=capsule k=8 seed=0 corruption=brightness_contrast
+matched_loio_progress=130/750 dataset=mvtec class=capsule k=8 seed=0 corruption=jpeg
+matched_loio_progress=131/750 dataset=mvtec class=capsule k=8 seed=1 corruption=clean
+matched_loio_progress=132/750 dataset=mvtec class=capsule k=8 seed=1 corruption=gaussian_noise
+matched_loio_progress=133/750 dataset=mvtec class=capsule k=8 seed=1 corruption=blur
+matched_loio_progress=134/750 dataset=mvtec class=capsule k=8 seed=1 corruption=brightness_contrast
+matched_loio_progress=135/750 dataset=mvtec class=capsule k=8 seed=1 corruption=jpeg
+matched_loio_progress=136/750 dataset=mvtec class=capsule k=8 seed=2 corruption=clean
+matched_loio_progress=137/750 dataset=mvtec class=capsule k=8 seed=2 corruption=gaussian_noise
+matched_loio_progress=138/750 dataset=mvtec class=capsule k=8 seed=2 corruption=blur
+matched_loio_progress=139/750 dataset=mvtec class=capsule k=8 seed=2 corruption=brightness_contrast
+matched_loio_progress=140/750 dataset=mvtec class=capsule k=8 seed=2 corruption=jpeg
+matched_loio_progress=141/750 dataset=mvtec class=capsule k=8 seed=3 corruption=clean
+matched_loio_progress=142/750 dataset=mvtec class=capsule k=8 seed=3 corruption=gaussian_noise
+matched_loio_progress=143/750 dataset=mvtec class=capsule k=8 seed=3 corruption=blur
+matched_loio_progress=144/750 dataset=mvtec class=capsule k=8 seed=3 corruption=brightness_contrast
+matched_loio_progress=145/750 dataset=mvtec class=capsule k=8 seed=3 corruption=jpeg
+matched_loio_progress=146/750 dataset=mvtec class=capsule k=8 seed=4 corruption=clean
+matched_loio_progress=147/750 dataset=mvtec class=capsule k=8 seed=4 corruption=gaussian_noise
+matched_loio_progress=148/750 dataset=mvtec class=capsule k=8 seed=4 corruption=blur
+matched_loio_progress=149/750 dataset=mvtec class=capsule k=8 seed=4 corruption=brightness_contrast
+matched_loio_progress=150/750 dataset=mvtec class=capsule k=8 seed=4 corruption=jpeg
+matched_loio_progress=151/750 dataset=mvtec class=carpet k=4 seed=0 corruption=clean
+matched_loio_progress=152/750 dataset=mvtec class=carpet k=4 seed=0 corruption=gaussian_noise
+matched_loio_progress=153/750 dataset=mvtec class=carpet k=4 seed=0 corruption=blur
+matched_loio_progress=154/750 dataset=mvtec class=carpet k=4 seed=0 corruption=brightness_contrast
+matched_loio_progress=155/750 dataset=mvtec class=carpet k=4 seed=0 corruption=jpeg
+matched_loio_progress=156/750 dataset=mvtec class=carpet k=4 seed=1 corruption=clean
+matched_loio_progress=157/750 dataset=mvtec class=carpet k=4 seed=1 corruption=gaussian_noise
+matched_loio_progress=158/750 dataset=mvtec class=carpet k=4 seed=1 corruption=blur
+matched_loio_progress=159/750 dataset=mvtec class=carpet k=4 seed=1 corruption=brightness_contrast
+matched_loio_progress=160/750 dataset=mvtec class=carpet k=4 seed=1 corruption=jpeg
+matched_loio_progress=161/750 dataset=mvtec class=carpet k=4 seed=2 corruption=clean
+matched_loio_progress=162/750 dataset=mvtec class=carpet k=4 seed=2 corruption=gaussian_noise
+matched_loio_progress=163/750 dataset=mvtec class=carpet k=4 seed=2 corruption=blur
+matched_loio_progress=164/750 dataset=mvtec class=carpet k=4 seed=2 corruption=brightness_contrast
+matched_loio_progress=165/750 dataset=mvtec class=carpet k=4 seed=2 corruption=jpeg
+matched_loio_progress=166/750 dataset=mvtec class=carpet k=4 seed=3 corruption=clean
+matched_loio_progress=167/750 dataset=mvtec class=carpet k=4 seed=3 corruption=gaussian_noise
+matched_loio_progress=168/750 dataset=mvtec class=carpet k=4 seed=3 corruption=blur
+matched_loio_progress=169/750 dataset=mvtec class=carpet k=4 seed=3 corruption=brightness_contrast
+matched_loio_progress=170/750 dataset=mvtec class=carpet k=4 seed=3 corruption=jpeg
+matched_loio_progress=171/750 dataset=mvtec class=carpet k=4 seed=4 corruption=clean
+matched_loio_progress=172/750 dataset=mvtec class=carpet k=4 seed=4 corruption=gaussian_noise
+matched_loio_progress=173/750 dataset=mvtec class=carpet k=4 seed=4 corruption=blur
+matched_loio_progress=174/750 dataset=mvtec class=carpet k=4 seed=4 corruption=brightness_contrast
+matched_loio_progress=175/750 dataset=mvtec class=carpet k=4 seed=4 corruption=jpeg
+matched_loio_progress=176/750 dataset=mvtec class=carpet k=8 seed=0 corruption=clean
+matched_loio_progress=177/750 dataset=mvtec class=carpet k=8 seed=0 corruption=gaussian_noise
+end_utc=2026-07-23T04:48:47Z
+exit_code=143

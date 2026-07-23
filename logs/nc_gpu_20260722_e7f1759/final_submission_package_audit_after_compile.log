@@ -1,0 +1,30 @@
+run_tag=nc_gpu_20260722_e7f1759
+git_commit=e7f175990b02aa3cbdb7c92250d57c0272abef9d
+start_utc=2026-07-23T12:28:21Z
+command=/home/crl/miniconda3/envs/ad/bin/python -u scripts/audit_submission_package.py --root els-cas-templates --cpu-manifest outputs/submission_cpu/cpu_pipeline_manifest_nc_gpu_20260722_e7f1759.json --out outputs/submission_audit_nc_gpu_20260722_e7f1759.json 
+{
+  "abstract_words": 248,
+  "cpu_manifest": "/home/crl/MoME/other/AD/outputs/submission_cpu/cpu_pipeline_manifest_nc_gpu_20260722_e7f1759.json",
+  "highlight_lengths": [
+    76,
+    78,
+    82,
+    77,
+    83
+  ],
+  "issues": [
+    "placeholder author",
+    "placeholder repository",
+    "generic TODO",
+    "author_biographies.md is missing",
+    "author passport-type photograph files are missing",
+    "duplicate PDF anchor",
+    "CPU manifest was generated from a dirty or unknown worktree"
+  ],
+  "keyword_count": 6,
+  "pdf_pages": 18,
+  "root": "/home/crl/MoME/other/AD/els-cas-templates",
+  "status": "fail"
+}
+end_utc=2026-07-23T12:28:24Z
+exit_code=1

@@ -1,0 +1,7 @@
+run_tag=nc_gpu_20260722_e7f1759
+git_commit=e7f175990b02aa3cbdb7c92250d57c0272abef9d
+start_utc=2026-07-23T07:05:08Z
+command=/home/crl/miniconda3/envs/ad/bin/python -u scripts/analyze_pvalue_uniformity.py --inputs outputs/paper_tables/matched_loio_views_mvtec_nc_gpu_20260722_e7f1759.csv --pvalue-col image_p_loio --iterations 2000 --seed 0 --out-dir outputs/paper_tables --run-tag pvalue_uniformity_mvtec_class_seed_nc_gpu_20260722_e7f1759 --cluster-cols class seed 
+wrote 10 uniformity rows and 70 qq rows
+end_utc=2026-07-23T07:05:14Z
+exit_code=0

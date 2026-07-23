@@ -1,0 +1,5 @@
+run_tag=nc_gpu_20260722_e7f1759
+git_commit=e7f175990b02aa3cbdb7c92250d57c0272abef9d
+start_utc=2026-07-23T04:48:52Z
+command=env PYTHONUNBUFFERED=1 OPENBLAS_NUM_THREADS=8 OMP_NUM_THREADS=8 MKL_NUM_THREADS=8 taskset -c 0-7\,16-23 /home/crl/miniconda3/envs/ad/bin/python -u scripts/export_matched_loio_views.py --base-config configs/generated/visa_full/calib_subspace_head_visa_candle_k1_seed0.yaml --dataset visa --classes candle capsules cashew chewinggum fryum macaroni1 macaroni2 pcb1 pcb2 pcb3 pcb4 pipe_fryum --k-shots 4 8 --seeds 0 1 2 3 4 --corruptions clean gaussian_noise blur brightness_contrast jpeg --max-images 120 --tmp-root /home/crl/MoME/other/AD/tmp/ad-neurocomputing/corruptions --out-dir outputs/paper_tables --run-tag visa_nc_gpu_20260722_e7f1759 --rho 0.01 --resume 
+matched_loio_progress=335/600 dataset=visa class=macaroni2 k=8 seed=1 corruption=jpeg
