@@ -1,8 +1,8 @@
 # Neurocomputing claim and evidence audit
 
-Audit date: 2026-07-22  
-State: active audit; raw `outputs/` artifacts remain absent. CPU code tests pass,
-but historical numerical results are not yet independently reproducible.
+Audit updated: 2026-07-23
+State: GPU handoff complete and checksum-verified. Strict category certification
+is a documented negative result; historical SC3R values remain empirical.
 
 ## Evidence labels
 
@@ -18,11 +18,11 @@ but historical numerical results are not yet independently reproducible.
 |---|---|---|---|---|
 | A target-only conformal p-value from k calibration scores cannot be below 1/(k+1) | P | Eq. (6), attainable-alpha tests/table | elementary rather than major novelty | state as a proposition with a short proof; use it to define the problem, not as the sole novelty |
 | Target-only LOIO provides conformal false-alarm control | Not currently claimable | `src/conformal.py`, `evaluate_target_only` | calibration scores use k-1-fit models while test uses a k-fit model; not exchangeable | call it approximate/empirical or replace with a formally valid construction |
-| The discrete uniformity diagnostic follows an ideal exchangeable reference | E/B | cluster-aware simulator implemented; result CSV absent | class/seed/base-image dependence remains and LOIO itself is asymmetric | regenerate views; report CDF gaps descriptively and both class-seed/category sensitivity; do not reuse old iid p-values |
-| SC3R source validation controls target FAR | E, not unconditional C/P | `evaluate_source_validated_threshold.py`; result CSV absent | threshold selection and validation reuse the same dependent leave-one-class-out source p-values; source-to-target transfer is unproved | independent fit/certification source split or valid simultaneous cluster-aware bound; separate source guarantee from conditional target transfer |
-| SC3R tracks nominal FAR on MVTec/VisA | E/B | manuscript tables and research log; raw detailed CSV absent | cannot recompute intervals or verify sampling lineage | recover or regenerate per-image views, manifests, detailed results, and uncertainty intervals |
+| The discrete uniformity diagnostic follows an ideal exchangeable reference | E | clustered class-seed and category outputs in `outputs/paper_tables/` | LOIO remains asymmetric and the simulated null is idealized | report CDF gaps descriptively; do not call the diagnostic a validity proof |
+| Strict SC3R gives useful new-category certification | Negative/P | 0/960 gate pass; Proposition 3 feasibility bound | only 3--4 certification categories versus at least 60 even at alpha 0.20 | report zero fallback and sample-size barrier; do not substitute the image estimand |
+| Historical SC3R tracks nominal FAR on MVTec/VisA | E | regenerated detailed/summary artifacts plus original tables | selection and assessment were not independent | retain only as an explicitly historical empirical diagnostic |
 | Power gain CI excludes zero for every corruption | E/B | hierarchical-bootstrap script/log; CI CSV absent | bootstrap unit and multiplicity across corruptions require audit | recover data; audit class/seed/image dependence; report simultaneous or multiplicity-adjusted intervals |
-| Cross-dataset MVTec-to-VisA transfer is conservative | E/B | manuscript table/log; detailed CSV absent | one direction and one target dataset do not establish general safe transfer | recover artifact, state one-direction scope, add reverse/third-dataset evidence if feasible |
+| Cross-dataset transfer is generally conservative | Not claimable | audited MVTec-to-VisA and MVTec-to-MPDD artifacts | two target archives do not prove a general transfer property | report both directions as empirical stress tests only |
 | LOIO improves ECE over scalar calibrators | E/B | table/log; per-image views absent | ECE is prevalence-sensitive; calibration samples and repeated corruptions are dependent | retain as secondary evidence, recover views, correct multiplicity and emphasize operational metrics |
 | Low-storage detector remains competitive in ranking/localization | E/B | clean/pixel tables; raw outputs absent | controlled baselines are not all official; ranking is inherited prior art | keep as supporting substrate and precisely label official vs controlled rows |
 | Entropy abstention improves selective reliability | E/B | Figure 5 and text; source CSV absent | current plotting fallback was reconstructed from the old vector PDF; ECE is not the primary deployment loss | recover CSV, report AURC separately, add selective FAR/power if possible |
@@ -66,20 +66,14 @@ conditionally under exchangeability/dominance of normalized target normal
 scores. Treat observed target FAR as external validation of this assumption,
 not as proof that it always holds.
 
-## Data-lineage blockers
+## Data-lineage status
 
-The following artifacts are referenced in logs/manuscript but are absent:
-
-- per-image SC3R view CSVs and support residual/statistics CSVs;
-- detailed and summary source-validated-threshold CSVs;
-- hierarchical confidence-interval CSVs;
-- p-value uniformity Q-Q/test CSVs;
-- selective-risk CSVs used by Figure 5;
-- per-image calibration views used for paired calibrator tests;
-- sampling manifests and cached feature/result provenance.
-
-Until recovered or regenerated, manuscript tables are preserved as historical
-results but are not considered final auditable evidence.
+The GPU handoff declares 811 deliverables; all exist and all SHA-256 values
+verify. Fail-closed audits pass for MVTec, VisA, and MPDD. Per-image views,
+support residuals/statistics, support and partition manifests, nested candidate
+tables, detailed outputs, clustered uniformity files, simultaneous comparisons,
+and the one-command CPU manifest are present. Raw datasets and large feature
+caches are intentionally excluded.
 
 ## Submission-format blockers
 
@@ -101,5 +95,6 @@ results but are not considered final auditable evidence.
 - Strict nested SC3R certification and shared-calibration Monte Carlo code have
   synthetic unit tests. These tests validate implementation invariants, not the
   paper's empirical conclusions.
-- GPU experiment execution is intentionally deferred. Exact commands and gates
-  are in `docs/gpu_experiment_runbook.md`.
+- GPU execution P0--P7 is complete. The local CPU-only reconstruction passes 97
+  tests with the PyTorch-dependent test skipped; the frozen GPU environment
+  passed all 98 tests.

@@ -8,25 +8,34 @@
 \usepackage{booktabs}
 \usepackage{multirow}
 \usepackage{url}
+\hypersetup{hyperfootnotes=false}
 
 \begin{document}
+% cas-common.sty prints an empty ORCID footnote even when no ORCID is supplied.
+\RenewDocumentCommand{\printorcid}{}{}
 \let\WriteBookmarks\relax
 \def\floatpagepagefraction{1}
 \def\textpagefraction{.001}
 
 \shorttitle{Conformal Reliability Routing for Few-Shot Anomaly Detection}
-% TODO: fill in real short author list, authors, affiliations, ORCID, and emails before submission.
-\shortauthors{Family et~al.}
+\shortauthors{Thai and Nguyen}
 
 \title[mode = title]{Conformal Reliability Routing for Low-Storage Few-Shot Industrial Anomaly Detection}
 
-\author[1]{Given Family}[orcid=0000-0000-0000-0000]
+\author[1]{Gia Huy Thai}
+\ead{23120008@student.hcmus.edu.vn}
+
+\author[2]{Anh Nguyen}
 \cormark[1]
-\ead{corresponding@example.org}
-\credit{Conceptualization, Methodology, Software, Validation, Writing -- original draft}
-\affiliation[1]{organization={Department, University},
-                city={City},
-                country={Country}}
+\ead{anh.nt@vlu.edu.vn}
+
+\affiliation[1]{organization={University of Science, VNU-HCM},
+                city={Ho Chi Minh City},
+                country={Vietnam}}
+
+\affiliation[2]{organization={Faculty of Information Technology, Van Lang School of Technology, Van Lang University},
+                city={Ho Chi Minh City},
+                country={Vietnam}}
 
 \cortext[cor1]{Corresponding author.}
 

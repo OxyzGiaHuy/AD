@@ -1,40 +1,40 @@
 \begin{table*}[pos=t]
 \centering
-\caption{LOIO conformal reliability versus Platt-family and standard scalar calibrators on the full corruption benchmarks. All calibrators are label-free and fit on the identical calibration set ($k$ support normals plus $k$ synthetic anomalies). Entries are means$\pm$std of per-cell (class$\times$seed$\times$corruption) ECE with 15 equal-width bins; $\Delta$ is LOIO minus baseline (negative favors LOIO), and the last column is the fraction of cells where LOIO is better. The displayed paired two-sided Wilcoxon $p$-values are historical unadjusted diagnostics; effect sizes, win fractions, and operational metrics carry the interpretation until the artifact-complete Holm-adjusted analysis is regenerated. Bold marks the lower per-cell mean.}
+\caption{LOIO conformal reliability versus label-free calibrators on the historical full corruption benchmarks. Entries are means$\pm$std of per-cell ECE; $\Delta$ is LOIO minus baseline (negative favors LOIO), and the last column is the LOIO win fraction. Unadjusted historical significance values are omitted because the artifact-complete Holm analysis is unavailable. These descriptive ECE results are secondary to operational metrics.}
 \label{tab:scalar-calibrators}
 \footnotesize
 \setlength{\tabcolsep}{3pt}
-\begin{tabular}{llrrrrr}
+\begin{tabular}{llrrrr}
 \toprule
-dataset / $k$ & baseline & base ECE & LOIO ECE & $\Delta$ & Wilcoxon $p$ & LOIO better \\
+dataset / $k$ & baseline & base ECE & LOIO ECE & $\Delta$ & LOIO better \\
 \midrule
-\multirow{6}{*}{MVTec $k{=}4$} & Vector Platt & 0.223$\pm$0.095 & \textbf{0.120$\pm$0.054} & -0.104 & $2{\times}10^{-23}$ & 84\% \\
- & Shift-Aware Platt & 0.241$\pm$0.104 & \textbf{0.120$\pm$0.054} & -0.121 & $9{\times}10^{-25}$ & 88\% \\
- & Temperature scaling & 0.240$\pm$0.104 & \textbf{0.120$\pm$0.054} & -0.120 & $1{\times}10^{-25}$ & 87\% \\
- & Isotonic regression & 0.222$\pm$0.088 & \textbf{0.120$\pm$0.054} & -0.103 & $1{\times}10^{-24}$ & 87\% \\
- & Histogram binning & 0.229$\pm$0.099 & \textbf{0.120$\pm$0.054} & -0.110 & $1{\times}10^{-23}$ & 84\% \\
- & Scalar Platt & 0.268$\pm$0.127 & \textbf{0.120$\pm$0.054} & -0.148 & $3{\times}10^{-29}$ & 93\% \\
+\multirow{6}{*}{MVTec $k{=}4$} & Vector Platt & 0.223$\pm$0.095 & \textbf{0.120$\pm$0.054} & -0.104 & 84\% \\
+ & Shift-Aware Platt & 0.241$\pm$0.104 & \textbf{0.120$\pm$0.054} & -0.121 & 88\% \\
+ & Temperature scaling & 0.240$\pm$0.104 & \textbf{0.120$\pm$0.054} & -0.120 & 87\% \\
+ & Isotonic regression & 0.222$\pm$0.088 & \textbf{0.120$\pm$0.054} & -0.103 & 87\% \\
+ & Histogram binning & 0.229$\pm$0.099 & \textbf{0.120$\pm$0.054} & -0.110 & 84\% \\
+ & Scalar Platt & 0.268$\pm$0.127 & \textbf{0.120$\pm$0.054} & -0.148 & 93\% \\
 \midrule
-\multirow{6}{*}{MVTec $k{=}8$} & Vector Platt & 0.167$\pm$0.065 & \textbf{0.135$\pm$0.055} & -0.033 & $5{\times}10^{-9}$ & 66\% \\
- & Shift-Aware Platt & 0.192$\pm$0.088 & \textbf{0.135$\pm$0.055} & -0.057 & $9{\times}10^{-15}$ & 75\% \\
- & Temperature scaling & 0.177$\pm$0.080 & \textbf{0.135$\pm$0.055} & -0.042 & $5{\times}10^{-10}$ & 69\% \\
- & Isotonic regression & 0.157$\pm$0.069 & \textbf{0.135$\pm$0.055} & -0.023 & $2{\times}10^{-4}$ & 55\% \\
- & Histogram binning & 0.162$\pm$0.080 & \textbf{0.135$\pm$0.055} & -0.027 & $4{\times}10^{-5}$ & 61\% \\
- & Scalar Platt & 0.256$\pm$0.132 & \textbf{0.135$\pm$0.055} & -0.121 & $2{\times}10^{-27}$ & 91\% \\
+\multirow{6}{*}{MVTec $k{=}8$} & Vector Platt & 0.167$\pm$0.065 & \textbf{0.135$\pm$0.055} & -0.033 & 66\% \\
+ & Shift-Aware Platt & 0.192$\pm$0.088 & \textbf{0.135$\pm$0.055} & -0.057 & 75\% \\
+ & Temperature scaling & 0.177$\pm$0.080 & \textbf{0.135$\pm$0.055} & -0.042 & 69\% \\
+ & Isotonic regression & 0.157$\pm$0.069 & \textbf{0.135$\pm$0.055} & -0.023 & 55\% \\
+ & Histogram binning & 0.162$\pm$0.080 & \textbf{0.135$\pm$0.055} & -0.027 & 61\% \\
+ & Scalar Platt & 0.256$\pm$0.132 & \textbf{0.135$\pm$0.055} & -0.121 & 91\% \\
 \midrule
-\multirow{6}{*}{VisA $k{=}4$} & Vector Platt & 0.286$\pm$0.060 & \textbf{0.131$\pm$0.063} & -0.155 & $6{\times}10^{-24}$ & 97\% \\
- & Shift-Aware Platt & 0.237$\pm$0.087 & \textbf{0.131$\pm$0.063} & -0.106 & $3{\times}10^{-19}$ & 90\% \\
- & Temperature scaling & 0.312$\pm$0.085 & \textbf{0.132$\pm$0.059} & -0.180 & $1{\times}10^{-40}$ & 98\% \\
- & Isotonic regression & 0.239$\pm$0.073 & \textbf{0.132$\pm$0.059} & -0.106 & $4{\times}10^{-33}$ & 90\% \\
- & Histogram binning & 0.301$\pm$0.087 & \textbf{0.132$\pm$0.059} & -0.168 & $4{\times}10^{-40}$ & 96\% \\
- & Scalar Platt & 0.304$\pm$0.145 & \textbf{0.132$\pm$0.059} & -0.171 & $4{\times}10^{-35}$ & 90\% \\
+\multirow{6}{*}{VisA $k{=}4$} & Vector Platt & 0.286$\pm$0.060 & \textbf{0.131$\pm$0.063} & -0.155 & 97\% \\
+ & Shift-Aware Platt & 0.237$\pm$0.087 & \textbf{0.131$\pm$0.063} & -0.106 & 90\% \\
+ & Temperature scaling & 0.312$\pm$0.085 & \textbf{0.132$\pm$0.059} & -0.180 & 98\% \\
+ & Isotonic regression & 0.239$\pm$0.073 & \textbf{0.132$\pm$0.059} & -0.106 & 90\% \\
+ & Histogram binning & 0.301$\pm$0.087 & \textbf{0.132$\pm$0.059} & -0.168 & 96\% \\
+ & Scalar Platt & 0.304$\pm$0.145 & \textbf{0.132$\pm$0.059} & -0.171 & 90\% \\
 \midrule
-\multirow{6}{*}{VisA $k{=}8$} & Vector Platt & 0.199$\pm$0.063 & \textbf{0.151$\pm$0.054} & -0.048 & $3{\times}10^{-14}$ & 81\% \\
- & Shift-Aware Platt & 0.162$\pm$0.075 & \textbf{0.151$\pm$0.054} & -0.011 & 0.20 & 51\% \\
- & Temperature scaling & 0.247$\pm$0.089 & \textbf{0.158$\pm$0.051} & -0.089 & $7{\times}10^{-23}$ & 75\% \\
- & Isotonic regression & 0.194$\pm$0.068 & \textbf{0.158$\pm$0.051} & -0.035 & $5{\times}10^{-8}$ & 62\% \\
- & Histogram binning & 0.242$\pm$0.097 & \textbf{0.158$\pm$0.051} & -0.083 & $2{\times}10^{-18}$ & 69\% \\
- & Scalar Platt & 0.418$\pm$0.100 & \textbf{0.158$\pm$0.051} & -0.259 & $1{\times}10^{-40}$ & 98\% \\
+\multirow{6}{*}{VisA $k{=}8$} & Vector Platt & 0.199$\pm$0.063 & \textbf{0.151$\pm$0.054} & -0.048 & 81\% \\
+ & Shift-Aware Platt & 0.162$\pm$0.075 & \textbf{0.151$\pm$0.054} & -0.011 & 51\% \\
+ & Temperature scaling & 0.247$\pm$0.089 & \textbf{0.158$\pm$0.051} & -0.089 & 75\% \\
+ & Isotonic regression & 0.194$\pm$0.068 & \textbf{0.158$\pm$0.051} & -0.035 & 62\% \\
+ & Histogram binning & 0.242$\pm$0.097 & \textbf{0.158$\pm$0.051} & -0.083 & 69\% \\
+ & Scalar Platt & 0.418$\pm$0.100 & \textbf{0.158$\pm$0.051} & -0.259 & 98\% \\
 \bottomrule
 \end{tabular}
 \end{table*}

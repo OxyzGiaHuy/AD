@@ -1,0 +1,22 @@
+\begin{table*}[t]
+\centering
+\caption{Frozen strict nested SC3R audit over four routing modes, $k\in\{1,2,4,8\}$, three $\alpha$ levels, five seeds, and five conditions. ``Min UCB'' is the smallest observed candidate upper bound. Nonzero is the fraction of target cells receiving $\tau>0$. Category and image rows target different estimands.}
+\label{tab:strict-nested-sc3r}
+\footnotesize
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{llrrrl}
+\toprule
+source $\rightarrow$ target & certification unit & units/cell & min UCB & nonzero & interpretation \\
+\midrule
+MVTec $\rightarrow$ MVTec & category & 4 & 0.950 & 0.000 & new-category gate fails \\
+VisA $\rightarrow$ VisA & category & 3 & 1.000 & 0.000 & new-category gate fails \\
+MVTec $\rightarrow$ VisA & category & 4 & 0.961 & 0.000 & new-category gate fails \\
+MVTec $\rightarrow$ MPDD & category & 4 & 0.986 & 0.000 & new-category gate fails \\
+\midrule
+MVTec $\rightarrow$ MVTec & fixed-archive image & 75--191 & 0.039 & 0.367 & sensitivity only \\
+VisA $\rightarrow$ VisA & fixed-archive image & 150--180 & 0.042 & 0.604 & sensitivity only \\
+MVTec $\rightarrow$ VisA & fixed-archive image & 72--159 & 0.048 & 0.415 & sensitivity only \\
+MVTec $\rightarrow$ MPDD & fixed-archive image & 81--190 & 0.040 & 0.370 & sensitivity only \\
+\bottomrule
+\end{tabular}
+\end{table*}

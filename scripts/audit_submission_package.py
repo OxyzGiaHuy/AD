@@ -38,11 +38,33 @@ def _latex_word_count(text: str) -> int:
     return len(re.findall(r"[A-Za-z0-9]+(?:[-'][A-Za-z0-9]+)*", text))
 
 
-def _verify_cpu_manifest(path: Path) -> list[str]:
+def _resolve_manifest_artifact(
+    recorded_path: str,
+    recorded_project_root: Path | None,
+    local_project_root: Path,
+) -> Path:
+    """Resolve an artifact after a manifest has moved to another checkout."""
+    artifact = Path(recorded_path)
+    if artifact.is_file() or not artifact.is_absolute() or recorded_project_root is None:
+        return artifact
+    try:
+        relative = artifact.relative_to(recorded_project_root)
+    except ValueError:
+        return artifact
+    return local_project_root / relative
+
+
+def _verify_cpu_manifest(path: Path, local_project_root: Path) -> list[str]:
     issues: list[str] = []
     if not path.is_file():
         return [f"CPU manifest does not exist: {path}"]
     manifest = json.loads(path.read_text(encoding="utf-8"))
+    recorded_config = Path(manifest.get("config", ""))
+    recorded_project_root = (
+        recorded_config.parent.parent
+        if recorded_config.is_absolute() and recorded_config.parent.name == "configs"
+        else None
+    )
     if not manifest.get("runs") or not manifest.get("confirmatory_family"):
         issues.append("CPU manifest lacks runs or confirmatory-family metadata")
     if not manifest.get("empirical_target_gate"):
@@ -59,7 +81,11 @@ def _verify_cpu_manifest(path: Path) -> list[str]:
         issues.append("CPU manifest lacks a nonempty Bonferroni confirmatory family")
     for section in ("inputs", "outputs"):
         for name, record in manifest.get(section, {}).items():
-            artifact = Path(record.get("path", ""))
+            artifact = _resolve_manifest_artifact(
+                record.get("path", ""),
+                recorded_project_root,
+                local_project_root,
+            )
             if not artifact.is_file():
                 issues.append(f"CPU manifest {section} artifact missing: {name}")
             elif _sha256(artifact) != record.get("sha256"):
@@ -157,7 +183,10 @@ def audit_submission(root: Path, cpu_manifest: Path | None = None) -> dict:
             "undefined LaTeX references": r"(?:Citation|Reference).*undefined|There were undefined references",
             "BibTeX empty pages": r"empty pages in",
             "invalid float position": r"No positions in optional float specifier",
-            "duplicate PDF anchor": r"duplicate ignored|Ignoring empty anchor",
+            # CAS emits "Ignoring empty anchor" for its unnumbered author
+            # footnotes; that warning is benign and is not a duplicate
+            # destination. Fail only on an actual duplicate identifier.
+            "duplicate PDF anchor": r"destination with the same identifier.*duplicate ignored",
         }.items():
             if re.search(pattern, log_text, flags=re.IGNORECASE):
                 issues.append(label)
@@ -165,7 +194,7 @@ def audit_submission(root: Path, cpu_manifest: Path | None = None) -> dict:
     if cpu_manifest is None:
         issues.append("final CPU pipeline manifest was not supplied")
     else:
-        issues.extend(_verify_cpu_manifest(cpu_manifest.resolve()))
+        issues.extend(_verify_cpu_manifest(cpu_manifest.resolve(), root.parent))
 
     return {
         "status": "pass" if not issues else "fail",

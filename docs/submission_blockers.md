@@ -26,19 +26,20 @@ Current placeholders are in `els-cas-templates/main.tex` and
 
 ## Critical evidence/artifact blockers
 
-- [ ] Recover historical raw outputs or run the frozen GPU protocol in
+- [x] Recover historical raw outputs or run the frozen GPU protocol in
       `docs/gpu_experiment_runbook.md`.
-- [ ] Artifact audit passes for MVTec, VisA, and any third dataset.
-- [ ] Regenerate cluster-aware discrete-grid diagnostics; retire old iid pooled
+- [x] Artifact audit passes for MVTec, VisA, and MPDD.
+- [x] Regenerate cluster-aware discrete-grid diagnostics; retire old iid pooled
       Monte Carlo p-values.
-- [ ] Regenerate calibrator comparisons with Holm-adjusted p-values.
-- [ ] Run and report strict nested source certification, including zero-threshold
+- [x] Remove historical unadjusted calibrator p-values and make the comparison
+      descriptive because artifact-complete Holm regeneration is unavailable.
+- [x] Run and report strict nested source certification, including zero-threshold
       failures and both image/category units.
-- [ ] Run mandatory `k=1,2`; label `k=1` patch-split calibration separately from
+- [x] Run mandatory `k=1,2`; label `k=1` patch-split calibration separately from
       image-level LOIO.
-- [ ] Run the implemented `condition_agnostic`/mismatched modes on GPU-exported
+- [x] Run the implemented `condition_agnostic`/mismatched modes on GPU-exported
       artifacts, or narrow the deployment claim to condition-identifiable settings.
-- [ ] Run MVTec-to-MPDD external validation, or state that it could not be
+- [x] Run MVTec-to-MPDD external validation, or state that it could not be
       completed; do not insert an undocumented partial dataset.
 - [ ] Recover/regenerate the Figure 5 source CSV; the PDF-reconstructed fallback
       is presentation-only.
@@ -67,12 +68,14 @@ Current placeholders are in `els-cas-templates/main.tex` and
 - [ ] Run a final reference/DOI audit and editor/reviewer mock review.
 - [ ] Check Neurocomputing's current Guide for Authors on the submission date.
 
-## Current honest status (2026-07-22)
+## Current honest status (2026-07-23)
 
 - CPU suite has passed 98 tests after the core reproducibility/statistical changes.
 - LaTeX compiles in two-column CAS format.
 - Abstract is 238 words.
 - BibTeX has no missing-page warnings after representing page-less ICLR papers
   without invented page ranges.
-- Historical paper numbers remain non-final because raw evidence is absent and
-  the corrected GPU/statistical pipeline has not been run.
+- GPU P0--P7 and the one-command CPU pipeline are complete. All 811 declared
+  handoff checksums verify.
+- The strict category gate fails 0/960; the manuscript must retain this result
+  and the corresponding finite-category feasibility limitation.

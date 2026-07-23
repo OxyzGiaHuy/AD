@@ -85,6 +85,20 @@ sharper one-sided Clopper--Pearson upper limit at tail probability
 `delta/(2*A*M)`. A union bound makes both units, all levels, and all candidates
 simultaneous within one target cell with probability at least `1-delta`.
 
+### Category feasibility consequence
+
+Because the empirical class loss is nonnegative, a positive candidate can pass
+the Hoeffding gate only if
+
+`n >= log(2*A*M/delta) / (2*alpha^2)`.
+
+This is a necessary, not sufficient, condition. With the frozen `A=3` and
+`delta=0.05`, even the most favorable `M=1` case requires at least 60, 240, and
+958 independent certification categories for `alpha=0.20`, `0.10`, and `0.05`.
+The three or four certification categories available in the frozen MVTec/VisA
+splits therefore make every positive category-certified threshold infeasible
+under the declared Hoeffding rule before target outcomes are inspected.
+
 Two analyses are required:
 
 - **Image-level fixed-archive analysis:** each distinct base normal image is a

@@ -1,6 +1,16 @@
 # Cover Letter — Neurocomputing
 
-<!-- TODO: fill in author names, affiliation, and date before submission. -->
+23 July 2026
+
+Gia Huy Thai  
+University of Science, VNU-HCM  
+Ho Chi Minh City, Vietnam
+
+Anh Nguyen  
+Faculty of Information Technology, Van Lang School of Technology  
+Van Lang University  
+Ho Chi Minh City, Vietnam  
+Email: anh.nt@vlu.edu.vn
 
 Dear Editors of Neurocomputing,
 
@@ -29,4 +39,6 @@ This manuscript is original, has not been published, and is not under considerat
 Thank you for your consideration.
 
 Sincerely,
-The Authors
+
+Gia Huy Thai and Anh Nguyen  
+Corresponding author: Anh Nguyen
