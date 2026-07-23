@@ -1,0 +1,24 @@
+{
+  "abstract_words": 248,
+  "cpu_manifest": "/home/crl/MoME/other/AD/outputs/submission_cpu/cpu_pipeline_manifest_nc_gpu_20260722_e7f1759.json",
+  "highlight_lengths": [
+    76,
+    78,
+    82,
+    77,
+    83
+  ],
+  "issues": [
+    "placeholder author",
+    "placeholder repository",
+    "generic TODO",
+    "author_biographies.md is missing",
+    "author passport-type photograph files are missing",
+    "duplicate PDF anchor",
+    "CPU manifest was generated from a dirty or unknown worktree"
+  ],
+  "keyword_count": 6,
+  "pdf_pages": 18,
+  "root": "/home/crl/MoME/other/AD/els-cas-templates",
+  "status": "fail"
+}

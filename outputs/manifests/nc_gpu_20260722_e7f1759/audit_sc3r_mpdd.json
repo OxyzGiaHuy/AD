@@ -1,0 +1,33 @@
+{
+  "corruptions": [
+    "blur",
+    "brightness_contrast",
+    "clean",
+    "gaussian_noise",
+    "jpeg"
+  ],
+  "datasets": [
+    "mpdd"
+  ],
+  "issues": [],
+  "k_shots": [
+    1,
+    2,
+    4,
+    8
+  ],
+  "max_rows_per_cell": 101,
+  "min_rows_per_cell": 44,
+  "n_stat_rows": 120,
+  "n_support_rows": 450,
+  "n_view_cells": 600,
+  "n_view_rows": 45800,
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "status": "pass"
+}
