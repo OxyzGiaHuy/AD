@@ -1,7 +1,6 @@
 # SC3R formal specification and claim boundary
 
-Status: design frozen for CPU implementation; numerical evaluation requires the
-missing per-image artifacts or a GPU rerun.
+Status: frozen GPU evaluation complete; handoff artifacts and checksums verified.
 
 ## 1. Objects and sampling levels
 
@@ -99,6 +98,30 @@ The three or four certification categories available in the frozen MVTec/VisA
 splits therefore make every positive category-certified threshold infeasible
 under the declared Hoeffding rule before target outcomes are inspected.
 
+### Distribution-free all-zero lower bound
+
+The conclusion above is not solely a consequence of Hoeffding looseness. Let
+`U_n` be a deterministic upper confidence bound for the mean of iid losses in
+`[0,1]`, uniformly valid over every distribution on `[0,1]` with failure
+probability at most `beta`. On an all-zero sample it must satisfy
+
+`U_n(0,...,0) >= 1 - beta^(1/n)`.
+
+Otherwise choose a Bernoulli loss distribution with mean `q` strictly between
+the returned bound and `1-beta^(1/n)`. Its all-zero sample occurs with
+probability `(1-q)^n > beta`, and the bound misses the true mean on that event,
+contradicting uniform coverage. Thus an all-zero bound can reach `alpha` only if
+
+`n >= log(beta) / log(1-alpha)`.
+
+Even after dropping all multiplicity penalties (`beta=0.05`), this requires
+14, 29, and 59 categories at `alpha=0.20`, `0.10`, and `0.05`. Under the frozen
+allocation `beta=delta/(2*A*M)`, with `A=3` and the most favorable `M=1`, the
+requirements become 22, 46, and 94. This lower bound is deliberately limited
+to deterministic, uniformly valid, distribution-free procedures based only on
+iid bounded category losses. Parametric/hierarchical models, informative side
+data, or randomized confidence procedures require separate validity arguments.
+
 Two analyses are required:
 
 - **Image-level fixed-archive analysis:** each distinct base normal image is a
@@ -152,9 +175,9 @@ the transfer assumption is stated.
 
 ## 8. Implementation-to-paper rule
 
-The new certification code may be merged and tested on synthetic data now. No
-paper table or numeric claim changes until the exact GPU run produces per-image
-CSV, class-partition manifest, candidate table, certification bounds, and a
-machine-readable environment record. If the nested gate fails, the paper must
-retain SC3R as an empirically validated routing method rather than relabeling the
-old analysis as a guarantee.
+The completed GPU handoff includes per-image CSVs, class-partition manifests,
+candidate tables, certification bounds, and a machine-readable environment
+record. The nested category gate fails in all declared cells, so the paper
+reports SC3R as a strict negative certification result plus a separate
+historical empirical routing diagnostic; the older analysis is never relabeled
+as a guarantee.

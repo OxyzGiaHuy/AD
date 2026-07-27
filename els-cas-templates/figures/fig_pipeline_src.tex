@@ -43,7 +43,7 @@
 \draw[arr] (loio) -- (pval);
 \draw[arr] (pval) -- (floor);
 
-% ---------------- row 4: SC3R ----------------
+% ---------------- row 4: CRESS ----------------
 \node[sc3r, below=20mm of loio.south west, anchor=north west] (sc3rsrc) {routed source-class\\normal images};
 \node[sc3r, right=of sc3rsrc] (sc3rnorm) {support-normalized\\residuals};
 \node[sc3r, right=of sc3rnorm] (sc3rthr) {$\mathcal R/\mathcal P/\mathcal C$ split\\simultaneous UCB};
@@ -68,7 +68,7 @@
 \end{scope}
 \node[lanelabel] at (rankframe.north west) {RANKING --- never modified};
 \node[lanelabel] at (relframe.north west) {RELIABILITY --- label-free, target-only};
-\node[lanelabel, text=red!60!black!80] at (sc3rframe.north west) {SC3R --- cross-category, below the floor};
+\node[lanelabel, text=red!60!black!80] at (sc3rframe.north west) {CRESS --- cross-category, below the floor};
 
 % ---------------- diagnostics strip ----------------
 \node[note, anchor=north west, yshift=-1.5mm] at (sc3rframe.south west)

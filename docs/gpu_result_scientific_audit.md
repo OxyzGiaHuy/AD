@@ -46,6 +46,15 @@ For `A=3`, `delta=0.05`, zero empirical loss, and the most favorable `M=1`,
 the minimum independent-category counts are 60, 240, and 958 at alpha 0.20,
 0.10, and 0.05. The frozen three-way splits provide only three or four.
 
+This is not merely Hoeffding looseness. Any deterministic upper confidence
+bound that is uniformly valid over iid loss distributions on `[0,1]` must
+return at least `1-beta^(1/n)` after observing all-zero category loss. Even with
+one fixed candidate and no multiplicity penalty (`beta=0.05`), reaching alpha
+0.20 requires 14 categories. Under the most favorable frozen allocation
+(`A=3`, `M=1`), it requires 22; both exceed the available three or four. This
+argument does not cover procedures that add justified parametric/hierarchical
+structure, informative side data, or randomization.
+
 ## Image sensitivity
 
 The fixed-archive image certificate is not equivalent to a new-category
@@ -76,4 +85,3 @@ A new GPU run would be required only to make a fresh positive new-category
 claim, using a category-rich archive and a protocol frozen before inspecting
 that archive. More images or seeds alone do not increase the number of
 independent certification categories.
-

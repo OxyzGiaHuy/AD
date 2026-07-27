@@ -14,6 +14,13 @@ Authoritative for the Neurocomputing submission:
 9. `gpu_result_scientific_audit.md` — verified GPU evidence, strict negative
    result, feasibility diagnosis, and final claim decision.
 
+Companion explanation:
+
+- `paper_reviewer_briefing_vi.md` — self-contained Vietnamese briefing for a
+  technically qualified reviewer who is new to industrial AD and conformal
+  reliability. It explains the authoritative sources above but does not
+  supersede them.
+
 Other files in this directory are historical research notes. They may preserve
 failed ideas, old numerical results, or wording later judged too strong. They
 are useful for provenance but are not submission evidence unless an

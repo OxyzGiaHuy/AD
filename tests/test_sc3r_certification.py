@@ -5,7 +5,9 @@ import pandas as pd
 from src.evaluation.sc3r_certification import (
     clopper_pearson_upper_bound,
     certify_thresholds,
+    distribution_free_zero_loss_floor,
     hoeffding_upper_bound,
+    minimum_units_for_zero_loss,
     partition_source_classes,
     proposal_candidates,
 )
@@ -28,6 +30,38 @@ def test_clopper_pearson_zero_alarm_bound_matches_closed_form():
     losses = np.zeros(100, dtype=np.float64)
     upper = clopper_pearson_upper_bound(losses, delta=0.05)
     assert abs(upper - (1.0 - 0.05 ** (1.0 / 100.0))) < 1e-12
+
+
+def test_distribution_free_zero_loss_floor_matches_bernoulli_boundary():
+    assert distribution_free_zero_loss_floor(4, 0.05) == pytest.approx(
+        1.0 - 0.05 ** 0.25
+    )
+    assert distribution_free_zero_loss_floor(4, 0.05) > 0.20
+
+
+@pytest.mark.parametrize(
+    ("alpha", "expected"),
+    [(0.20, 14), (0.10, 29), (0.05, 59)],
+)
+def test_multiplicity_free_minimum_category_counts(alpha, expected):
+    assert minimum_units_for_zero_loss(alpha, delta=0.05) == expected
+
+
+@pytest.mark.parametrize(
+    ("candidates", "expected"),
+    [
+        (1, (22, 46, 94)),
+        (5, (29, 61, 125)),
+        (20, (35, 74, 152)),
+    ],
+)
+def test_frozen_family_minimum_category_counts(candidates, expected):
+    per_candidate_delta = 0.05 / (2 * 3 * candidates)
+    actual = tuple(
+        minimum_units_for_zero_loss(alpha, per_candidate_delta)
+        for alpha in (0.20, 0.10, 0.05)
+    )
+    assert actual == expected
 
 
 def test_clopper_pearson_rejects_nonbinary_cluster_means():

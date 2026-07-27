@@ -14,7 +14,7 @@ Email: anh.nt@vlu.edu.vn
 
 Dear Editors of Neurocomputing,
 
-We are pleased to submit our manuscript, **"Conformal Reliability Routing for Low-Storage Few-Shot Industrial Anomaly Detection,"** for consideration as an original research article.
+We are pleased to submit our manuscript, **"CRESS: Cross-Category Reliability Estimation with Source Support for Low-Storage Few-Shot Industrial Anomaly Detection,"** for consideration as an original research article.
 
 ## What this work teaches about learning systems
 
@@ -22,7 +22,7 @@ The paper answers a question about few-shot learned detectors themselves, with i
 
 1. **An exact resolution law for few-shot conformal alarms.** No alarm calibrated on k supports can fire below α = 1/(k+1); we make this floor and its shift-induced failure directions exact and checkable with discrete uniformity tests (conservative on VisA, anti-conservative on corrupted MVTec), and show that the textbook remedy — randomized p-values — crosses the floor but inherits the invalidity (false-alarm rates up to 2.3× nominal).
 
-2. **SC3R, a source-validated cross-category thresholding mechanism** that enables alarms below the target-only floor using normal examples of other categories. Historical experiments on MVTec and VisA show sub-floor power with observed false-alarm rates near the pre-specified budget in several settings. We explicitly separate this empirical evidence from strict nested source certification, use multiplicity-aware uncertainty in the revised protocol, and do not claim unconditional target-domain control under transfer.
+2. **CRESS, a source-assisted cross-category thresholding and certification procedure** that enables alarms below the target-only floor using normal examples of other categories. Historical experiments on MVTec and VisA show sub-floor power with observed false-alarm rates near the pre-specified budget in several settings. We explicitly separate this empirical evidence from strict nested source certification, use multiplicity-aware uncertainty in the revised protocol, and do not claim unconditional target-domain control under transfer.
 
 Supporting these claims, the leave-one-image-out conformal route improves calibration over the complete standard toolbox — Platt-family calibrators plus temperature scaling, isotonic regression, and histogram binning, all fit on an identical label-free calibration set — under paired Wilcoxon tests on 93,000+ image evaluations, while leaving the detector's ranking untouched.
 

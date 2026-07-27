@@ -1,12 +1,12 @@
 \begin{table*}[pos=t]
 \centering
-\caption{Historical source-validated thresholding (SC3R, matched-condition source mode) versus the target-only LOIO anchor on all 15 label-stratified MVTec classes ($k{=}4$, seeds 0--2). Below $1/(k{+}1){=}0.2$, the anchor cannot raise alarms; source pooling unlocks these operating points with false-alarm estimates near the pre-specified budget on the evaluated targets. Threshold selection and source assessment are not independent in this historical analysis. Bold marks cells satisfying $\mathrm{FAR}\le\alpha{+}0.02$ with nonzero power.}
+\caption{Historical CRESS thresholding (matched-condition source mode) versus the target-only LOIO anchor on all 15 label-stratified MVTec classes ($k{=}4$, seeds 0--2). Below $1/(k{+}1){=}0.2$, the anchor cannot raise alarms; source pooling unlocks these operating points with false-alarm estimates near the pre-specified budget on the evaluated targets. Threshold selection and source assessment are not independent in this historical analysis. Bold marks cells satisfying $\mathrm{FAR}\le\alpha{+}0.02$ with nonzero power.}
 \label{tab:sc3r-source-validated}
 \footnotesize
 \setlength{\tabcolsep}{3pt}
 \begin{tabular}{llrrrrrr}
 \toprule
- & & \multicolumn{3}{c}{SC3R (source-validated)} & \multicolumn{3}{c}{Target-only anchor} \\
+ & & \multicolumn{3}{c}{CRESS (historical)} & \multicolumn{3}{c}{Target-only anchor} \\
 \cmidrule(lr){3-5}\cmidrule(lr){6-8}
 corruption & $\alpha$ & FAR & power & prec. & FAR & power & prec. \\
 \midrule

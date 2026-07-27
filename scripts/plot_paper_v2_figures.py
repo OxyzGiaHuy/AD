@@ -151,8 +151,9 @@ def fig_uniformity_cdf() -> None:
     qq = pd.concat(frames, ignore_index=True)
     qq = qq[qq.pvalue_col == "image_p_loio"]
 
-    # Put each zoom back inside its parent panel, but reserve the data-free
-    # upper-left region for it.  The empirical curves remain fully visible.
+    # Keep each zoom inside its parent panel in the data-free lower-right region.
+    # The marked source rectangle and connector rays make the zoom provenance
+    # explicit without crossing the main data curves.
     fig, grid = plt.subplots(2, 2, figsize=(5.6, 4.7), constrained_layout=True)
     axes = grid.ravel()
     panels = [("VisA", 4), ("VisA", 8), ("MVTec", 4), ("MVTec", 8)]
@@ -172,7 +173,7 @@ def fig_uniformity_cdf() -> None:
         ax.grid(True)
         ax.set_xlim(0, 1)
         ax.set_ylim(0, 1)
-        axins = ax.inset_axes([0.55, 0.08, 0.40, 0.28])
+        axins = ax.inset_axes([0.53, 0.08, 0.37, 0.28])
         # Tight zoom inset around the first attainable grid point, where the
         # corruption curves overlap most: y-limits hug the interpolated curve
         # values inside the window so the four series separate visually.
@@ -200,13 +201,38 @@ def fig_uniformity_cdf() -> None:
         lo, hi = min(y_vals) - y_margin, max(y_vals) + y_margin
         axins.set_xlim(x0, x1)
         axins.set_ylim(lo, hi)
-        axins.tick_params(labelsize=6, length=2, pad=1)
+        # Put the inset y labels on the side opposite the connector rays.
+        # This prevents the rays entering the left inset corners from crossing
+        # numeric tick labels.
+        axins.yaxis.tick_right()
+        axins.tick_params(axis="x", labelsize=6, length=2, pad=1)
+        axins.tick_params(
+            axis="y",
+            labelsize=6,
+            length=2,
+            pad=1,
+            labelleft=False,
+            labelright=True,
+        )
         axins.grid(True)
         axins.set_facecolor("white")
         for spine in axins.spines.values():
             spine.set_visible(True)
             spine.set_color("#555555")
             spine.set_linewidth(0.7)
+        indicator = ax.indicate_inset_zoom(
+            axins,
+            edgecolor="#666666",
+            alpha=0.85,
+            linewidth=0.65,
+            zorder=3,
+        )
+        # Matplotlib chooses the two least-cluttered connectors automatically.
+        # Keep them above the grid but below the inset data.
+        for connector in indicator.connectors or ():
+            connector.set_linewidth(0.65)
+            connector.set_color("#666666")
+            connector.set_alpha(0.85)
     axes[2].set_xlabel("nominal CDF $j/(k{+}1)$")
     axes[3].set_xlabel("nominal CDF $j/(k{+}1)$")
     axes[0].set_ylabel("empirical CDF of normal $p$")
@@ -218,12 +244,16 @@ def fig_uniformity_cdf() -> None:
 
 
 def fig_risk_coverage() -> None:
-    fig, ax = plt.subplots(figsize=(5.6, 2.7), constrained_layout=True)
+    # Native single-column dimensions: avoid shrinking a double-column canvas
+    # after LaTeX placement, which would make labels and annotations too small.
+    fig, ax = plt.subplots(figsize=(3.35, 2.45), constrained_layout=True)
     series = [
-        ("mvtec_full15_conformal_selective_reliability.csv", "MVTec (full 15)", OKABE_ITO["vermillion"], "o"),
-        ("visa_full_conformal_selective_reliability.csv", "VisA (full 12)", OKABE_ITO["blue"], "s"),
+        ("mvtec_full15_conformal_selective_reliability.csv", "MVTec (15)",
+         "MVTec (full 15)", OKABE_ITO["vermillion"], "o"),
+        ("visa_full_conformal_selective_reliability.csv", "VisA (12)",
+         "VisA (full 12)", OKABE_ITO["blue"], "s"),
     ]
-    for tag, name, color, marker in series:
+    for tag, name, fallback_name, color, marker in series:
         source = TABLES / tag
         if source.exists():
             df = pd.read_csv(source)
@@ -233,7 +263,7 @@ def fig_risk_coverage() -> None:
             sub = sub.dropna(subset=["coverage", "selective_ece"])
             sub = sub[sub.coverage.between(0.0, 1.0)].sort_values("coverage", ascending=False)
         else:
-            sub = pd.DataFrame(RISK_COVERAGE_FALLBACK[name])
+            sub = pd.DataFrame(RISK_COVERAGE_FALLBACK[fallback_name])
         ax.plot(sub.coverage, sub.selective_ece, marker=marker, markersize=4.0,
                 color=color, label=name)
         for _, r in sub.iterrows():
@@ -246,7 +276,7 @@ def fig_risk_coverage() -> None:
     ax.set_xlim(1.015, 0.685)
     ax.grid(True)
     ax.legend(loc="upper center", ncol=2, frameon=False,
-              bbox_to_anchor=(0.5, 1.13))
+              bbox_to_anchor=(0.5, 1.16), columnspacing=0.9)
     fig.savefig(OUT / "fig_risk_coverage.pdf", bbox_inches="tight")
     plt.close(fig)
 

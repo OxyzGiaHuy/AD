@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 import hashlib
+import math
 from typing import Hashable, Sequence
 
 import numpy as np
@@ -106,6 +107,32 @@ def clopper_pearson_upper_bound(losses: np.ndarray, delta: float) -> float:
     if successes == len(values):
         return 1.0
     return float(beta.ppf(1.0 - delta, successes + 1, len(values) - successes))
+
+
+def distribution_free_zero_loss_floor(n_units: int, delta: float) -> float:
+    """Best-case floor for a deterministic distribution-free mean-risk UCB.
+
+    Any uniformly valid ``1 - delta`` upper confidence bound for the mean of
+    iid losses in ``[0, 1]`` must return at least this value on an all-zero
+    sample.  Bernoulli losses form the least-favorable subclass that establishes
+    the lower bound.
+    """
+
+    if n_units < 1:
+        raise ValueError("n_units must be positive.")
+    if not 0.0 < delta < 1.0:
+        raise ValueError("delta must lie strictly between 0 and 1.")
+    return float(1.0 - delta ** (1.0 / n_units))
+
+
+def minimum_units_for_zero_loss(alpha: float, delta: float) -> int:
+    """Minimum units for the all-zero distribution-free floor to reach alpha."""
+
+    if not 0.0 < alpha < 1.0:
+        raise ValueError("alpha must lie strictly between 0 and 1.")
+    if not 0.0 < delta < 1.0:
+        raise ValueError("delta must lie strictly between 0 and 1.")
+    return int(math.ceil(math.log(delta) / math.log1p(-alpha)))
 
 
 def _unit_losses(alarms: np.ndarray, unit_ids: Sequence[Hashable] | None) -> np.ndarray:

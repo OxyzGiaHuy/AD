@@ -1,16 +1,22 @@
 \begin{table}[t]
 \centering
-\caption{Minimum number of independent certification categories required by Eq.~\eqref{eq:sc3r-feasibility} for $A=3$ and $\delta=0.05$, assuming the most favorable zero empirical loss.}
+\caption{Best-case minimum independent certification categories at $\delta=0.05$, assuming zero observed category loss. ``DF floor'' is the distribution-free lower bound in Proposition~4: first without multiplicity ($\beta=\delta$), then under the frozen allocation $\beta=\delta/(2AM)$ with $A=3$. ``Hoeffding'' is Proposition~3.}
 \label{tab:certificate-feasibility}
 \footnotesize
-\setlength{\tabcolsep}{7pt}
-\begin{tabular}{crrr}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrrr}
 \toprule
-candidate count $M$ & $\alpha=0.20$ & $\alpha=0.10$ & $\alpha=0.05$ \\
+rule / candidates & $\alpha=.20$ & $\alpha=.10$ & $\alpha=.05$ \\
 \midrule
-1  & 60 & 240 & 958 \\
-5  & 80 & 320 & 1,280 \\
-20 & 98 & 390 & 1,557 \\
+DF floor, no multiplicity & 14 & 29 & 59 \\
+\midrule
+DF floor, $M=1$  & 22 & 46 & 94 \\
+DF floor, $M=5$  & 29 & 61 & 125 \\
+DF floor, $M=20$ & 35 & 74 & 152 \\
+\midrule
+Hoeffding, $M=1$  & 60 & 240 & 958 \\
+Hoeffding, $M=5$  & 80 & 320 & 1,280 \\
+Hoeffding, $M=20$ & 98 & 390 & 1,557 \\
 \bottomrule
 \end{tabular}
 \end{table}
