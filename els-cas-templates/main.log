@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025/Homebrew) (preloaded format=pdflatex 2025.10.12)  27 JUL 2026 16:35
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025/Homebrew) (preloaded format=pdflatex 2025.10.12)  28 JUL 2026 10:20
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -574,47 +574,49 @@ LaTeX Info: Redefining \cite on input line 694.
 \c@NAT@ctr=\count342
 ) (/home/linuxbrew/.linuxbrew/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/needspace/needspace.sty
 Package: needspace 2010/09/12 v1.3d reserve vertical space
+) (/home/linuxbrew/.linuxbrew/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/placeins/placeins.sty
+Package: placeins 2005/04/18  v 2.2
 )
 
 Package hyperref Warning: Option `hyperfootnotes' has already been used,
-(hyperref)                setting the option has no effect on input line 12.
+(hyperref)                setting the option has no effect on input line 13.
 
-LaTeX Font Info:    Trying to load font information for T1+stix on input line 14.
+LaTeX Font Info:    Trying to load font information for T1+stix on input line 15.
 (/home/linuxbrew/.linuxbrew/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/stix/t1stix.fd
 File: t1stix.fd 2015/04/17 v1.1.2-latex STIX T1 font definitions
 ) (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for LS1/stix/m/n on input line 14.
-LaTeX Font Info:    Trying to load font information for LS1+stix on input line 14.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for LS1/stix/m/n on input line 15.
+LaTeX Font Info:    Trying to load font information for LS1+stix on input line 15.
  (/home/linuxbrew/.linuxbrew/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/stix/ls1stix.fd
 File: ls1stix.fd 2015/04/17 v1.1.2-latex STIX LS1 font definitions
 )
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for LS2/stix/m/n on input line 14.
-LaTeX Font Info:    Trying to load font information for LS2+stix on input line 14.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for LS2/stix/m/n on input line 15.
+LaTeX Font Info:    Trying to load font information for LS2+stix on input line 15.
  (/home/linuxbrew/.linuxbrew/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/stix/ls2stix.fd
 File: ls2stix.fd 2015/04/17 v1.1.2-latex STIX LS2 font definitions
 )
-LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    ... okay on input line 15.
  (/home/linuxbrew/.linuxbrew/Cellar/texlive/20250308_1/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count343
@@ -634,9 +636,9 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (/home/linuxbrew/.linuxbrew/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-LaTeX Info: Command `\dddot' is already robust on input line 14.
-LaTeX Info: Command `\ddddot' is already robust on input line 14.
-Package hyperref Info: Link coloring ON on input line 14.
+LaTeX Info: Command `\dddot' is already robust on input line 15.
+LaTeX Info: Command `\ddddot' is already robust on input line 15.
+Package hyperref Info: Link coloring ON on input line 15.
  (./main.out) (./main.out)
 \@outlinefile=\write3
 \openout3 = `main.out'.
@@ -683,64 +685,64 @@ Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verbat
 \openout4 = `main.abs'.
 
 )
-LaTeX Font Info:    Trying to load font information for LS1+stixscr on input line 61.
+LaTeX Font Info:    Trying to load font information for LS1+stixscr on input line 62.
  (/home/linuxbrew/.linuxbrew/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/stix/ls1stixscr.fd
 File: ls1stixscr.fd 2015/04/17 v1.1.2-latex STIX script LS1 font definitions
 )
-LaTeX Font Info:    Trying to load font information for LS2+stixex on input line 61.
+LaTeX Font Info:    Trying to load font information for LS2+stixex on input line 62.
  (/home/linuxbrew/.linuxbrew/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/stix/ls2stixex.fd
 File: ls2stixex.fd 2015/04/17 v1.1.2-latex STIX extentions LS2 font definitions
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 61.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 62.
  (/home/linuxbrew/.linuxbrew/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 61.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 62.
  (/home/linuxbrew/.linuxbrew/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for LS1+stixfrak on input line 61.
+LaTeX Font Info:    Trying to load font information for LS1+stixfrak on input line 62.
  (/home/linuxbrew/.linuxbrew/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/stix/ls1stixfrak.fd
 File: ls1stixfrak.fd 2015/04/17 v1.1.2-latex STIX fraktur LS1 font definitions
 )
-LaTeX Font Info:    Trying to load font information for LS1+stixbb on input line 61.
+LaTeX Font Info:    Trying to load font information for LS1+stixbb on input line 62.
  (/home/linuxbrew/.linuxbrew/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/stix/ls1stixbb.fd
 File: ls1stixbb.fd 2015/04/17 v1.1.2-latex STIX blackboard LS1 font definitions
 )
-LaTeX Font Info:    Trying to load font information for LS2+stixcal on input line 61.
+LaTeX Font Info:    Trying to load font information for LS2+stixcal on input line 62.
  (/home/linuxbrew/.linuxbrew/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/stix/ls2stixcal.fd
 File: ls2stixcal.fd 2015/04/17 v1.1.2-latex STIX calligraphic LS2 font definitions
 )
-LaTeX Font Info:    Trying to load font information for LS1+stixsf on input line 61.
+LaTeX Font Info:    Trying to load font information for LS1+stixsf on input line 62.
  (/home/linuxbrew/.linuxbrew/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/stix/ls1stixsf.fd
 File: ls1stixsf.fd 2015/04/17 v1.1.2-latex STIX sans-serif LS1 font definitions
 )
-LaTeX Font Info:    Trying to load font information for LS2+stixtt on input line 61.
+LaTeX Font Info:    Trying to load font information for LS2+stixtt on input line 62.
  (/home/linuxbrew/.linuxbrew/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/stix/ls2stixtt.fd
 File: ls2stixtt.fd 2015/04/17 v1.1.2-latex STIX typewriter LS2 font definitions
 )
-Overfull \hbox (123.62721pt too wide) detected at line 61
+Overfull \hbox (123.62721pt too wide) detected at line 62
 []
  []
 
 (./main.abs)
 
-Package hyperref Warning: Ignoring empty anchor on input line 61.
+Package hyperref Warning: Ignoring empty anchor on input line 62.
 
 
-Package hyperref Warning: Ignoring empty anchor on input line 61.
+Package hyperref Warning: Ignoring empty anchor on input line 62.
 
 <thumbnails/cas-email.jpeg, id=4, 225.84375pt x 225.84375pt>
 File: thumbnails/cas-email.jpeg Graphic file (type jpg)
 <use thumbnails/cas-email.jpeg>
-Package pdftex.def Info: thumbnails/cas-email.jpeg  used on input line 61.
+Package pdftex.def Info: thumbnails/cas-email.jpeg  used on input line 62.
 (pdftex.def)             Requested size: 7.99838pt x 8.0pt.
-LaTeX Font Info:    Trying to load font information for T1+zi4 on input line 61.
+LaTeX Font Info:    Trying to load font information for T1+zi4 on input line 62.
 (/home/linuxbrew/.linuxbrew/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/inconsolata/t1zi4.fd
 File: t1zi4.fd 2018/01/14 T1/zi4 (Inconsolata)
 )
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 6.80005pt on input line 61.
+(Font)              scaled to size 6.80005pt on input line 62.
  (./sections/introduction.tex
 Underfull \hbox (badness 1430) in paragraph at lines 4--5
 \T1/stix/m/n/10 style meth-ods and Anoma-ly-DINO [[], []]. Al-ter-na-tively,
@@ -783,8 +785,13 @@ Overfull \hbox (0.75722pt too wide) in paragraph at lines 17--18
  []
 
 
-Underfull \hbox (badness 1448) in paragraph at lines 17--18
-\T1/stix/m/n/10 the his-tor-i-cal CRESS gate is not an in-de-pen-dent
+Underfull \hbox (badness 1163) in paragraph at lines 17--18
+\T1/stix/m/n/10 over-claim-ing. The frame-work is not MVTec AU-
+ []
+
+
+Overfull \hbox (15.21553pt too wide) in paragraph at lines 17--18
+\T1/stix/m/n/10 conformal-derived scores is strongly prevalence-sensitive,
  []
 
 
@@ -870,115 +877,89 @@ Underfull \hbox (badness 1137) in paragraph at lines 9--10
  []
 
 
+Underfull \hbox (badness 1132) in paragraph at lines 9--10
+\T1/stix/m/n/10 fied by their re-tained sub-space di-men-sion, PCA64 (de-
+ []
+
+
 
 ) (./sections/results.tex
 Underfull \hbox (badness 1546) in paragraph at lines 18--1
 \T1/stix/m/n/10 GPU with Py-Torch 2.12.1 and DI-NOv2 patch fea-tures
  []
 
+(./tables/tab_clean_efficiency.tex)
 
-Overfull \hbox (3.56804pt too wide) in paragraph at lines 18--1
-\T1/stix/m/n/10 com-mit, DI-NOv2 source/weight hashes, en-vi-ron-ment, dataset
- []
-
-
-Underfull \hbox (badness 1122) in paragraph at lines 18--1
-\T1/stix/m/n/10 port man-i-fests, cor-rup-tion pa-ram-e-ters, source par-ti-tions,
- []
-
-(./tables/tab_clean_efficiency.tex
-
-[7])
-Underfull \hbox (badness 1184) in paragraph at lines 4--5
-\T1/stix/m/n/10 nei-ther the con-trolled nearest-neighbor base-line nor the
- []
+[7]
 
 
 
+[8] (./tables/tab_attainable_alpha.tex) (./tables/tab_false_alarm_control.tex)
 
-Underfull \hbox (badness 1546) in paragraph at lines 6--7
-\T1/stix/m/n/10 ev-ery com-pared method re-quires once per de-ploy-ment.
- []
+(./tables/tab_strict_nested_sc3r.tex) (./tables/tab_visa_full_conformal.tex
 
+[9])
 
-Underfull \hbox (badness 1173) in paragraph at lines 6--7
-\T1/stix/m/n/10 The 0.472MB PCA64 re-li-a-bil-ity state de-com-poses into
- []
-
-
-Underfull \hbox (badness 1147) in paragraph at lines 6--7
-\T1/stix/m/n/10 PCA64 in-cre-ment) and the synthetic-anomaly head and
- []
-
-
-
-[8] (./tables/tab_visa_full_conformal.tex)
-<figures/fig_reliability.pdf, id=274, 404.712pt x 187.902pt>
+<figures/fig_reliability.pdf, id=284, 404.712pt x 187.902pt>
 File: figures/fig_reliability.pdf Graphic file (type pdf)
 <use figures/fig_reliability.pdf>
-Package pdftex.def Info: figures/fig_reliability.pdf  used on input line 18.
-(pdftex.def)             Requested size: 494.50888pt x 229.60422pt.
-
-
-<figures/fig_ece_by_corruption.pdf, id=277, 427.59702pt x 360.31792pt>
+Package pdftex.def Info: figures/fig_reliability.pdf  used on input line 34.
+(pdftex.def)             Requested size: 238.25444pt x 110.61751pt.
+<figures/fig_ece_by_corruption.pdf, id=287, 427.59702pt x 360.31792pt>
 File: figures/fig_ece_by_corruption.pdf Graphic file (type pdf)
 <use figures/fig_ece_by_corruption.pdf>
-Package pdftex.def Info: figures/fig_ece_by_corruption.pdf  used on input line 25.
+Package pdftex.def Info: figures/fig_ece_by_corruption.pdf  used on input line 41.
 (pdftex.def)             Requested size: 494.50888pt x 416.69904pt.
 
 
-[9]
-<figures/fig_uniformity_cdf.pdf, id=294, 413.14302pt x 348.10002pt>
+[10]
+<figures/fig_uniformity_cdf.pdf, id=301, 413.14302pt x 348.10002pt>
 File: figures/fig_uniformity_cdf.pdf Graphic file (type pdf)
 <use figures/fig_uniformity_cdf.pdf>
-Package pdftex.def Info: figures/fig_uniformity_cdf.pdf  used on input line 39.
+Package pdftex.def Info: figures/fig_uniformity_cdf.pdf  used on input line 51.
 (pdftex.def)             Requested size: 454.94725pt x 383.33612pt.
- (./tables/tab_scalar_calibrators.tex)
 
-
-
-[10 <./figures/fig_reliability.pdf>] (./tables/tab_attainable_alpha.tex)
-
-(./tables/tab_false_alarm_control.tex)
-
-[11 <./figures/fig_ece_by_corruption.pdf>] [12 <./figures/fig_uniformity_cdf.pdf>] (./tables/tab_strict_nested_sc3r.tex)
-
-(./tables/tab_sc3r_source_validated.tex)
-
-[13] (./tables/tab_sc3r_k8.tex)
-
-(./tables/tab_randomized_pvalue.tex)
-Overfull \hbox (3.3155pt too wide) in paragraph at lines 68--69
-\T1/stix/m/n/10 stan-dard rem-edy for the attainable-alpha floor is the smoothed
- []
-
-(./tables/tab_sc3r_visa.tex)
-Underfull \hbox (badness 1097) in paragraph at lines 71--72
-\T1/stix/m/n/10 ob-served false-alarm rates were 0.051/0.095/0.192, sub-
- []
-
-
-Underfull \hbox (badness 1490) in paragraph at lines 71--72
-\T1/stix/m/n/10 no-harm was 89%/84%. The re-ported power-gain in-ter-
+Underfull \hbox (badness 1142) in paragraph at lines 58--59
+\T1/stix/m/n/10 when rank-ing re-mains fixed. On the full VisA dataset,
  []
 
 
 
-[14]
+
+Underfull \hbox (badness 1173) in paragraph at lines 67--68
+\T1/stix/m/n/10 de-tails the $\LS1/stix/m/it/10 k \LS1/stix/m/n/10 = 4$ \T1/stix/m/n/10 con-di-tion break-down. At $\LS1/stix/m/it/10 k \LS1/stix/m/n/10 = 8$\T1/stix/m/n/10 ,
+ []
+
+
+Underfull \hbox (badness 1205) in paragraph at lines 67--68
+\T1/stix/m/n/10 FAR is 0.067 un-der clean data at $\LS1/stix/m/it/10  \LS1/stix/m/n/10 = 0\LS1/stix/m/it/10 :\LS1/stix/m/n/10 05$ \T1/stix/m/n/10 and in-
+ []
+
+
+Overfull \hbox (5.3855pt too wide) in paragraph at lines 67--68
+\T1/stix/m/n/10 0.013/0.040/0.098 but also low-ers power to 0.091/0.201/0.415
+ []
 
 
 
-[15]
-<figures/fig_risk_coverage.pdf, id=423, 250.50882pt x 185.74077pt>
+[11 <./figures/fig_reliability.pdf>]
+<figures/fig_risk_coverage.pdf, id=340, 250.50882pt x 185.74077pt>
 File: figures/fig_risk_coverage.pdf Graphic file (type pdf)
 <use figures/fig_risk_coverage.pdf>
-Package pdftex.def Info: figures/fig_risk_coverage.pdf  used on input line 78.
+Package pdftex.def Info: figures/fig_risk_coverage.pdf  used on input line 74.
 (pdftex.def)             Requested size: 238.25444pt x 176.65962pt.
- (./tables/tab_protocol_routing.tex) (./tables/tab_pixel_and_diagnostics.tex)
 
-) (./sections/limitations.tex
 
-[16 <./figures/fig_risk_coverage.pdf>]) (./sections/conclusion.tex
+
+
+[12 <./figures/fig_ece_by_corruption.pdf>] [13 <./figures/fig_uniformity_cdf.pdf>]
+
+
+
+[14
+
+
+ <./figures/fig_risk_coverage.pdf>]) (./sections/limitations.tex) (./sections/conclusion.tex
 Underfull \hbox (badness 1264) in paragraph at lines 2--3
 \T1/stix/m/n/10 storage anomaly rank-ing and few-shot alarm re-li-a-bil-ity,
  []
@@ -1010,9 +991,11 @@ Overfull \hbox (0.5161pt too wide) in paragraph at lines 11--12
 \T1/zi4/m/n/10 research / datasets / mvtec-[]ad$[][]\T1/stix/m/n/10 ) and VisA ([][]$\T1/zi4/m/n/10 https : / / github . com /
  []
 
+) (./sections/appendix.tex
 
+[15
 
-[17]) (./sections/appendix.tex (./tables/tab_visa_ece_by_corruption.tex) (./tables/tab_agg_ablation.tex) (./tables/tab_prior_work_positioning.tex)) (./main.bbl
+] (./tables/tab_visa_ece_by_corruption.tex) (./tables/tab_scalar_calibrators.tex) (./tables/tab_sc3r_source_validated.tex) (./tables/tab_sc3r_k8.tex) (./tables/tab_randomized_pvalue.tex) (./tables/tab_sc3r_visa.tex) (./tables/tab_protocol_routing.tex) (./tables/tab_pixel_and_diagnostics.tex) (./tables/tab_agg_ablation.tex) (./tables/tab_prior_work_positioning.tex)) (./main.bbl
 Underfull \hbox (badness 1377) in paragraph at lines 9--10
 \T1/stix/m/n/8 V. Khali-dov, P. Fer-nan-dez, D. Haz-iza, F. Massa, A. El-Nouby,
  []
@@ -1021,11 +1004,21 @@ Underfull \hbox (badness 1377) in paragraph at lines 9--10
 
 
 
+[16] [17]
+
+
+
 [18]
 
-)
 
-[19] (./main.aux)
+
+[19])
+
+
+
+[20
+
+] (./main.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
@@ -1034,18 +1027,18 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 17327 strings out of 473190
- 274545 string characters out of 5697561
- 690655 words of memory out of 5000000
- 40081 multiletter control sequences out of 15000+600000
- 655343 words of font info for 160 fonts, out of 8000000 for 9000
+ 17355 strings out of 473190
+ 275377 string characters out of 5697561
+ 718670 words of memory out of 5000000
+ 40107 multiletter control sequences out of 15000+600000
+ 652578 words of font info for 159 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 90i,13n,93p,2029b,622s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 90i,13n,93p,2029b,714s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </home/linuxbrew/.linuxbrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb></home/linuxbrew/.linuxbrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/stix/STIXGeneral-Bold.pfb></home/linuxbrew/.linuxbrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/stix/STIXGeneral-Italic.pfb></home/linuxbrew/.linuxbrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/stix/STIXGeneral-Regular.pfb></home/linuxbrew/.linuxbrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></home/linuxbrew/.linuxbrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></home/linuxbrew/.linuxbrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></home/linuxbrew/.linuxbrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></home/linuxbrew/.linuxbrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></home/linuxbrew/.linuxbrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></home/linuxbrew/.linuxbrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></home/linuxbrew/.linuxbrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></home/linuxbrew/.linuxbrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></home/linuxbrew/.linuxbrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></home/linuxbrew/.linuxbrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></home/linuxbrew/.linuxbrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/cm-super/sfsi0800.pfb></home/linuxbrew/.linuxbrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/cm-super/sfsi0900.pfb></home/linuxbrew/.linuxbrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/cm-super/sfss0800.pfb></home/linuxbrew/.linuxbrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/cm-super/sfss0900.pfb></home/linuxbrew/.linuxbrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/cm-super/sfsx0800.pfb></home/linuxbrew/.linuxbrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/cm-super/sfsx0900.pfb></home/linuxbrew/.linuxbrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/stix/stix-mathbb.pfb></home/linuxbrew/.linuxbrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/stix/stix-mathcal.pfb></home/linuxbrew/.linuxbrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/stix/stix-mathex.pfb></home/linuxbrew/.linuxbrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/stix/stix-mathfrak.pfb></home/linuxbrew/.linuxbrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/stix/stix-mathit.pfb></home/linuxbrew/.linuxbrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/stix/stix-mathrm-bold.pfb></home/linuxbrew/.linuxbrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/stix/stix-mathrm.pfb></home/linuxbrew/.linuxbrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/stix/stix-mathscr.pfb></home/linuxbrew/.linuxbrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/stix/stix-mathsf.pfb>
-Output written on main.pdf (19 pages, 628078 bytes).
+Output written on main.pdf (20 pages, 622899 bytes).
 PDF statistics:
- 621 PDF objects out of 1000 (max. 8388607)
- 468 compressed objects within 5 object streams
- 128 named destinations out of 1000 (max. 500000)
+ 630 PDF objects out of 1000 (max. 8388607)
+ 476 compressed objects within 5 object streams
+ 126 named destinations out of 1000 (max. 500000)
  31 words of extra memory for PDF output out of 10000 (max. 10000000)
 

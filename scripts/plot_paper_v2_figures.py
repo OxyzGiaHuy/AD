@@ -51,10 +51,11 @@ CORRUPTION_LABELS = {
     "clean": "clean",
 }
 METHOD_COLORS = {
-    "vector_platt": OKABE_ITO["blue"],
-    "shift_aware_vector_platt": OKABE_ITO["skyblue"],
-    "conformal_prob_loio": OKABE_ITO["vermillion"],
-    "conformal_prob_weighted": OKABE_ITO["orange"],
+    # Nature Publishing Group-style palette selected for Figure 3.
+    "vector_platt": "#3C5488",
+    "shift_aware_vector_platt": "#4DBBD5",
+    "conformal_prob_loio": "#E64B35",
+    "conformal_prob_weighted": "#00A087",
 }
 METHOD_LABELS = {
     "vector_platt": "Vector Platt",

@@ -1,12 +1,12 @@
 \begin{table*}[pos=t]
 \centering
-\caption{Why source validation, not randomization: smoothed (randomized) conformal p-values versus historical CRESS below the target-only floor ($k{=}4$, all classes, seeds 0--2, pooled over five conditions; randomized rates are exact expectations over the randomization). Randomization crosses the floor but inherits the target-only rule's bias---anti-conservative on MVTec even under the clean condition (FAR 0.067 at $\alpha{=}0.05$) and up to $2.3\times$ nominal under Gaussian noise---whereas historical CRESS attains comparable power with false-alarm rates at nominal. Bold marks $\mathrm{FAR}\le\alpha{+}0.02$.}
+\caption{Historical comparison of smoothed (randomized) conformal p-values and the non-independent CRESS diagnostic below the target-only floor ($k{=}4$, all classes, seeds 0--2, pooled over five conditions; randomized rates are exact expectations over the randomization). Randomization crosses the floor but inherits the target-only rule's bias---anti-conservative on MVTec even under the clean condition (FAR 0.067 at $\alpha{=}0.05$) and up to $2.3\times$ nominal under Gaussian noise. Historical CRESS has comparable power and nearer-nominal pooled FAR, but is not an independent certificate. Bold marks $\mathrm{FAR}\le\alpha{+}0.02$.}
 \label{tab:randomized-pvalue}
 \footnotesize
 \setlength{\tabcolsep}{4pt}
 \begin{tabular}{lrrrrr}
 \toprule
- & & \multicolumn{2}{c}{Randomized p-value} & \multicolumn{2}{c}{CRESS} \\
+ & & \multicolumn{2}{c}{Randomized p-value} & \multicolumn{2}{c}{CRESS (historical)} \\
 \cmidrule(lr){3-4}\cmidrule(lr){5-6}
 dataset & $\alpha$ & FAR & power & FAR & power \\
 \midrule
