@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025/Homebrew) (preloaded format=pdflatex 2025.10.12)  28 JUL 2026 11:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025/Homebrew) (preloaded format=pdflatex 2025.10.12)  28 JUL 2026 14:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1158,78 +1158,98 @@ ted to
 
 
 
-[8] (./tables/tab_attainable_alpha.tex) (./tables/tab_false_alarm_control.tex)
+[8] (./tables/tab_attainable_alpha.tex)
 
-(./tables/tab_strict_nested_sc3r.tex) (./tables/tab_visa_full_conformal.tex
+(./tables/tab_false_alarm_control.tex) (./tables/tab_strict_nested_sc3r.tex)
 
-[9])
+[9]
 
-<figures/fig_reliability.pdf, id=295, 404.712pt x 187.902pt>
+(./tables/tab_visa_full_conformal.tex)
+
+[10]
+<figures/fig_reliability.pdf, id=304, 404.712pt x 187.902pt>
 File: figures/fig_reliability.pdf Graphic file (type pdf)
 <use figures/fig_reliability.pdf>
-Package pdftex.def Info: figures/fig_reliability.pdf  used on input line 36.
+Package pdftex.def Info: figures/fig_reliability.pdf  used on input line 48.
 (pdftex.def)             Requested size: 238.25444pt x 110.61751pt.
-<figures/fig_ece_by_corruption.pdf, id=296, 427.59702pt x 360.31792pt>
+<figures/fig_ece_by_corruption.pdf, id=305, 427.59702pt x 360.31792pt>
 File: figures/fig_ece_by_corruption.pdf Graphic file (type pdf)
 <use figures/fig_ece_by_corruption.pdf>
 Package pdftex.def Info: figures/fig_ece_by_corruption.pdf  used on input line 
-43.
+55.
 (pdftex.def)             Requested size: 494.50888pt x 416.69904pt.
 
 
-[10]
-<figures/fig_uniformity_cdf.pdf, id=310, 413.14302pt x 348.10002pt>
+<figures/fig_uniformity_cdf.pdf, id=307, 413.14302pt x 348.10002pt>
 File: figures/fig_uniformity_cdf.pdf Graphic file (type pdf)
 <use figures/fig_uniformity_cdf.pdf>
-Package pdftex.def Info: figures/fig_uniformity_cdf.pdf  used on input line 53.
+Package pdftex.def Info: figures/fig_uniformity_cdf.pdf  used on input line 65.
 
 (pdftex.def)             Requested size: 454.94725pt x 383.33612pt.
 
 
-
-Underfull \hbox (badness 1142) in paragraph at lines 60--61
+[11 <./figures/fig_reliability.pdf>]
+Underfull \hbox (badness 1142) in paragraph at lines 72--73
 \T1/stix/m/n/10 when rank-ing re-mains fixed. On the full VisA dataset,
  []
 
 
 
-[11 <./figures/fig_reliability.pdf>]
-<figures/fig_risk_coverage.pdf, id=351, 250.50882pt x 185.74077pt>
+
+
+[12 <./figures/fig_ece_by_corruption.pdf>]
+Underfull \hbox (badness 1038) in paragraph at lines 81--82
+\LS1/stix/m/n/10 8$\T1/stix/m/n/10 , matched-condition CRESS achieves pooled po
+wer of
+ []
+
+
+
+
+Underfull \hbox (badness 1253) in paragraph at lines 83--84
+\T1/stix/m/n/10 whereas his-tor-i-cal CRESS yields FAR 0.049/0.105 and
+ []
+
+
+Underfull \hbox (badness 1292) in paragraph at lines 83--84
+\T1/stix/m/n/10 lev-els. The his-tor-i-cal CRESS com-par-i-son re-mains non-
+ []
+
+
+
+[13 <./figures/fig_uniformity_cdf.pdf>]
+<figures/fig_risk_coverage.pdf, id=427, 250.50882pt x 185.74077pt>
 File: figures/fig_risk_coverage.pdf Graphic file (type pdf)
 <use figures/fig_risk_coverage.pdf>
-Package pdftex.def Info: figures/fig_risk_coverage.pdf  used on input line 74.
+Package pdftex.def Info: figures/fig_risk_coverage.pdf  used on input line 92.
 (pdftex.def)             Requested size: 238.25444pt x 176.65962pt.
+
+Overfull \hbox (5.23636pt too wide) in paragraph at lines 97--98
+\T1/stix/m/n/10 split eval-u-a-tion; the cor-re-spond-ing $\LS1/stix/m/n/10 ^^A
+$\T1/stix/m/n/10 ECE ranges from $\LS1/stix/m/n/10 *0\LS1/stix/m/it/10 :\LS1/st
+ix/m/n/10 207$
+ []
+
 
 
 ) (./sections/limitations.tex
-
-[12 <./figures/fig_ece_by_corruption.pdf>]
+Underfull \hbox (badness 1502) in paragraph at lines 101--1
+\T1/stix/m/n/10 residual FGSM sur-ro-gate re-duces im-age AU-ROC from
+ []
 
 ) (./sections/conclusion.tex
-Underfull \hbox (badness 1264) in paragraph at lines 2--3
-\T1/stix/m/n/10 storage anomaly rank-ing and few-shot alarm re-li-a-bil-ity,
+Underfull \hbox (badness 1490) in paragraph at lines 2--3
+[]\T1/stix/m/n/10 We pre-sented an au-ditable sep-a-ra-tion be-tween low-
  []
 
 
-Underfull \hbox (badness 1005) in paragraph at lines 2--3
-\T1/stix/m/n/10 pro-ce-dure. A target-only alarm built from $\LS1/stix/m/it/10 
-k$ \T1/stix/m/n/10 cal-i-bra-tion
- []
-
-
-Underfull \hbox (badness 1515) in paragraph at lines 2--3
-\T1/stix/m/n/10 Source nor-mals can pro-duce use-ful sub-floor em-pir-i-cal
+Underfull \hbox (badness 1303) in paragraph at lines 2--3
+\T1/stix/m/n/10 storage anomaly rank-ing and few-shot alarm re-li-a-bil-ity.
  []
 
 
 
-[13 <./figures/fig_uniformity_cdf.pdf>]) (./sections/declarations.tex
-Overfull \hbox (9.12547pt too wide) in paragraph at lines 4--3
-[]\T1/stix/m/n/10 Future work should pri-or-i-tize category-rich source archive
-s
- []
-
-
+[14 <./figures/fig_risk_coverage.pdf>]) (./sections/declarations.tex
 Overfull \hbox (0.40811pt too wide) in paragraph at lines 11--12
 \T1/stix/m/n/10 licly avail-able: MVTec AD ([][]$\T1/zi4/m/n/10 https : / / www
  . mvtec . com / company /
@@ -1256,19 +1276,19 @@ Underfull \hbox (badness 1377) in paragraph at lines 9--10
 
 
 
-[14 <./figures/fig_risk_coverage.pdf>]
-
-
-
 [15]
 
 
 
 [16]
 
+
+
+[17]
+
 )
 
-[17] [18] 
+[18] [19] 
 enddocument/afterlastpage (AED): lastpage setting LastPage.
 (./main.aux)
  ***********
@@ -1279,13 +1299,13 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 17437 strings out of 473190
- 277796 string characters out of 5697561
- 721565 words of memory out of 5000000
+ 17438 strings out of 473190
+ 277803 string characters out of 5697561
+ 724123 words of memory out of 5000000
  40183 multiletter control sequences out of 15000+600000
  652578 words of font info for 159 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 90i,13n,93p,1990b,664s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 90i,13n,93p,1990b,678s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </home/linuxbrew/.linuxbrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/
 type1/public/inconsolata/Inconsolata-zi4r.pfb></home/linuxbrew/.linuxbrew/Cella
 r/texlive/20250308_1/share/texmf-dist/fonts/type1/public/stix/STIXGeneral-Bold.
@@ -1329,10 +1349,10 @@ ellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/stix/stix-mathrm.p
 fb></home/linuxbrew/.linuxbrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts
 /type1/public/stix/stix-mathscr.pfb></home/linuxbrew/.linuxbrew/Cellar/texlive/
 20250308_1/share/texmf-dist/fonts/type1/public/stix/stix-mathsf.pfb>
-Output written on main.pdf (18 pages, 620659 bytes).
+Output written on main.pdf (19 pages, 626330 bytes).
 PDF statistics:
- 630 PDF objects out of 1000 (max. 8388607)
- 479 compressed objects within 5 object streams
- 124 named destinations out of 1000 (max. 500000)
+ 638 PDF objects out of 1000 (max. 8388607)
+ 486 compressed objects within 5 object streams
+ 125 named destinations out of 1000 (max. 500000)
  31 words of extra memory for PDF output out of 10000 (max. 10000000)
 
