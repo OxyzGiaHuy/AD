@@ -1,6 +1,6 @@
 \begin{table*}[pos=t]
 \centering
-\caption{Clean image-level performance and category-specific storage (means over classes and 5 seeds; official AnomalyDINO rows: 3 seeds). Best accuracy within each dataset/$k$ block is bold. Official AnomalyDINO rows are reproductions with the released code under its own protocol; their ECE/storage were not audited. WinCLIP AUROC values are reported in~\cite{winclip2023}. That paper reports AUPR rather than an AP implementation verified identical to ours (MVTec 0.965/0.973 and VisA 0.851/0.888 at 1/4 shots), so its AP cells are marked N/C rather than mixed into the AP comparison. It reports neither ECE under our calibration protocol nor per-category storage under our accounting, marked N/R, and reports 1-/2-/4-shot rather than 8-shot results. No official implementation is released, and our audit of the leading community reimplementation falls about 20 AUROC points short (see text), so these rows are cited rather than audited. Controlled-NN ECE is diagnostic, not competitive (near-constant probability; see text). For PCA64/PCA128, this table reports the Vector Platt ECE at every $k$; LOIO reliability is evaluated separately.}
+\caption{Clean image-level ranking performance and category-specific storage. Controlled DINOv2 NN and PCA64/PCA128 share our feature, split, metric, and storage-accounting protocol and are averaged over classes and five seeds. The official AnomalyDINO reproduction uses three seeds under its released protocol; WinCLIP values are reported in~\cite{winclip2023}. Bold marks the best value only among common-protocol rows in each dataset/$k$ block. ``--'' denotes not evaluated, N/C not directly comparable, and N/R not reported.}
 \label{tab:clean-efficiency}
 \setlength{\tabcolsep}{2.4pt}
 \footnotesize
@@ -9,37 +9,37 @@
 Dataset & $k$ & Method & AUROC $\uparrow$ & AP $\uparrow$ & ECE $\downarrow$ & MiB $\downarrow$ \\
 \midrule
 \multirow{11}{*}{MVTec}
-& \multirow{4}{*}{1} & Official AnomalyDINO & \textbf{0.965} & \textbf{0.982} & -- & -- \\
+& \multirow{4}{*}{1} & Official AnomalyDINO & 0.965 & 0.982 & -- & -- \\
 & & WinCLIP (reported) & 0.931 & N/C & N/R & N/R \\
-& & Controlled DINOv2 NN & 0.914 & 0.952 & 0.277 & 2.005 \\
+& & Controlled DINOv2 NN & \textbf{0.914} & \textbf{0.952} & 0.277 & 2.005 \\
 & & PCA64 (ours) & 0.904 & 0.951 & \textbf{0.274} & \textbf{0.472} \\
 \cmidrule(lr){2-7}
-& \multirow{4}{*}{4} & Official AnomalyDINO & \textbf{0.976} & \textbf{0.984} & -- & -- \\
+& \multirow{4}{*}{4} & Official AnomalyDINO & 0.976 & 0.984 & -- & -- \\
 & & WinCLIP (reported) & 0.952 & N/C & N/R & N/R \\
-& & Controlled DINOv2 NN & 0.942 & 0.967 & 0.693 & 6.000 \\
-& & PCA64 (ours) & 0.937 & 0.967 & \textbf{0.214} & \textbf{0.472} \\
+& & Controlled DINOv2 NN & \textbf{0.942} & \textbf{0.967} & 0.693 & 6.000 \\
+& & PCA64 (ours) & 0.937 & \textbf{0.967} & \textbf{0.214} & \textbf{0.472} \\
 \cmidrule(lr){2-7}
-& \multirow{3}{*}{8} & Official AnomalyDINO & \textbf{0.980} & \textbf{0.990} & -- & -- \\
-& & Controlled DINOv2 NN & 0.948 & 0.970 & 0.693 & 6.000 \\
+& \multirow{3}{*}{8} & Official AnomalyDINO & 0.980 & 0.990 & -- & -- \\
+& & Controlled DINOv2 NN & \textbf{0.948} & 0.970 & 0.693 & 6.000 \\
 & & PCA64 (ours) & 0.945 & \textbf{0.972} & \textbf{0.154} & \textbf{0.472} \\
 \midrule
 \multirow{14}{*}{VisA}
-& \multirow{5}{*}{1} & Official AnomalyDINO & \textbf{0.857} & \textbf{0.866} & -- & -- \\
+& \multirow{5}{*}{1} & Official AnomalyDINO & 0.857 & 0.866 & -- & -- \\
 & & WinCLIP (reported) & 0.838 & N/C & N/R & N/R \\
 & & Controlled DINOv2 NN & 0.804 & 0.809 & 0.434 & 2.005 \\
 & & PCA64 (ours) & 0.823 & 0.834 & \textbf{0.429} & \textbf{0.472} \\
-& & PCA128 (ours) & 0.834 & 0.842 & 0.430 & 0.566 \\
+& & PCA128 (ours) & \textbf{0.834} & \textbf{0.842} & 0.430 & 0.566 \\
 \cmidrule(lr){2-7}
-& \multirow{5}{*}{4} & Official AnomalyDINO & \textbf{0.912} & \textbf{0.918} & -- & -- \\
+& \multirow{5}{*}{4} & Official AnomalyDINO & 0.912 & 0.918 & -- & -- \\
 & & WinCLIP (reported) & 0.873 & N/C & N/R & N/R \\
 & & Controlled DINOv2 NN & 0.862 & 0.861 & 0.543 & 6.000 \\
 & & PCA64 (ours) & 0.870 & 0.883 & 0.284 & \textbf{0.472} \\
-& & PCA128 (ours) & 0.885 & 0.895 & \textbf{0.278} & 0.566 \\
+& & PCA128 (ours) & \textbf{0.885} & \textbf{0.895} & \textbf{0.278} & 0.566 \\
 \cmidrule(lr){2-7}
-& \multirow{4}{*}{8} & Official AnomalyDINO & \textbf{0.926} & \textbf{0.929} & -- & -- \\
+& \multirow{4}{*}{8} & Official AnomalyDINO & 0.926 & 0.929 & -- & -- \\
 & & Controlled DINOv2 NN & 0.873 & 0.870 & 0.533 & 6.000 \\
 & & PCA64 (ours) & 0.880 & 0.891 & 0.205 & \textbf{0.472} \\
-& & PCA128 (ours) & 0.897 & 0.905 & \textbf{0.170} & 0.566 \\
+& & PCA128 (ours) & \textbf{0.897} & \textbf{0.905} & \textbf{0.170} & 0.566 \\
 \bottomrule
 \end{tabular}
 \end{table*}

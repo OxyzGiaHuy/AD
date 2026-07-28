@@ -1,6 +1,6 @@
 \begin{table*}[pos=t]
 \centering
-\caption{Pixel-level localization and adversarial-fragility diagnostics on MVTec (means over classes and 5 seeds). Top: PCA64 exceeds the controlled memory bank in pixel AUROC at every $k$; AU-PRO is lower at $k=1$, tied at $k=4$, and higher at $k=8$. Bottom: a label-aware PCA-residual FGSM surrogate collapses image AUROC far below chance at small $\varepsilon$ (score inversion), and the drop is non-monotonic in $\varepsilon$---evidence of objective sensitivity that we report as a diagnostic, not as a robustness claim.}
+\caption{MVTec pixel-level localization and FGSM fragility diagnostics, averaged over classes and five seeds. The upper block reports pixel AUROC and AU-PRO; the lower block reports clean and perturbed image AUROC under the label-aware PCA-residual surrogate.}
 \label{tab:pixel-diagnostics}
 \footnotesize
 \setlength{\tabcolsep}{4pt}

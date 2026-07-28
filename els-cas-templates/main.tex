@@ -9,10 +9,12 @@
 \usepackage{multirow}
 \usepackage{needspace}
 \usepackage{placeins}
+\usepackage{lastpage}
 \usepackage{url}
 \hypersetup{hyperfootnotes=false}
 
 \begin{document}
+\def\lastpage{\pageref{LastPage}}
 % cas-common.sty prints an empty ORCID footnote even when no ORCID is supplied.
 \RenewDocumentCommand{\printorcid}{}{}
 \let\WriteBookmarks\relax
