@@ -1,0 +1,92 @@
+{
+  "assets": [
+    {
+      "output_path": "/home/crl/MoME/other/AD/outputs/pipeline_visuals/capsule_k4_seed0/support_01.png",
+      "role": "normal support 1 of 4",
+      "sha256": "96a77c1cca9d6efbd4fb487c9113fe775ac0559730131850c6c6523e944611d3",
+      "source_path": "/home/crl/MoME/other/AD/tmp/ad-neurocomputing/extracted/mvtec/capsule/train/good/000.png"
+    },
+    {
+      "output_path": "/home/crl/MoME/other/AD/outputs/pipeline_visuals/capsule_k4_seed0/support_02.png",
+      "role": "normal support 2 of 4",
+      "sha256": "f54500dee0fe89139c1be92f1c3c05b446f32017f8a2cd41cab7cc77a7d18d3a",
+      "source_path": "/home/crl/MoME/other/AD/tmp/ad-neurocomputing/extracted/mvtec/capsule/train/good/039.png"
+    },
+    {
+      "output_path": "/home/crl/MoME/other/AD/outputs/pipeline_visuals/capsule_k4_seed0/support_03.png",
+      "role": "normal support 3 of 4",
+      "sha256": "3bd8dc134dc606fa7c27d0739b70addd32280484de135e15bb021347e2c223b5",
+      "source_path": "/home/crl/MoME/other/AD/tmp/ad-neurocomputing/extracted/mvtec/capsule/train/good/154.png"
+    },
+    {
+      "output_path": "/home/crl/MoME/other/AD/outputs/pipeline_visuals/capsule_k4_seed0/support_04.png",
+      "role": "normal support 4 of 4",
+      "sha256": "015d6dd318cdaa449ac2fbc4becfe1b0a16d5cbf8b99771196b5a6ac73c6618a",
+      "source_path": "/home/crl/MoME/other/AD/tmp/ad-neurocomputing/extracted/mvtec/capsule/train/good/181.png"
+    },
+    {
+      "output_path": "/home/crl/MoME/other/AD/outputs/pipeline_visuals/capsule_k4_seed0/support_montage_k4.png",
+      "role": "four-support montage",
+      "sha256": "c4bde1fc92b2947f35a775a2d626de0db6ca1fa89e0eb38eac3e0f03580fe0ec"
+    },
+    {
+      "output_path": "/home/crl/MoME/other/AD/outputs/pipeline_visuals/capsule_k4_seed0/test_capsule_anomaly.png",
+      "role": "test anomaly input x",
+      "sha256": "7bc31f4c4acf1d0878d55b62742f5933afeabb41e0509840fc864cc2dbef339c",
+      "source_path": "/home/crl/MoME/other/AD/tmp/ad-neurocomputing/extracted/mvtec/capsule/test/crack/014.png"
+    },
+    {
+      "output_path": "/home/crl/MoME/other/AD/outputs/pipeline_visuals/capsule_k4_seed0/gt_mask_evaluation_only.png",
+      "role": "ground truth, evaluation only",
+      "sha256": "82f7ea23f012818d60ce4c48defeef2fa9d174eb74141d8d0f625b5745c52fd5",
+      "source_path": "/home/crl/MoME/other/AD/tmp/ad-neurocomputing/extracted/mvtec/capsule/ground_truth/crack/014_mask.png"
+    },
+    {
+      "output_path": "/home/crl/MoME/other/AD/outputs/pipeline_visuals/capsule_k4_seed0/patch_residual_raw_37x37.npy",
+      "role": "raw PCA patch residual tensor",
+      "sha256": "3d8190a347bbf8d81954f966f7cf6e68b3fa7ddaf86ccc2c2f829928ed660819"
+    },
+    {
+      "output_path": "/home/crl/MoME/other/AD/outputs/pipeline_visuals/capsule_k4_seed0/patch_residual_map_nearest.png",
+      "role": "coarse 37x37 residual map for panels a/b",
+      "sha256": "04fea5183b3f1ec6f3c27c224f29e62ff12b74df69e8cef26b0ab80f3fe320d3"
+    },
+    {
+      "output_path": "/home/crl/MoME/other/AD/outputs/pipeline_visuals/capsule_k4_seed0/pixel_anomaly_heatmap_bilinear.png",
+      "role": "bilinearly upsampled pixel anomaly heatmap",
+      "sha256": "0b46b76bdccbd936e00826df29dac5b72364d76b8fffd4e7ebee1b210937a5dd"
+    },
+    {
+      "output_path": "/home/crl/MoME/other/AD/outputs/pipeline_visuals/capsule_k4_seed0/test_heatmap_overlay.png",
+      "role": "display-only heatmap overlay",
+      "sha256": "47ab4a7a776669ad642bc6ede318be9d3696dacb08d452d3a02fc736e4e1d4b4"
+    }
+  ],
+  "backbone": "frozen DINOv2 ViT-S/14",
+  "category": "capsule",
+  "config_path": "/home/crl/MoME/other/AD/configs/generated/mvtec_full/calib_subspace_head_mvtec_capsule_k4_seed0.yaml",
+  "config_sha256": "007d32d521229675f3ee4875adcb7c3d5fffb4471d51239138388053cc680457",
+  "dataset": "MVTec AD",
+  "display_normalization_only": {
+    "lower": 4.234731674194336,
+    "rule": "per-image clipping from the minimum to the 99th percentile, followed by a fixed sequential colour map",
+    "upper": 17.600046157836914,
+    "warning": "This normalization and the overlay are for visualization only and are not used for scores, thresholds, or reported metrics."
+  },
+  "ground_truth_warning": "The ground-truth mask is evaluation-only and must never be drawn as an input to DINOv2, PCA fitting, scoring, or calibration.",
+  "input_size": 518,
+  "k": 4,
+  "patch_grid": [
+    37,
+    37
+  ],
+  "pca_components": 64,
+  "purpose": "Pipeline panels a and b only; no LOIO or CRESS outputs",
+  "raw_image_score_definition": "maximum PCA residual across patch tokens",
+  "run_dir": "/home/crl/MoME/other/AD/outputs/calib_subspace_head_mvtec_capsule_k4_seed0_calib_subspace_head_k4_seed0_normal_synthetic",
+  "seed": 0,
+  "selected_defect_type": "crack",
+  "selected_prediction_index": 37,
+  "selected_raw_score": 26.2603816986084,
+  "selection_rule": "lower median raw score within predeclared defect type 'crack'"
+}
