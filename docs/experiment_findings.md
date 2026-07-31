@@ -37125,3 +37125,10 @@ Direct Brier mixture and no-harm penalties make the sample gate more conservativ
 - Gate consistently selects `conformal_prob_loio`, so the new strongest idea is conformal reliability routing rather than calibrator-only SAGE gating.
 - Selective reliability with conformal views is also strong at 80% coverage: all `40.9%` ECE reduction, VisA `49.7%`, MVTec `64.6%` in the best representative settings.
 - Caveat: current validation-ECE gate uses validation labels to select the conformal view. For paper-grade main protocol, lock a held-out validation protocol or develop a normal-only/no-label routing rule.
+
+## Completed calib_subspace_head_mvtec_capsule_k4_seed0_calib_subspace_head_k4_seed0_normal_synthetic
+
+- Timestamp UTC: `2026-07-31T13:27:46.618136+00:00`
+- AUROC: `0.7913841244515357`
+- ECE: `0.15809000328634723`
+- Output dir: `outputs/calib_subspace_head_mvtec_capsule_k4_seed0_calib_subspace_head_k4_seed0_normal_synthetic`
