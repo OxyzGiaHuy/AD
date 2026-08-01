@@ -1,0 +1,32 @@
+\begin{table}[pos=t]
+\centering
+\caption{Direct pooled-source conformal under matched-condition routing. FAR and power are means over target class, $k\in\{1,2,4,8\}$, seeds from 0 to 4, and five conditions. The baseline uses the complete routed source pool with $\tau=\alpha$ and has no reference, proposal, or certification split.}
+\label{tab:pooled-source-conformal}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrrr}
+\toprule
+source $\rightarrow$ target & $\alpha$ & FAR & power \\
+\midrule
+\multirow{3}{*}{MVTec $\rightarrow$ MVTec}
+ & 0.05 & 0.075 & 0.404 \\
+ & 0.10 & 0.131 & 0.566 \\
+ & 0.20 & 0.242 & 0.754 \\
+\cmidrule(lr){1-4}
+\multirow{3}{*}{VisA $\rightarrow$ VisA}
+ & 0.05 & 0.060 & 0.320 \\
+ & 0.10 & 0.111 & 0.466 \\
+ & 0.20 & 0.208 & 0.639 \\
+\cmidrule(lr){1-4}
+\multirow{3}{*}{MVTec $\rightarrow$ VisA}
+ & 0.05 & 0.028 & 0.171 \\
+ & 0.10 & 0.048 & 0.282 \\
+ & 0.20 & 0.099 & 0.441 \\
+\cmidrule(lr){1-4}
+\multirow{3}{*}{MVTec $\rightarrow$ MPDD}
+ & 0.05 & 0.030 & 0.186 \\
+ & 0.10 & 0.066 & 0.283 \\
+ & 0.20 & 0.157 & 0.423 \\
+\bottomrule
+\end{tabular}
+\end{table}
