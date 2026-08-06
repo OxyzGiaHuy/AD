@@ -15,25 +15,53 @@ __pycache__/
 *.parquet
 
 # LaTeX build artifacts
+*.abs
+*.acn
+*.acr
+*.alg
 *.aux
 *.bbl
 *.bcf
 *.blg
+*.dvi
 *.fdb_latexmk
 *.fls
+*.glg
+*.glo
+*.gls
+*.glsdefs
+*.idx
+*.ilg
+*.ind
+*.ist
+*.loa
 *.lof
+*.lol
 *.log
 *.lot
 *.nav
 *.out
+*.pdfsync
+*.ps
 *.run.xml
 *.snm
 *.synctex.gz
+*.synctex(busy)
+*.thm
 *.toc
+*.upa
+*.upb
 *.vrb
 *.xdv
+*.xmpi
 
 # Local editor / external references
+.DS_Store
+Thumbs.db
+*~
+*.bak
+*.swp
+*.swo
 .vscode/
 SAGE/
 0.2047
