@@ -1,0 +1,31 @@
+\begin{table*}[pos=t]
+\centering
+\caption{MVTec pixel-level localization and FGSM fragility diagnostics, averaged over classes and five seeds. The upper block reports pixel AUROC and AU-PRO; the lower block reports clean and perturbed image AUROC under the label-aware PCA-residual surrogate.}
+\label{tab:pixel-diagnostics}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{llrr}
+\toprule
+\multicolumn{4}{l}{\emph{Pixel localization}} \\
+$k$ & Method & pixel AUROC & AU-PRO \\
+\midrule
+\multirow{2}{*}{1} & PCA64 (ours) & \textbf{0.944} & 0.820 \\
+  & Controlled DINOv2 NN & 0.940 & \textbf{0.845} \\
+\cmidrule(lr){1-4}
+\multirow{2}{*}{4} & PCA64 (ours) & \textbf{0.957} & 0.862 \\
+  & Controlled DINOv2 NN & 0.951 & 0.862 \\
+\cmidrule(lr){1-4}
+\multirow{2}{*}{8} & PCA64 (ours) & \textbf{0.960} & \textbf{0.876} \\
+  & Controlled DINOv2 NN & 0.952 & 0.863 \\
+\midrule
+\multicolumn{4}{l}{\emph{FGSM fragility diagnostic (image AUROC)}} \\
+$\varepsilon$ & $k$ & clean $\to$ FGSM & rel.\ drop \\
+\midrule
+\multirow{2}{*}{$2/255$} & 4 & 0.937 $\to$ 0.158 & 83\% \\
+        & 8 & 0.945 $\to$ 0.175 & 82\% \\
+\cmidrule(lr){1-4}
+\multirow{2}{*}{$8/255$} & 4 & 0.937 $\to$ 0.446 & 52\% \\
+        & 8 & 0.945 $\to$ 0.446 & 53\% \\
+\bottomrule
+\end{tabular}
+\end{table*}

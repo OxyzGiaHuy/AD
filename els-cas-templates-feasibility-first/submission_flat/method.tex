@@ -1,0 +1,157 @@
+\section{Method}\label{sec:method}
+\subsection{Problem Setup}
+For each target category $c$, we observe a support set $\mathcal{S}_c=\{x_i\}_{i=1}^{k}$ containing only normal images. Target test images may be normal or anomalous, but their labels are reserved exclusively for evaluation and do not enter detector fitting, threshold proposal, or certification. Other categories may additionally provide a declared source-normal archive. The framework produces a fixed raw anomaly score $s_c(x)$ and optional pixel map, a target-only reliability value $p_{\mathrm{LOIO}}(x)$ when leave-one-image-out calibration is available, and, for the source-assisted route, a threshold $\tau^\star$ accompanied by a source-domain certificate. Figures~\ref{fig:target-pipeline} and~\ref{fig:cress-pipeline} separate the inherited ranking substrate, the target-only route, and the source-assisted route.
+
+The statistical unit is fixed before threshold evaluation. Under its iid sampling model, an image-unit analysis targets the mean alarm loss for a draw from the declared source-image mixture. A category-unit analysis first averages alarms within each source category and then targets the mean loss of a new draw from the declared source-category meta-population. The latter requires independent category units; additional images, support seeds, or corruption views within an existing category do not increase their number. Neither source estimand is automatically the target-category risk. That transfer requires the additional condition stated at the end of this section.
+
+\subsection{Frozen Patch Features and Subspace Ranking}
+We extract patch features with a frozen DINOv2 small Vision Transformer using $14\times14$ patches (ViT-S/14). Let $z_{ij}\in\mathbb{R}^{d}$ denote patch $j$ from image $i$. A PCA subspace is fit on the target support patches. With support mean $\mu_c$ and retained principal directions $U_c\in\mathbb{R}^{d\times m}$, the patch residual is
+\begin{equation}\label{eq:residual}
+    r_c(z)=\left\|(z-\mu_c)-U_cU_c^{\top}(z-\mu_c)\right\|_2.
+\end{equation}
+The patch residuals form an anomaly map. The image-level ranking score is
+\begin{equation}\label{eq:score}
+    s_c(x)=\operatorname{Agg}_{j}\,r_c(z_j).
+\end{equation}
+The clean accuracy-storage benchmark uses the patch maximum, whereas the conformal protocols use the mean of the top-$1\%$ patch residuals ($\rho=0.01$) as a smoothed maximum. AUROC and AP are always computed from the fixed score $s_c(x)$ within a declared protocol; none of the subsequent reliability transformations changes that score or its ranking.
+
+\subsection{Target-Only LOIO Reliability}
+For $k\geq2$, the target-only route constructs normal calibration residuals by leave-one-image-out support splitting. For each support image $x_i$, a subspace is fit on $\mathcal{S}_c\setminus\{x_i\}$, and the held-out image receives the score $s_{c,-i}(x_i)$. The resulting set
+\begin{equation}\label{eq:rloio}
+    \mathcal{R}_{c,\mathrm{LOIO}}
+    =\{s_{c,-i}(x_i):x_i\in\mathcal{S}_c\}
+\end{equation}
+serves as target-normal nonconformity evidence. A test image, scored using the subspace fit on all $k$ supports, receives
+\begin{equation}\label{eq:loio}
+    p_{c,\mathrm{LOIO}}(x)
+    =\frac{1+\sum_{r\in\mathcal{R}_{c,\mathrm{LOIO}}}
+    \mathbf{1}\{r\geq s_c(x)\}}
+    {1+|\mathcal{R}_{c,\mathrm{LOIO}}|}.
+\end{equation}
+We report $1-p_{c,\mathrm{LOIO}}(x)$ only as a probability-like anomaly reliability view. It measures extremeness relative to held-out support normals and is not a supervised anomaly posterior.
+
+The construction is asymmetric: each calibration score uses $k-1$ support images, whereas the test score uses all $k$. Equation~\eqref{eq:loio} is therefore a LOIO approximation in the spirit of cross-conformal inference~\cite{vovk2005,barber2021jackknife,hennhofer2024loio}, not a split-conformal p-value with an automatic finite-sample guarantee~\cite{bates2023testing,laxhammar2015inductive}. A matched-LOIO audit scores held-out support and test images under the same fold-specific subspaces, but does not improve the observed false-alarm and power trade-off. We consequently retain the simpler construction and audit its normal p-values empirically rather than assuming exchangeability.
+
+\begin{figure*}[t]
+\centering
+\fbox{\parbox[c][3.6cm][c]{0.95\textwidth}{\centering
+\textbf{Placeholder: target-side scoring and reliability pipeline}\\[0.6em]
+Panel (a): frozen DINOv2 features $\rightarrow$ support-fitted PCA residual scorer $\rightarrow$ image score and pixel anomaly map.\\[0.35em]
+Panel (b): LOIO support scores $\rightarrow$ target-only rank transform $p_{c,\mathrm{LOIO}}(x)$ $\rightarrow$ alarm at $p_{c,\mathrm{LOIO}}(x)\leq\alpha$, with resolution floor $1/(k+1)$.}}
+\caption{Target-side scoring and reliability routes. Panel (a) uses frozen DINOv2 patch features and a support-fitted PCA residual scorer to produce the fixed image-ranking score and pixel anomaly map; performance metrics are evaluation-only. Panel (b) reuses the scoring construction in leave-one-image-out folds to form target-normal calibration scores and the target-only rank value $p_{c,\mathrm{LOIO}}(x)$. The smallest attainable value is $1/(k+1)$, and the alarm rule does not alter the underlying ranking score. The final artwork will replace this placeholder without changing the method.}
+\label{fig:target-pipeline}
+\end{figure*}
+
+\subsection{Target-Only Resolution}
+\noindent\textbf{Remark 1 (attainable-alpha floor).} For any finite calibration scores $r_1,\ldots,r_k$, a p-value of the form in Eq.~\eqref{eq:loio} belongs to $\{j/(k{+}1):j=1,\ldots,k{+}1\}$. Hence the alarm $\mathbf{1}\{p(x)\leq\alpha\}$ is identically zero for $\alpha<1/(k{+}1)$.
+
+\noindent\emph{Proof.} The exceedance count is an integer from 0 to $k$. Adding one and dividing by $k+1$ gives the stated grid and lower bound. No exchangeability assumption is needed for this algebraic claim. \hfill$\square$
+
+For $k=4$, the floor is $0.2$; for $k=8$, it is $1/9\approx0.111$. The attainable-alpha analysis reports, for each nominal $\alpha$, the largest attainable grid point not exceeding $\alpha$ and the corresponding empirical false-alarm rate. The floor is a finite-resolution property, not an algorithmic innovation or evidence that the underlying ranker cannot separate anomalies. Standard randomization can smooth this deterministic grid under the relevant exchangeability assumptions, but it cannot by itself repair support-to-test shift.
+
+\subsection{Source Score Construction and View Selection}\label{sec:cress-source-construction}
+CRESS uses known-normal images from categories other than the target. For every target or source category $c$, let $\mathcal{B}_c$ denote its support-only calibration residuals. For $k\geq2$, $\mathcal{B}_c=\mathcal{R}_{c,\mathrm{LOIO}}$. Because LOIO is undefined with one support image, the declared $k=1$ stress test uses one patch-split support calibration residual instead. We summarize $\mathcal B_c$ by its median and median absolute deviation (MAD):
+\begin{equation}\label{eq:cress-normalization}
+\begin{aligned}
+    m_c &= \operatorname{median}(\mathcal{B}_c),\\
+    d_c &= \operatorname{MAD}(\mathcal{B}_c),\\
+    \widetilde{s}_c(x) &= \frac{s_c(x)-m_c}{\max(d_c,\varepsilon)}.
+\end{aligned}
+\end{equation}
+Here $\varepsilon=10^{-6}$ is fixed before evaluation. This support-only normalization makes cross-category score scales more comparable; it does not establish equality or exchangeability of their distributions. In particular, the $k=1$ scale is degenerate before clipping, so those cells are interpreted as stress tests rather than ordinary LOIO calibration.
+
+The normalized source score views are then selected without inspecting target labels or target scores. Matched-condition mode selects the source view with the declared target condition and therefore requires condition metadata. Clean-source mode always selects clean source normals. Condition-agnostic mode takes, for each base source image, the median normalized score over all available condition views so that repeated corruptions are not counted as independent observations. Deterministic mismatched-condition routing selects a different condition solely as a negative control. Thus normalization precedes source-view selection or aggregation in the implemented protocol. Only the resulting scalar score archive and category identities are needed downstream; source patch features do not enter certification.
+
+For a fixed target and support seed, the eligible source categories are split before candidate construction into disjoint reference, proposal, and certification sets $\mathcal{R}$, $\mathcal{P}$, and $\mathcal{C}$. The primary allocation is $0.50/0.25/0.25$, with deterministic rounding that keeps every partition nonempty. The split is generated from the target-category identity and seed, is held fixed across conditions and $k$, and never depends on observed scores, target outcomes, or certification losses. All score views from one category remain in the same partition.
+
+\subsection{Nested CRESS Threshold Selection}\label{sec:cress-threshold-selection}
+Let $\mathcal{Z}_{\mathcal{R}}$ be the pooled normalized scores from the selected reference-category views. The reference categories define the source-reference rank map
+\begin{equation}\label{eq:cress-source-pvalue}
+    p_{\mathcal{R}}(x)
+    =\frac{1+\sum_{r\in\mathcal{Z}_{\mathcal{R}}}
+    \mathbf{1}\{r\geq\widetilde{s}_c(x)\}}
+    {1+|\mathcal{Z}_{\mathcal{R}}|}.
+\end{equation}
+We use the term \emph{source-reference map} deliberately: Eq.~\eqref{eq:cress-source-pvalue} is an empirical rank transformation on the source archive, and cross-category conformal validity is not presumed. Its finer grid arises from the larger reference-score pool rather than from the $k$ target supports.
+
+Applying the reference map to the proposal categories produces the proposal p-values $\{p_{\mathcal R}(x):x\in\mathcal P\}$. Their distinct values generate an ordered set $\mathcal{T}$ of at most $M$ positive candidate thresholds. If more than $M$ distinct values occur, a deterministic evenly spaced subset of their ordered indices is retained. Certification data never influence this candidate set. The same reference map is then applied to every certification image. Given a candidate $\tau\in\mathcal T$, its image-unit loss is
+\begin{equation}\label{eq:cress-image-loss}
+    L_x(\tau)=\mathbf{1}\{p_{\mathcal{R}}(x)\leq\tau\}.
+\end{equation}
+All certification images are declared normal, so an alarm is a false alarm. For a certification category $c$, the category-unit loss is
+\begin{equation}\label{eq:cress-category-loss}
+    L_c(\tau)=\frac{1}{n_c}\sum_{x\in c}L_x(\tau)\in[0,1].
+\end{equation}
+The image unit targets the declared source-image mixture under iid image sampling; the category unit targets the mean loss for a new draw from a declared source-category meta-population. They are different estimands and are not interchangeable.
+
+Let $A$ be the number of reported nominal levels and let $n=|\mathcal{C}|$ be the number of certification categories. For each candidate threshold, define the empirical mean category loss
+\begin{equation}\label{eq:cress-mean-category-loss}
+    \overline{L}_{\mathcal C}(\tau)=\frac{1}{n}\sum_{c\in\mathcal{C}}L_c(\tau).
+\end{equation}
+The category analysis then uses the family-adjusted Hoeffding category-risk UCB
+\begin{equation}\label{eq:sc3r-ucb}
+    U_{\mathrm{H}}(\tau)=\min\!\left\{1,\;
+    \overline{L}_{\mathcal C}(\tau)+
+    \sqrt{\frac{\log(2AM/\delta)}{2n}}\right\}.
+\end{equation}
+For iid Bernoulli alarms from the declared source-image mixture, the image-unit sensitivity uses the exact one-sided Clopper--Pearson upper bound with tail probability $\delta/(2AM)$. The factor $2A$ allocates the family error across both unit definitions and all reported levels; $M$ allocates it across the finite candidate family. In the selection rule below, $U$ denotes $U_{\mathrm H}$ for category certification and the corresponding Clopper--Pearson bound for the image-unit sensitivity. CRESS returns
+\begin{equation}\label{eq:cress-selected-threshold}
+    \tau^\star=
+    \max\bigl(\{\tau\in\mathcal{T}:U(\tau)\leq\alpha\}\cup\{0\}\bigr).
+\end{equation}
+The value $\tau^\star=0$ is a deterministic fail-closed fallback because $p_{\mathcal{R}}(x)>0$. After threshold selection, a target image can be operated on by
+\begin{equation}\label{eq:cress-target-decision}
+    a_{\tau^\star}(x)
+    =\mathbf{1}\{p_{\mathcal{R}}(x)\leq\tau^\star\},
+\end{equation}
+where the target score is normalized only by the target support statistics. Target test images and labels enter none of the reference, proposal, certification, or threshold-selection stages.
+
+\begin{figure*}[t]
+\centering
+\fbox{\parbox[c][4.0cm][c]{0.95\textwidth}{\centering
+\textbf{Placeholder: CRESS source-side threshold certification}\\[0.6em]
+Source supports and held-out normal views $\rightarrow$ category normalization and predeclared view selection $\rightarrow$ disjoint $\mathcal R/\mathcal P/\mathcal C$ split.\\[0.35em]
+$\mathcal R$: source-reference map $p_{\mathcal R}$; $\mathcal P$: candidate thresholds $\mathcal T$; $\mathcal C$: category losses $\rightarrow$ family-adjusted risk UCB $\rightarrow$ $\tau^\star=\max(\mathcal T_{\mathrm{pass}}\cup\{0\})$.}}
+\caption{CRESS source-side threshold certification. Each source category supplies a support-fitted scorer, support-only normalization statistics, and disjoint held-out normal score views selected by a predeclared routing rule. Source categories are partitioned into reference ($\mathcal R$), proposal ($\mathcal P$), and certification ($\mathcal C$) roles. The reference set defines $p_{\mathcal R}$, the proposal set fixes the candidate family, and the certification set produces category losses for the family-adjusted risk UCB. CRESS returns the largest passing threshold or the fail-closed value zero. This is a source-domain certificate; target-category control additionally requires the transfer condition in Corollary~1. The final artwork will replace this placeholder without changing the method.}
+\label{fig:cress-pipeline}
+\end{figure*}
+
+\subsection{Certificate Scope, Feasibility, and Transfer Boundary}
+\noindent\textbf{Proposition 1 (conditional source certificate).} Conditional on the reference and proposal stages, suppose certification units are independent draws from the declared source-unit population: Bernoulli losses for the image analysis, or bounded losses in $[0,1]$ for the category analysis. Then, with probability at least $1-\delta$, simultaneously across the $A$ levels and both unit definitions, the corresponding source risk of every selected threshold is at most its $\alpha$.
+
+\noindent\emph{Proof.} For a fixed level, unit, and candidate, the one-sided Clopper--Pearson construction or Hoeffding's inequality fails with probability at most $\delta/(2AM)$. A union bound over $M$ candidates, $A$ levels, and two units gives total failure probability at most $\delta$; independence between these bounds is unnecessary. Selection occurs only on this simultaneous event, and the zero fallback has zero alarm risk. \hfill$\square$
+
+\noindent\textbf{Proposition 2 (Hoeffding feasibility).} Under the category-level Hoeffding rule, a positive candidate can pass at level $\alpha$ only if
+\begin{equation}\label{eq:sc3r-feasibility}
+    n\geq\frac{\log(2AM/\delta)}{2\alpha^2}.
+\end{equation}
+\noindent\emph{Proof.} Because $\overline{L}_{\mathcal C}(\tau)\geq0$, the unclipped upper bound is at least $\sqrt{\log(2AM/\delta)/(2n)}$. Requiring it not to exceed $\alpha$ and rearranging proves the claim. \hfill$\square$
+
+\noindent\textbf{Proposition 3 (distribution-free all-zero lower bound).}
+Let $\beta\in(0,1)$ and let $L_1,\ldots,L_n$ be iid losses from an arbitrary distribution $P$ on $[0,1]$, with mean $\mu_P$. Let $U_n:[0,1]^n\to[0,1]$ be any deterministic upper confidence bound satisfying
+\[
+    \inf_{P}\Pr_{P^n}\!\left\{\mu_P\leq U_n(L_1,\ldots,L_n)\right\}\geq1-\beta.
+\]
+Then
+\begin{equation}\label{eq:distribution-free-feasibility}
+    U_n(0,\ldots,0)\geq1-\beta^{1/n}.
+\end{equation}
+Consequently, even after observing zero loss in every certification category, $U_n\leq\alpha$ is possible only if
+\[
+    n\geq\frac{\log\beta}{\log(1-\alpha)}.
+\]
+
+\noindent\emph{Proof.}
+Write $u=U_n(0,\ldots,0)$ and suppose, for contradiction, that $u<1-\beta^{1/n}$. Choose a Bernoulli distribution with mean $q$ such that $u<q<1-\beta^{1/n}$. Its all-zero sample has probability $(1-q)^n>\beta$. On that event $U_n=u<q=\mu_P$, so the bound fails with probability greater than $\beta$, contradicting uniform $(1-\beta)$ coverage. Rearranging $1-\beta^{1/n}\leq\alpha$ gives the sample-size condition. \hfill$\square$
+
+Proposition~3 shows that the frozen failure is not solely an artifact of Hoeffding looseness. Its Bernoulli counterexample is elementary; the contribution here is to use that necessary condition as an explicit category-budget calculation for transferable anomaly thresholds. Even for one fixed candidate, one level, no image-unit co-reporting, and no multiplicity penalty ($\beta=\delta=0.05$), any deterministic uniformly valid distribution-free bound based only on iid category losses needs at least 14, 29, and 59 categories at $\alpha=0.20$, $0.10$, and $0.05$. These are necessary lower limits, not claims that the corresponding sample sizes suffice for CRESS. Under the frozen allocation $\beta=\delta/(2AM)$ with $A=3$ and the most favorable $M=1$, the corresponding lower limits are 22, 46, and 94; the declared Hoeffding rule requires 60, 240, and 958.
+
+\input{tab_certificate_feasibility}
+
+Table~\ref{tab:certificate-feasibility} is a design calculation rather than an empirical result. Proposition~3 is limited to deterministic, uniformly valid, distribution-free upper bounds based solely on iid bounded category losses. Parametric or hierarchical assumptions, informative side data, and randomized confidence procedures require separate validity arguments. Adding independent source-image draws may refine the selected-mixture image analysis, but additional images or repeated support seeds cannot increase the number of independent certification categories.
+
+\noindent\textbf{Corollary 1 (conditional target transfer).} On the event in Proposition~1, the risk of a particular target category is at most $\alpha$ if, for every proposed threshold, its normal alarm probability is no larger than the corresponding certified source risk. Alternatively, if a target category is a fresh exchangeable draw from the certification-category meta-population, the alarm risk marginalized over that random category draw is at most $\alpha$.
+
+\noindent\emph{Proof.} The first statement follows by source-risk dominance and Proposition~1. Under category exchangeability, the marginal target risk equals the source meta-population risk bounded in Proposition~1. Neither argument bounds the category-conditional risk of every realized exchangeable target. \hfill$\square$
+
+Source-risk dominance and category exchangeability are assumptions, not consequences of normalization, source-view selection, or the rank transformation in Eq.~\eqref{eq:cress-source-pvalue}. Thus $\tau^\star$ carries a source-domain certificate. It becomes a guarantee for a particular target only under dominance; exchangeability supplies the weaker marginal new-category statement. Direct pooled-source conformal, which uses the complete selected source pool with $\tau=\alpha$ and no disjoint proposal or certification stage, is retained as an uncertified empirical reference.

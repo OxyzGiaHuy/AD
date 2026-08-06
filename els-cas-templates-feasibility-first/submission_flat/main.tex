@@ -1,0 +1,77 @@
+\PassOptionsToPackage{hyperfootnotes=false}{hyperref}
+\documentclass[a4paper,fleqn]{cas-dc}
+
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{graphicx}
+\graphicspath{{./}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg,.jpeg}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{needspace}
+\usepackage{placeins}
+\usepackage{lastpage}
+\usepackage{url}
+
+\begin{document}
+\def\lastpage{\pageref{LastPage}}
+% cas-common.sty prints an empty ORCID footnote even when no ORCID is supplied.
+\RenewDocumentCommand{\printorcid}{}{}
+\let\WriteBookmarks\relax
+\def\floatpagepagefraction{1}
+\def\textpagefraction{.001}
+
+\shorttitle{Category Limits for Few-Shot Certification}
+\shortauthors{Thai and Nguyen}
+
+\title[mode = title]{How Many Categories Are Enough? Distribution-Free Certification Limits for Few-Shot Anomaly Thresholds}
+
+\author[1]{Gia Huy Thai}
+\ead{23120008@student.hcmus.edu.vn}
+
+\author[2]{Anh Nguyen}
+\cormark[1]
+\ead{anh.nt@vlu.edu.vn}
+
+\affiliation[1]{organization={University of Science, VNU-HCM},
+                city={Ho Chi Minh City},
+                country={Vietnam}}
+
+\affiliation[2]{organization={Faculty of Information Technology, Van Lang School of Technology, Van Lang University},
+                city={Ho Chi Minh City},
+                country={Vietnam}}
+
+\cortext[cor1]{Corresponding author.}
+
+\input{abstract}
+
+% \begin{graphicalabstract}
+% \includegraphics[width=0.86\textwidth]{fig_pipeline}
+% \end{graphicalabstract}
+
+% \begin{highlights}
+% \item MVTec target-only FAR reaches 0.341 at k=4 and alpha=0.20
+% \item At alpha=0.20, optimistic certification needs 14 independent categories
+% \item Three or four categories yield no positive category-certified threshold
+% \item Image-unit bounds target a source mixture, not an unseen category
+% \end{highlights}
+
+\begin{keywords}
+Industrial anomaly detection \sep Few-shot learning \sep Calibration \sep Conformal prediction \sep DINOv2 \sep Reliability
+\end{keywords}
+
+\maketitle
+
+\input{introduction}
+\input{related_work}
+\input{method}
+\input{experiments}
+\input{results}
+\input{limitations}
+\input{conclusion}
+\input{declarations}
+
+\bibliographystyle{elsarticle-num}
+\bibliography{references}
+
+\end{document}

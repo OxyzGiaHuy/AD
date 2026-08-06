@@ -1,0 +1,4 @@
+This was an intermediate packaging test. The working manuscript has changed
+since it was generated. Do not upload this directory. Build a fresh flat
+package after the pipeline figures, bibliography, author declarations, and
+final scientific audit are complete.

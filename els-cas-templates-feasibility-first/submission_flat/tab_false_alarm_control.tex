@@ -1,0 +1,36 @@
+\begin{table*}[pos=t]
+\centering
+\caption{Target-only LOIO FAR, anomaly-detection rate, and precision at the first reported attainable level, $\alpha{=}0.20$. Results use five nested support seeds, are pooled over images within each dataset, corruption, and $k$, and retain every normal and anomalous test image. Alarms fire at $p\le\alpha$ using the comparison tolerance described in the text.}
+\label{tab:false-alarm-control}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{llrrrr}
+\toprule
+dataset & corruption & $k$ & FAR & detection & precision \\
+\midrule
+\multirow{8}{*}{VisA (full)} & \multirow{2}{*}{blur} & 4 & 0.144 & 0.606 & 0.825 \\
+ & & 8 & 0.094 & 0.566 & 0.870 \\
+\cmidrule(lr){2-6}
+ & \multirow{2}{*}{bright/contr.} & 4 & 0.146 & 0.596 & 0.821 \\
+ & & 8 & 0.098 & 0.557 & 0.864 \\
+\cmidrule(lr){2-6}
+ & \multirow{2}{*}{Gauss. noise} & 4 & 0.133 & 0.575 & 0.829 \\
+ & & 8 & 0.081 & 0.538 & 0.881 \\
+\cmidrule(lr){2-6}
+ & \multirow{2}{*}{JPEG} & 4 & 0.145 & 0.602 & 0.822 \\
+ & & 8 & 0.104 & 0.559 & 0.858 \\
+\midrule
+\multirow{8}{*}{MVTec (full)} & \multirow{2}{*}{blur} & 4 & 0.219 & 0.880 & 0.904 \\
+ & & 8 & 0.139 & 0.870 & 0.936 \\
+\cmidrule(lr){2-6}
+ & \multirow{2}{*}{bright/contr.} & 4 & 0.214 & 0.882 & 0.906 \\
+ & & 8 & 0.133 & 0.870 & 0.939 \\
+\cmidrule(lr){2-6}
+ & \multirow{2}{*}{Gauss. noise} & 4 & 0.341 & 0.873 & 0.857 \\
+ & & 8 & 0.281 & 0.860 & 0.878 \\
+\cmidrule(lr){2-6}
+ & \multirow{2}{*}{JPEG} & 4 & 0.336 & 0.883 & 0.860 \\
+ & & 8 & 0.248 & 0.872 & 0.892 \\
+\bottomrule
+\end{tabular}
+\end{table*}

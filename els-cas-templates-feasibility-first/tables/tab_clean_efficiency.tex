@@ -1,0 +1,45 @@
+\begin{table*}[pos=t]
+\centering
+\caption{Clean image-level ranking performance and category-specific ranker state in mebibytes (MiB). Controlled DINOv2 NN and PCA64/PCA128 share our feature, split, metric, and storage-accounting protocol and are averaged over categories and five seeds. AnomalyDINO-S (448) and WinCLIP values are reported in~\cite{damm2025anomalydino,winclip2023} under their respective protocols. Bold marks the best value only among common-protocol rows in each dataset/$k$ block. ``--'' denotes not evaluated, N/C not directly comparable, and N/R not reported.}
+\label{tab:clean-efficiency}
+\setlength{\tabcolsep}{2.4pt}
+\footnotesize
+\begin{tabular}{lllrrr}
+\toprule
+Dataset & $k$ & Method & AUROC $\uparrow$ & AP $\uparrow$ & MiB $\downarrow$ \\
+\midrule
+\multirow{11}{*}{MVTec}
+& \multirow{4}{*}{1} & AnomalyDINO-S (reported) & 0.965 & 0.981 & -- \\
+& & WinCLIP (reported) & 0.931 & N/C & N/R \\
+& & Controlled DINOv2 NN & \textbf{0.914} & \textbf{0.952} & 2.005 \\
+& & PCA64 (controlled) & 0.904 & 0.951 & \textbf{0.095} \\
+\cmidrule(lr){2-6}
+& \multirow{4}{*}{4} & AnomalyDINO-S (reported) & 0.976 & 0.984 & -- \\
+& & WinCLIP (reported) & 0.952 & N/C & N/R \\
+& & Controlled DINOv2 NN & \textbf{0.942} & \textbf{0.967} & 6.000 \\
+& & PCA64 (controlled) & 0.937 & \textbf{0.967} & \textbf{0.095} \\
+\cmidrule(lr){2-6}
+& \multirow{3}{*}{8} & AnomalyDINO-S (reported) & 0.980 & 0.990 & -- \\
+& & Controlled DINOv2 NN & \textbf{0.948} & 0.970 & 6.000 \\
+& & PCA64 (controlled) & 0.945 & \textbf{0.972} & \textbf{0.095} \\
+\midrule
+\multirow{14}{*}{VisA}
+& \multirow{5}{*}{1} & AnomalyDINO-S (reported) & 0.856 & 0.866 & -- \\
+& & WinCLIP (reported) & 0.838 & N/C & N/R \\
+& & Controlled DINOv2 NN & 0.804 & 0.809 & 2.005 \\
+& & PCA64 (controlled) & 0.823 & 0.834 & \textbf{0.095} \\
+& & PCA128 (controlled) & \textbf{0.834} & \textbf{0.842} & 0.189 \\
+\cmidrule(lr){2-6}
+& \multirow{5}{*}{4} & AnomalyDINO-S (reported) & 0.913 & 0.918 & -- \\
+& & WinCLIP (reported) & 0.873 & N/C & N/R \\
+& & Controlled DINOv2 NN & 0.862 & 0.861 & 6.000 \\
+& & PCA64 (controlled) & 0.870 & 0.883 & \textbf{0.095} \\
+& & PCA128 (controlled) & \textbf{0.885} & \textbf{0.895} & 0.189 \\
+\cmidrule(lr){2-6}
+& \multirow{4}{*}{8} & AnomalyDINO-S (reported) & 0.926 & 0.929 & -- \\
+& & Controlled DINOv2 NN & 0.873 & 0.870 & 6.000 \\
+& & PCA64 (controlled) & 0.882 & 0.894 & \textbf{0.095} \\
+& & PCA128 (controlled) & \textbf{0.897} & \textbf{0.905} & 0.189 \\
+\bottomrule
+\end{tabular}
+\end{table*}

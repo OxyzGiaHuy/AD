@@ -1,0 +1,22 @@
+\begin{table*}[t]
+\centering
+\caption{Frozen strict CRESS audit over 960 job $\times$ source-view $\times$ $k$ $\times$ $\alpha$ $\times$ condition configurations, 240 per source-to-target job. Each configuration contains 75 MVTec, 60 VisA, or 30 MPDD target-category/seed cells; hence ``nonzero frac.'' pools 18,000, 14,400, or 7,200 cells per indicated job. ``Min UCB'' is the smallest observed candidate bound. Category and image rows target different estimands; image rows assume the idealized iid source-image model.}
+\label{tab:strict-cress}
+\footnotesize
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{llrrrl}
+\toprule
+source $\rightarrow$ target & certification unit & units/cell & min UCB & nonzero frac. & interpretation \\
+\midrule
+MVTec $\rightarrow$ MVTec & category & 4 & 0.950 & 0.000 & category-unit gate fails \\
+VisA $\rightarrow$ VisA & category & 3 & 1.000 & 0.000 & category-unit gate fails \\
+MVTec $\rightarrow$ VisA & category & 4 & 0.961 & 0.000 & category-unit gate fails \\
+MVTec $\rightarrow$ MPDD & category & 4 & 0.986 & 0.000 & category-unit gate fails \\
+\midrule
+MVTec $\rightarrow$ MVTec & source image & 75 to 191 & 0.039 & 0.367 & iid-image sensitivity \\
+VisA $\rightarrow$ VisA & source image & 150 to 180 & 0.042 & 0.603 & iid-image sensitivity \\
+MVTec $\rightarrow$ VisA & source image & 72 to 159 & 0.048 & 0.415 & iid-image sensitivity \\
+MVTec $\rightarrow$ MPDD & source image & 81 to 190 & 0.040 & 0.370 & iid-image sensitivity \\
+\bottomrule
+\end{tabular}
+\end{table*}

@@ -1,0 +1,32 @@
+\begin{table}[pos=t]
+\centering
+\caption{Direct pooled-source conformal under matched-condition selection. Entries are unweighted means of within-target-cell rates over categories, $k\in\{1,2,4,8\}$, five support seeds, and five conditions. The complete selected source pool uses $\tau=\alpha$ without a reference/proposal/certification split; this is an empirical, uncertified baseline.}
+\label{tab:pooled-source-conformal}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrrr}
+\toprule
+source $\rightarrow$ target & $\alpha$ & FAR & power \\
+\midrule
+\multirow{3}{*}{MVTec $\rightarrow$ MVTec}
+ & 0.05 & 0.075 & 0.404 \\
+ & 0.10 & 0.131 & 0.566 \\
+ & 0.20 & 0.242 & 0.754 \\
+\cmidrule(lr){1-4}
+\multirow{3}{*}{VisA $\rightarrow$ VisA}
+ & 0.05 & 0.060 & 0.320 \\
+ & 0.10 & 0.111 & 0.466 \\
+ & 0.20 & 0.208 & 0.639 \\
+\cmidrule(lr){1-4}
+\multirow{3}{*}{MVTec $\rightarrow$ VisA}
+ & 0.05 & 0.028 & 0.171 \\
+ & 0.10 & 0.048 & 0.282 \\
+ & 0.20 & 0.099 & 0.441 \\
+\cmidrule(lr){1-4}
+\multirow{3}{*}{MVTec $\rightarrow$ MPDD}
+ & 0.05 & 0.030 & 0.186 \\
+ & 0.10 & 0.066 & 0.283 \\
+ & 0.20 & 0.157 & 0.423 \\
+\bottomrule
+\end{tabular}
+\end{table}

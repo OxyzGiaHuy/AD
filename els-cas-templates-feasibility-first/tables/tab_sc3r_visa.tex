@@ -1,0 +1,20 @@
+\begin{table*}[pos=t]
+\centering
+\caption{Historical matched-condition CRESS on 12 label-stratified VisA classes ($k{=}4$, seeds from 0 to 2, five pooled conditions), using either within-VisA or MVTec source categories. Threshold selection and source assessment are not independent in this historical analysis. Bold marks cells with nonzero power and $\mathrm{FAR}\le\alpha{+}0.02$.}
+\label{tab:sc3r-visa}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrrrrr}
+\toprule
+source pool & $\alpha$ & FAR & power & prec. & no-harm \\
+\midrule
+\multirow{3}{*}{VisA (within)} & 0.05 & \textbf{0.051} & \textbf{0.144} & 0.847 & 89\% \\
+ & 0.10 & \textbf{0.095} & \textbf{0.351} & 0.843 & 84\% \\
+ & 0.20 & \textbf{0.192} & \textbf{0.637} & 0.810 & 78\% \\
+\midrule
+\multirow{3}{*}{MVTec (cross-dataset)} & 0.05 & \textbf{0.013} & \textbf{0.091} & 0.936 & 97\% \\
+ & 0.10 & \textbf{0.040} & \textbf{0.201} & 0.881 & 93\% \\
+ & 0.20 & \textbf{0.098} & \textbf{0.415} & 0.852 & 93\% \\
+\bottomrule
+\end{tabular}
+\end{table*}

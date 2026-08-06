@@ -1,0 +1,4 @@
+MVTec target-only FAR reaches 0.341 at k=4 and alpha=0.20
+At alpha=0.20, optimistic certification needs 14 independent categories
+Three or four categories yield no positive category-certified threshold
+Image-unit bounds target a source mixture, not an unseen category

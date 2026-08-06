@@ -1,0 +1,22 @@
+\begin{table*}[t]
+\centering
+\caption{Frozen strict nested CRESS audit across four source-to-target jobs, four source-view modes, $k\in\{1,2,4,8\}$, three $\alpha$ levels, and five conditions (960 configurations), each evaluated over five support seeds. ``Min UCB'' is the smallest observed candidate upper bound. Nonzero is the fraction of target cells receiving $\tau>0$. Category and image rows target different estimands; image rows additionally assume iid source-image units.}
+\label{tab:strict-nested-sc3r}
+\footnotesize
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{llrrrl}
+\toprule
+source $\rightarrow$ target & certification unit & units/cell & min UCB & nonzero & interpretation \\
+\midrule
+MVTec $\rightarrow$ MVTec & category & 4 & 0.950 & 0.000 & marginal category-risk gate fails \\
+VisA $\rightarrow$ VisA & category & 3 & 1.000 & 0.000 & marginal category-risk gate fails \\
+MVTec $\rightarrow$ VisA & category & 4 & 0.961 & 0.000 & marginal category-risk gate fails \\
+MVTec $\rightarrow$ MPDD & category & 4 & 0.986 & 0.000 & marginal category-risk gate fails \\
+\midrule
+MVTec $\rightarrow$ MVTec & source image & 75 to 191 & 0.039 & 0.367 & iid-image sensitivity \\
+VisA $\rightarrow$ VisA & source image & 150 to 180 & 0.042 & 0.603 & iid-image sensitivity \\
+MVTec $\rightarrow$ VisA & source image & 72 to 159 & 0.048 & 0.415 & iid-image sensitivity \\
+MVTec $\rightarrow$ MPDD & source image & 81 to 190 & 0.040 & 0.370 & iid-image sensitivity \\
+\bottomrule
+\end{tabular}
+\end{table*}

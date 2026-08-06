@@ -1,0 +1,87 @@
+\PassOptionsToPackage{hyperfootnotes=false}{hyperref}
+\documentclass[a4paper,fleqn]{cas-dc}
+
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{graphicx}
+\graphicspath{{./}{figures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg,.jpeg}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{needspace}
+\usepackage{placeins}
+\usepackage{lastpage}
+\usepackage{url}
+
+\begin{document}
+\def\lastpage{\pageref{LastPage}}
+% cas-common.sty prints an empty ORCID footnote even when no ORCID is supplied.
+\RenewDocumentCommand{\printorcid}{}{}
+\let\WriteBookmarks\relax
+\def\floatpagepagefraction{1}
+\def\textpagefraction{.001}
+
+\shorttitle{Category Limits for Few-Shot Certification}
+\shortauthors{Thai and Nguyen}
+
+\title[mode = title]{How Many Categories Are Enough? Distribution-Free Certification Limits for Few-Shot Anomaly Thresholds}
+
+\author[1]{Gia Huy Thai}
+\ead{23120008@student.hcmus.edu.vn}
+
+\author[2]{Anh Nguyen}
+\cormark[1]
+\ead{anh.nt@vlu.edu.vn}
+
+\affiliation[1]{organization={University of Science, VNU-HCM},
+                city={Ho Chi Minh City},
+                country={Vietnam}}
+
+\affiliation[2]{organization={Faculty of Information Technology, Van Lang School of Technology, Van Lang University},
+                city={Ho Chi Minh City},
+                country={Vietnam}}
+
+\cortext[cor1]{Corresponding author.}
+
+\input{sections/abstract}
+
+% \begin{graphicalabstract}
+% \includegraphics[width=0.86\textwidth]{fig_pipeline}
+% \end{graphicalabstract}
+
+% \begin{highlights}
+% \item Target-only MVTec false-alarm rate reaches 0.341 under Gaussian noise
+% \item Even with no failures, risk 0.20 needs 14 independent same-population categories
+% \item All 960 frozen configurations fail closed with only three or four categories
+% \item Image-unit bounds target a source mixture, not an unseen category
+% \end{highlights}
+
+\begin{keywords}
+Industrial anomaly detection \sep Few-shot learning \sep Conformal prediction \sep Distribution-free certification \sep Distribution shift \sep Reliability
+\end{keywords}
+
+\maketitle
+% CAS writes default PDF metadata during front-matter construction; set the
+% final submission metadata afterwards so author separators remain portable.
+\hypersetup{
+  pdftitle={How Many Categories Are Enough? Distribution-Free Certification Limits for Few-Shot Anomaly Thresholds},
+  pdfauthor={Gia Huy Thai and Anh Nguyen},
+  pdfsubject={Reliability and certification limits for few-shot industrial anomaly detection},
+  pdfkeywords={industrial anomaly detection, few-shot learning, conformal prediction, distribution-free certification, distribution shift, reliability},
+  pdfcreator={LaTeX using the Elsevier CAS double-column class}
+}
+
+\input{sections/introduction}
+\input{sections/related_work}
+\input{sections/method}
+\input{sections/experiments}
+\input{sections/results}
+\input{sections/limitations}
+\input{sections/conclusion}
+\input{sections/appendix}
+\input{sections/declarations}
+
+\bibliographystyle{cas-model2-names}
+\bibliography{references}
+
+\end{document}

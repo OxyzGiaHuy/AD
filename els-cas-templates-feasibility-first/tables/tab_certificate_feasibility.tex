@@ -1,0 +1,22 @@
+\begin{table}[t]
+\centering
+\caption{Minimum iid certification-category counts required by the all-zero calculations at $\delta=0.05$. The distribution-free rows report the necessary lower bound for deterministic uniformly valid procedures in Proposition~3, first without multiplicity ($\beta=\delta$), then with $\beta=\delta/(2AM)$, $A=3$, and realized family size $M$. ``Hoeffding'' gives Proposition~2. All rows assume zero observed loss; meeting a listed count does not itself guarantee a positive CRESS threshold.}
+\label{tab:certificate-feasibility}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrrr}
+\toprule
+rule / candidates & $\alpha=.20$ & $\alpha=.10$ & $\alpha=.05$ \\
+\midrule
+Distribution-free, no multiplicity & 14 & 29 & 59 \\
+\midrule
+Distribution-free, $M=1$  & 22 & 46 & 94 \\
+Distribution-free, $M=5$  & 29 & 61 & 125 \\
+Distribution-free, $M=20$ & 35 & 74 & 152 \\
+\midrule
+Hoeffding, $M=1$  & 60 & 240 & 958 \\
+Hoeffding, $M=5$  & 80 & 320 & 1,280 \\
+Hoeffding, $M=20$ & 98 & 390 & 1,557 \\
+\bottomrule
+\end{tabular}
+\end{table}

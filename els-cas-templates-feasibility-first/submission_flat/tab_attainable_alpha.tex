@@ -1,0 +1,32 @@
+\begin{table*}[pos=t]
+\centering
+\caption{Target-only LOIO operating points. The floor is the smallest p-value, $1/(k{+}1)$; ``attainable'' is the largest p-value grid point not exceeding the nominal $\alpha$, or zero if none exists. Within each corruption, FAR and detection are pooled over classes and seeds; the table then averages the four corruption-specific rates.}
+\label{tab:attainable-alpha}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{llrrrrr}
+\toprule
+dataset & $k$ & floor & nominal $\alpha$ & attainable & FAR & detection \\
+\midrule
+\multirow{8}{*}{VisA (full)} & \multirow{4}{*}{4} & \multirow{4}{*}{0.200} & 0.01 & 0.000 & 0.000 & 0.000 \\
+ & & & 0.05 & 0.000 & 0.000 & 0.000 \\
+ & & & 0.10 & 0.000 & 0.000 & 0.000 \\
+ & & & 0.20 & 0.200 & 0.142 & 0.595 \\
+\cmidrule(lr){2-7}
+ & \multirow{4}{*}{8} & \multirow{4}{*}{0.111} & 0.01 & 0.000 & 0.000 & 0.000 \\
+ & & & 0.05 & 0.000 & 0.000 & 0.000 \\
+ & & & 0.10 & 0.000 & 0.000 & 0.000 \\
+ & & & 0.20 & 0.111 & 0.094 & 0.555 \\
+\midrule
+\multirow{8}{*}{MVTec (full)} & \multirow{4}{*}{4} & \multirow{4}{*}{0.200} & 0.01 & 0.000 & 0.000 & 0.000 \\
+ & & & 0.05 & 0.000 & 0.000 & 0.000 \\
+ & & & 0.10 & 0.000 & 0.000 & 0.000 \\
+ & & & 0.20 & 0.200 & 0.278 & 0.880 \\
+\cmidrule(lr){2-7}
+ & \multirow{4}{*}{8} & \multirow{4}{*}{0.111} & 0.01 & 0.000 & 0.000 & 0.000 \\
+ & & & 0.05 & 0.000 & 0.000 & 0.000 \\
+ & & & 0.10 & 0.000 & 0.000 & 0.000 \\
+ & & & 0.20 & 0.111 & 0.200 & 0.868 \\
+\bottomrule
+\end{tabular}
+\end{table*}

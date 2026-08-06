@@ -1,0 +1,20 @@
+\begin{table*}[pos=t]
+\centering
+\caption{Historical comparison of smoothed conformal p-values and non-independent CRESS below the target-only floor ($k{=}4$, all classes, seeds from 0 to 2, five pooled conditions). Randomized rates are exact expectations over the auxiliary randomization. Bold marks $\mathrm{FAR}\le\alpha{+}0.02$.}
+\label{tab:randomized-pvalue}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrrrrr}
+\toprule
+ & & \multicolumn{2}{c}{Randomized p-value} & \multicolumn{2}{c}{CRESS (historical)} \\
+\cmidrule(lr){3-4}\cmidrule(lr){5-6}
+dataset & $\alpha$ & FAR & power & FAR & power \\
+\midrule
+\multirow{2}{*}{MVTec} & 0.05 & 0.085 & 0.216 & \textbf{0.049} & 0.216 \\
+ & 0.10 & 0.170 & 0.431 & \textbf{0.105} & 0.416 \\
+\midrule
+\multirow{2}{*}{VisA} & 0.05 & \textbf{0.036} & 0.150 & \textbf{0.051} & 0.144 \\
+ & 0.10 & \textbf{0.072} & 0.300 & \textbf{0.095} & 0.351 \\
+\bottomrule
+\end{tabular}
+\end{table*}

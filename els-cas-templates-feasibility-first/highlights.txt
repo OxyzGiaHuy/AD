@@ -1,0 +1,4 @@
+- Target-only MVTec false-alarm rate reaches 0.341 under Gaussian noise
+- Even with no failures, risk 0.20 needs 14 independent same-population categories
+- All 960 frozen configurations fail closed with only three or four categories
+- Bounds from individual images do not certify performance on unseen categories

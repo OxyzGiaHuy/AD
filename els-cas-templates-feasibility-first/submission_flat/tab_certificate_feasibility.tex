@@ -1,0 +1,22 @@
+\begin{table}[t]
+\centering
+\caption{Minimum independent certification-category counts permitted by the all-zero design calculations at $\delta=0.05$. The distribution-free (DF) floor is the necessary lower limit in Proposition~3, first without multiplicity ($\beta=\delta$) and then under the frozen allocation $\beta=\delta/(2AM)$ with $A=3$. ``Hoeffding'' is the necessary count for the declared rule in Proposition~2. All rows assume zero observed category loss; satisfying a listed count does not by itself guarantee that CRESS selects a positive threshold.}
+\label{tab:certificate-feasibility}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrrr}
+\toprule
+rule / candidates & $\alpha=.20$ & $\alpha=.10$ & $\alpha=.05$ \\
+\midrule
+DF floor, no multiplicity & 14 & 29 & 59 \\
+\midrule
+DF floor, $M=1$  & 22 & 46 & 94 \\
+DF floor, $M=5$  & 29 & 61 & 125 \\
+DF floor, $M=20$ & 35 & 74 & 152 \\
+\midrule
+Hoeffding, $M=1$  & 60 & 240 & 958 \\
+Hoeffding, $M=5$  & 80 & 320 & 1,280 \\
+Hoeffding, $M=20$ & 98 & 390 & 1,557 \\
+\bottomrule
+\end{tabular}
+\end{table}
