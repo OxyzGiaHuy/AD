@@ -1,0 +1,79 @@
+{
+  "entry": "main.tex",
+  "output": "main_single.tex",
+  "output_sha256": "45ebd26f31191dc9def2267912cc5db7ca8eb8d0981db37d3d32eb9ca8bc1d0b",
+  "inlined_files_in_expansion_order": [
+    {
+      "path": "main.tex",
+      "sha256": "930af85e90b5d6ffcf977622a64aaab8612ba7ce5056d6596b1a3bbb4a2fb393"
+    },
+    {
+      "path": "sections/abstract.tex",
+      "sha256": "542c4fb1e2bbe7a2a57ca246e9620edf1b349574300886a1a4f9574a1468608f"
+    },
+    {
+      "path": "sections/introduction.tex",
+      "sha256": "e6cef2cf324f95ebf1c85df6381b70592c229c308b79641af4c1fc4a34b9778f"
+    },
+    {
+      "path": "sections/related_work.tex",
+      "sha256": "20bceac9108651566966a943efe215ecb98b1dbbc2f4eeab2e32fe18a9247e79"
+    },
+    {
+      "path": "sections/method.tex",
+      "sha256": "1b05ef0e96b9c5e73e9fe410c397948f96bf00d38c42db96162afe55be8a10cd"
+    },
+    {
+      "path": "tables/tab_certificate_feasibility.tex",
+      "sha256": "6e98afb94e9055534ec1211994dd6036dff6008e9dcf0632fe5bbbb2e65a9ef3"
+    },
+    {
+      "path": "sections/experiments.tex",
+      "sha256": "1e8aa3fc4d37cf0208f5d2b1677f7d02e2cb4295b61fdf9c623c3a9f8b06305a"
+    },
+    {
+      "path": "sections/results.tex",
+      "sha256": "7e2eff44c12e485ae55de3b25b6a649e7d24633c84607cb72c0ee74306a1d399"
+    },
+    {
+      "path": "tables/tab_attainable_alpha.tex",
+      "sha256": "03b3182dfa89f4e79e2b5f9b770bd76c882caa2cd2fb553c9f15541f649e1990"
+    },
+    {
+      "path": "tables/tab_false_alarm_control.tex",
+      "sha256": "072b1a4214d29bbd0c30630f88878cd35a0fd646b3ba3165db6165b24632f07a"
+    },
+    {
+      "path": "tables/tab_strict_nested_sc3r.tex",
+      "sha256": "5d23707b69731e4f0ae8abf55b263d3033829f35f8ddfb48b0376036a2df4317"
+    },
+    {
+      "path": "tables/tab_pooled_source_conformal.tex",
+      "sha256": "a3e1bdd534bd4ea7fca7741496de9775ab84af0d394fa7b88b91364fd368c993"
+    },
+    {
+      "path": "tables/tab_clean_efficiency.tex",
+      "sha256": "9926e8769966e84b48686a95969279bc502537365a83184f454639550aefd12d"
+    },
+    {
+      "path": "sections/limitations.tex",
+      "sha256": "1a668cc025e98073d9e7399a0c59ad7442ef9e991ca9126186ded0c9fe041bbd"
+    },
+    {
+      "path": "sections/conclusion.tex",
+      "sha256": "76f1f686dd69f30df650250694449fb21d1d33cadce9599b7d2f265202ebed0d"
+    },
+    {
+      "path": "sections/appendix.tex",
+      "sha256": "6da137d49cafc52b3593b9e7fce20c9f03e7806ad3ae35aef17c407a69a1bbbf"
+    },
+    {
+      "path": "tables/tab_agg_ablation.tex",
+      "sha256": "35f0ae1479b0bcc95ebeb676462645280467938bc3cc489837940d696495721f"
+    },
+    {
+      "path": "sections/declarations.tex",
+      "sha256": "0ce56587c2bb5c2bfca8786e4230c98402983468e64bab26012cc6c88211b180"
+    }
+  ]
+}
